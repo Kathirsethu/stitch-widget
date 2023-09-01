@@ -1,6 +1,6 @@
 package com.stitch.cardmanagement.utilities
 
-class Constants {
+open class Constants {
 
     object ViewType {
 
