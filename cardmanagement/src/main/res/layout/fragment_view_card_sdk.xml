@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.stitch.cardmanagement.ui.CardManagementSDKViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        tools:context="com.stitch.cardmanagement.ui.view_card.ViewCardSDKFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/layoutDefault"
+                layout="@layout/layout_default" />
+
+            <include
+                android:id="@+id/layoutHorizontal"
+                layout="@layout/layout_horizontal"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/layoutHorizontalFlippable1"
+                layout="@layout/layout_horizontal_flippable_1"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/layoutVerticalFlippable"
+                layout="@layout/layout_vertical_flippable"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/layoutHorizontalFlippable2"
+                layout="@layout/layout_horizontal_flippable_2"
+                android:visibility="gone" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

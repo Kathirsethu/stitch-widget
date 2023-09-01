@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.stitch.cardmanagement.ui.CardManagementSDKViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        tools:context="com.stitch.cardmanagement.ui.reset_pin.ResetPinSDKFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:isGone="@{!viewModel.showCardResetPin}"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCardNotActivated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_red_25_corner_12"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/card_not_activated"
+                android:textColor="@color/red"
+                android:textSize="14sp"
+                app:fontFamily="@font/euclid_flex_medium"
+                app:isGone="@{!viewModel.isCardNotActivate}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPINRequiredLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/pin_required"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:fontFamily="@font/euclid_flex_bold"
+                app:isGone="@{viewModel.isCardNotActivate}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/layoutOutlined"
+                layout="@layout/layout_outlined_reset_pin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvPINRequiredLabel" />
+
+            <include
+                android:id="@+id/layoutFilled"
+                layout="@layout/layout_filled_reset_pin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/layoutOutlined" />
+
+            <include
+                android:id="@+id/layoutStandard"
+                layout="@layout/layout_standard_reset_pin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/layoutFilled" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvChangePIN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_color_base_corner_12"
+                android:gravity="center"
+                android:onClick="@{()->viewModel.getWidgetsSecureSessionKey(context)}"
+                android:padding="16dp"
+                android:text="@string/change_pin"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:fontFamily="@font/euclid_flex_bold"
+                app:isGone="@{viewModel.isCardNotActivate}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutStandard" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,131 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.StitchApplication" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/colorBase</item>
+        <item name="colorPrimaryDark">@color/colorBase</item>
+        <item name="colorAccent">@color/colorBase</item>
+        <item name="colorControlNormal">@color/black</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="actionMenuTextColor">@color/black</item>
+        <item name="actionMenuTextAppearance">@style/ToolBarMenuTitle</item>
+        <item name="alertDialogTheme">@style/DialogTheme</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="Base.MaterialThemeBuilder" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:statusBarColor">@color/colorBase</item>
+        <item name="android:navigationBarColor">@color/colorBase</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.Design.TextInputLayout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="placeholderTextColor">@color/black</item>
+        <item name="placeholderTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="suffixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="prefixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:focusable">true</item>
+        <item name="colorAccent">@color/black</item>
+    </style>
+
+    <style name="TextInputLayoutStyleTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/euclid_flex_medium</item>
+    </style>
+
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_white_stroke_1_login_logo_bg_corner_12</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:textCursorDrawable">@drawable/cursor</item>
+        <item name="android:colorControlNormal">@color/black</item>
+        <item name="fontFamily">@font/euclid_flex_regular</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
+        <item name="placeholderTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="suffixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="prefixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+    </style>
+
+    <style name="TextInputLayoutStyle.Outline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="placeholderTextColor">@color/black</item>
+        <item name="placeholderTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="suffixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="prefixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:focusable">true</item>
+        <item name="colorAccent">@color/black</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxStrokeColor">@color/black</item>
+    </style>
+
+    <style name="TextInputLayoutStyle.Filled" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="placeholderTextColor">@color/black</item>
+        <item name="placeholderTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="suffixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="prefixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:focusable">true</item>
+        <item name="colorAccent">@color/black</item>
+        <item name="boxBackgroundColor">@color/color_inactive</item>
+    </style>
+
+    <style name="TextInputLayoutStyle.Standard" parent="Widget.Design.TextInputLayout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="placeholderTextColor">@color/black</item>
+        <item name="placeholderTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="suffixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="prefixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:focusable">true</item>
+        <item name="colorAccent">@color/black</item>
+    </style>
+
+    <style name="EditTextStyle.NoBorder" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:textCursorDrawable">@drawable/cursor</item>
+        <item name="android:colorControlNormal">@color/black</item>
+        <item name="fontFamily">@font/euclid_flex_regular</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
+        <item name="placeholderTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="suffixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+        <item name="prefixTextAppearance">@style/TextInputLayoutStyleTextAppearance</item>
+    </style>
+
+    <style name="ToolBarMenuTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/euclid_flex_semi_bold</item>
+    </style>
+
+    <style name="TabTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/euclid_flex_semi_bold</item>
+    </style>
+</resources>

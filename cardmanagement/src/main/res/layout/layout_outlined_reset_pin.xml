@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.stitch.cardmanagement.ui.CardManagementSDKViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilOldPIN"
+            style="@style/TextInputLayoutStyle.Outline"
+            app:hintTextColor="@color/black"
+            app:isGone="@{viewModel.isCardNotActivate}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etOldPIN"
+                style="@style/EditTextStyle.NoBorder"
+                android:hint="@string/placeholder_four_digit_old_pin"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="4"
+                android:text="@={viewModel.oldPin}"
+                app:styleFontColor="@{viewModel.cardStyleFontColor}"
+                app:styleFontFamily="@{viewModel.cardStyleFontFamily}"
+                app:styleFontSize="@{Integer.parseInt(viewModel.styleFontSize)}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfirmPIN"
+            style="@style/TextInputLayoutStyle.Outline"
+            android:layout_marginTop="12dp"
+            app:hintTextColor="@color/black"
+            app:isGone="@{viewModel.isCardNotActivate}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilOldPIN">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNewPIN"
+                style="@style/EditTextStyle.NoBorder"
+                android:hint="@string/placeholder_new_pin"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="4"
+                android:text="@={viewModel.newPin}"
+                app:styleFontColor="@{viewModel.cardStyleFontColor}"
+                app:styleFontFamily="@{viewModel.cardStyleFontFamily}"
+                app:styleFontSize="@{Integer.parseInt(viewModel.styleFontSize)}" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
