@@ -73,7 +73,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'com.stitch.cardmanagement'
             artifactId = 'stitch_widget_sample'
-            version = '0.0.2'
+            version = '0.0.3'
         }
     }
 }
