@@ -68,12 +68,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = 'com.stitch.cardmanagement'
-            artifactId = 'stitch_widget_sample'
-            version = '0.0.4'
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.stitch.cardmanagement'
+                artifactId = 'stitch-widget'
+                version = '0.0.5'
+            }
         }
     }
 }

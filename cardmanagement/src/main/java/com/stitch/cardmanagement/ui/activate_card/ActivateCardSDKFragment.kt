@@ -16,7 +16,7 @@ import com.stitch.cardmanagement.ui.CardManagementSDKFragment
 import com.stitch.cardmanagement.utilities.Constants
 import com.stitch.cardmanagement.utilities.Toast
 
-class ActivateCardSDKFragment : CardManagementSDKFragment() {
+open class ActivateCardSDKFragment : CardManagementSDKFragment() {
 
     private lateinit var binding: FragmentActivateCardSdkBinding
 

@@ -17,7 +17,7 @@ import com.stitch.cardmanagement.ui.CardManagementSDKFragment
 import com.stitch.cardmanagement.utilities.Constants
 import com.stitch.cardmanagement.utilities.OnSwipeTouchListener
 
-class ViewCardSDKFragment : CardManagementSDKFragment() {
+open class ViewCardSDKFragment : CardManagementSDKFragment() {
 
     private lateinit var binding: FragmentViewCardSdkBinding
     private lateinit var frontAnimation: AnimatorSet

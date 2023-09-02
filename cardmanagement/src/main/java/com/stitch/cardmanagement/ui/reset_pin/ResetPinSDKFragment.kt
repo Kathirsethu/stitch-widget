@@ -16,7 +16,7 @@ import com.stitch.cardmanagement.ui.CardManagementSDKFragment
 import com.stitch.cardmanagement.utilities.Constants
 import com.stitch.cardmanagement.utilities.Toast
 
-class ResetPinSDKFragment : CardManagementSDKFragment() {
+open class ResetPinSDKFragment : CardManagementSDKFragment() {
 
     private lateinit var binding: FragmentResetPinSdkBinding
 
