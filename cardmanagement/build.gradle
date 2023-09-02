@@ -75,7 +75,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.stitch.cardmanagement'
                 artifactId = 'stitch-widget'
-                version = '0.0.7'
+                version = '0.0.8'
             }
         }
     }
