@@ -157,33 +157,6 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
         } else {
             viewModel.styleFontSize.set("14")
         }
-        if (viewModel.savedCardSettings.get()?.numberPadding != null &&
-            viewModel.savedCardSettings.get()?.numberPadding.toString().isNotEmpty()
-        ) {
-            viewModel.cardStyleNumberPadding.set(
-                viewModel.savedCardSettings.get()?.numberPadding.toString()
-            )
-        } else {
-            viewModel.cardStyleNumberPadding.set("0")
-        }
-        if (viewModel.savedCardSettings.get()?.expiryPadding != null &&
-            viewModel.savedCardSettings.get()?.expiryPadding.toString().isNotEmpty()
-        ) {
-            viewModel.cardStyleExpiryPadding.set(
-                viewModel.savedCardSettings.get()?.expiryPadding.toString()
-            )
-        } else {
-            viewModel.cardStyleExpiryPadding.set("0")
-        }
-        if (viewModel.savedCardSettings.get()?.cvvPadding != null &&
-            viewModel.savedCardSettings.get()?.cvvPadding.toString().isNotEmpty()
-        ) {
-            viewModel.cardStyleCVVPadding.set(
-                viewModel.savedCardSettings.get()?.cvvPadding.toString()
-            )
-        } else {
-            viewModel.cardStyleCVVPadding.set("0")
-        }
         setCardData()
     }
 

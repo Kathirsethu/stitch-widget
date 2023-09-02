@@ -266,32 +266,95 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
         } else {
             viewModel.styleFontSize.set("14")
         }
-        if (viewModel.savedCardSettings.get()?.numberPadding != null &&
-            viewModel.savedCardSettings.get()?.numberPadding.toString().isNotEmpty()
+        if (viewModel.savedCardSettings.get()?.numberTopPadding != null &&
+            viewModel.savedCardSettings.get()?.numberTopPadding.toString().isNotEmpty()
         ) {
-            viewModel.cardStyleNumberPadding.set(
-                viewModel.savedCardSettings.get()?.numberPadding.toString()
+            viewModel.cardStyleNumberTopPadding.set(
+                viewModel.savedCardSettings.get()?.numberTopPadding.toString()
             )
         } else {
-            viewModel.cardStyleNumberPadding.set("0")
+            viewModel.cardStyleNumberTopPadding.set("0")
         }
-        if (viewModel.savedCardSettings.get()?.expiryPadding != null &&
-            viewModel.savedCardSettings.get()?.expiryPadding.toString().isNotEmpty()
+        if (viewModel.savedCardSettings.get()?.numberBottomPadding != null &&
+            viewModel.savedCardSettings.get()?.numberBottomPadding.toString().isNotEmpty()
         ) {
-            viewModel.cardStyleExpiryPadding.set(
-                viewModel.savedCardSettings.get()?.expiryPadding.toString()
+            viewModel.cardStyleNumberBottomPadding.set(
+                viewModel.savedCardSettings.get()?.numberBottomPadding.toString()
             )
         } else {
-            viewModel.cardStyleExpiryPadding.set("0")
+            viewModel.cardStyleNumberBottomPadding.set("0")
         }
-        if (viewModel.savedCardSettings.get()?.cvvPadding != null &&
-            viewModel.savedCardSettings.get()?.cvvPadding.toString().isNotEmpty()
+        if (viewModel.savedCardSettings.get()?.expiryTopPadding != null &&
+            viewModel.savedCardSettings.get()?.expiryTopPadding.toString().isNotEmpty()
         ) {
-            viewModel.cardStyleCVVPadding.set(
-                viewModel.savedCardSettings.get()?.cvvPadding.toString()
+            viewModel.cardStyleExpiryTopPadding.set(
+                viewModel.savedCardSettings.get()?.expiryTopPadding.toString()
             )
         } else {
-            viewModel.cardStyleCVVPadding.set("0")
+            viewModel.cardStyleExpiryTopPadding.set("0")
+        }
+        if (viewModel.savedCardSettings.get()?.expiryBottomPadding != null &&
+            viewModel.savedCardSettings.get()?.expiryBottomPadding.toString().isNotEmpty()
+        ) {
+            viewModel.cardStyleExpiryBottomPadding.set(
+                viewModel.savedCardSettings.get()?.expiryBottomPadding.toString()
+            )
+        } else {
+            viewModel.cardStyleExpiryBottomPadding.set("0")
+        }
+        if (viewModel.savedCardSettings.get()?.expiryStartPadding != null &&
+            viewModel.savedCardSettings.get()?.expiryStartPadding.toString().isNotEmpty()
+        ) {
+            viewModel.cardStyleExpiryStartPadding.set(
+                viewModel.savedCardSettings.get()?.expiryStartPadding.toString()
+            )
+        } else {
+            viewModel.cardStyleExpiryStartPadding.set("0")
+        }
+        if (viewModel.savedCardSettings.get()?.expiryEndPadding != null &&
+            viewModel.savedCardSettings.get()?.expiryEndPadding.toString().isNotEmpty()
+        ) {
+            viewModel.cardStyleExpiryEndPadding.set(
+                viewModel.savedCardSettings.get()?.expiryEndPadding.toString()
+            )
+        } else {
+            viewModel.cardStyleExpiryEndPadding.set("0")
+        }
+        if (viewModel.savedCardSettings.get()?.cvvTopPadding != null &&
+            viewModel.savedCardSettings.get()?.cvvTopPadding.toString().isNotEmpty()
+        ) {
+            viewModel.cardStyleCVVTopPadding.set(
+                viewModel.savedCardSettings.get()?.cvvTopPadding.toString()
+            )
+        } else {
+            viewModel.cardStyleCVVTopPadding.set("0")
+        }
+        if (viewModel.savedCardSettings.get()?.cvvBottomPadding != null &&
+            viewModel.savedCardSettings.get()?.cvvBottomPadding.toString().isNotEmpty()
+        ) {
+            viewModel.cardStyleCVVBottomPadding.set(
+                viewModel.savedCardSettings.get()?.cvvBottomPadding.toString()
+            )
+        } else {
+            viewModel.cardStyleCVVBottomPadding.set("0")
+        }
+        if (viewModel.savedCardSettings.get()?.cvvStartPadding != null &&
+            viewModel.savedCardSettings.get()?.cvvStartPadding.toString().isNotEmpty()
+        ) {
+            viewModel.cardStyleCVVStartPadding.set(
+                viewModel.savedCardSettings.get()?.cvvStartPadding.toString()
+            )
+        } else {
+            viewModel.cardStyleCVVStartPadding.set("0")
+        }
+        if (viewModel.savedCardSettings.get()?.cvvEndPadding != null &&
+            viewModel.savedCardSettings.get()?.cvvEndPadding.toString().isNotEmpty()
+        ) {
+            viewModel.cardStyleCVVEndPadding.set(
+                viewModel.savedCardSettings.get()?.cvvEndPadding.toString()
+            )
+        } else {
+            viewModel.cardStyleCVVEndPadding.set("0")
         }
         if (viewModel.savedCardSettings.get()?.background != null) {
             viewModel.cardStyleBackground.set(viewModel.savedCardSettings.get()?.background)

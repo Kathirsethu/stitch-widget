@@ -18,7 +18,7 @@ data class SavedCardSettings(
     var expiryTopPadding: Int? = null,
     var expiryBottomPadding: Int? = null,
     var expiryStartPadding: Int? = null,
-    var expiryEndadding: Int? = null,
+    var expiryEndPadding: Int? = null,
     var cvvTopPadding: Int? = null,
     var cvvBottomPadding: Int? = null,
     var cvvStartPadding: Int? = null,
