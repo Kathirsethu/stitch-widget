@@ -15,6 +15,8 @@ data class SavedCardSettings(
     var background: @RawValue Any? = null,
     var numberTopPadding: Int? = null,
     var numberBottomPadding: Int? = null,
+    var numberStartPadding: Int? = null,
+    var numberEndPadding: Int? = null,
     var expiryTopPadding: Int? = null,
     var expiryBottomPadding: Int? = null,
     var expiryStartPadding: Int? = null,

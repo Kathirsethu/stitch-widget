@@ -71,6 +71,8 @@ open class CardManagementSDKViewModel : ViewModel() {
     val cardStyleBackground = ObservableField<Any>()
     val cardStyleNumberTopPadding = ObservableField("0")
     val cardStyleNumberBottomPadding = ObservableField("0")
+    val cardStyleNumberStartPadding = ObservableField("0")
+    val cardStyleNumberEndPadding = ObservableField("0")
     val cardStyleExpiryTopPadding = ObservableField("0")
     val cardStyleExpiryBottomPadding = ObservableField("0")
     val cardStyleExpiryStartPadding = ObservableField("0")

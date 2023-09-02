@@ -284,6 +284,24 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
         } else {
             viewModel.cardStyleNumberBottomPadding.set("0")
         }
+        if (viewModel.savedCardSettings.get()?.numberStartPadding != null &&
+            viewModel.savedCardSettings.get()?.numberStartPadding.toString().isNotEmpty()
+        ) {
+            viewModel.cardStyleNumberStartPadding.set(
+                viewModel.savedCardSettings.get()?.numberStartPadding.toString()
+            )
+        } else {
+            viewModel.cardStyleNumberStartPadding.set("0")
+        }
+        if (viewModel.savedCardSettings.get()?.numberEndPadding != null &&
+            viewModel.savedCardSettings.get()?.numberEndPadding.toString().isNotEmpty()
+        ) {
+            viewModel.cardStyleNumberEndPadding.set(
+                viewModel.savedCardSettings.get()?.numberEndPadding.toString()
+            )
+        } else {
+            viewModel.cardStyleNumberEndPadding.set("0")
+        }
         if (viewModel.savedCardSettings.get()?.expiryTopPadding != null &&
             viewModel.savedCardSettings.get()?.expiryTopPadding.toString().isNotEmpty()
         ) {
