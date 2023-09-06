@@ -52,6 +52,7 @@
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="number"
+                android:maxLength="3"
                 android:paddingTop="32dp"
                 android:text="@={viewModel.cardCVV}"
                 app:styleFontColor="@{viewModel.cardStyleFontColor}"
