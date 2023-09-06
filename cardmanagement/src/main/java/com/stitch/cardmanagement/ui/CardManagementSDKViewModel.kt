@@ -127,8 +127,15 @@ open class CardManagementSDKViewModel : ViewModel() {
                     }
                 }
             },
-            errorResponse = { _, errorMessage ->
-                Toast.error(errorMessage ?: "")
+            errorResponse = { errorCode, errorMessage ->
+                if (errorCode == 400 &&
+                    (errorMessage?.contains("invalid", ignoreCase = true) == true ||
+                            errorMessage?.contains("token", ignoreCase = true) == true) &&
+                    (retryCount.get() ?: 0) < 3
+                ) {
+                    retryCount.set(retryCount.get()?.plus(1))
+                    reFetchSessionToken.invoke(viewType.get() ?: "")
+                }
             },
             networkListener = networkListener,
             progressBarListener = progressBarListener,
