@@ -51,7 +51,7 @@ fun styleFontColor(view: TextView, resourceId: Int) {
 
 @BindingAdapter(value = ["cardStyleTopPadding", "cardStyleBottomPadding", "cardStyleLeftPadding", "cardStyleRightPadding"])
 fun cardStylePadding(view: TextView, top: Int, bottom: Int, left: Int, right: Int) {
-    view.setPadding(left, top, right, bottom)
+    view.setPadding(left - right, top, right, bottom)
 }
 
 @BindingAdapter("cardStyleBackground")

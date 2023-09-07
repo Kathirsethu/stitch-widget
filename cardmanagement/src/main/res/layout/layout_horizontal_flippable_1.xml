@@ -160,6 +160,7 @@
                     android:layout_marginEnd="24dp"
                     android:layout_marginBottom="24dp"
                     android:scaleType="centerInside"
+                    android:visibility="gone"
                     app:cardTypeImage="@{viewModel.cardTypeImage}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
