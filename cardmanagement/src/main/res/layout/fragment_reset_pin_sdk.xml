@@ -86,7 +86,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_color_base_corner_12"
                 android:gravity="center"
-                android:onClick="@{()->viewModel.getWidgetsSecureSessionKey(context)}"
+                android:onClick="@{()->viewModel.onResetPINClick.invoke()}"
                 android:padding="16dp"
                 android:text="@string/change_pin"
                 android:textColor="@color/white"

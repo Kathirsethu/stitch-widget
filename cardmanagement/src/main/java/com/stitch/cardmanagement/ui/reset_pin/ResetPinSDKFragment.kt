@@ -84,6 +84,10 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
             )
         }
         viewModel.onResetPINClick = {
+            viewModel.retryCount.set(0)
+            viewModel.getWidgetsSecureSessionKey(requireContext())
+        }
+        viewModel.onResetPINSuccess = {
             viewModel.getCards()
             viewModel.oldPin.set("")
             viewModel.newPin.set("")

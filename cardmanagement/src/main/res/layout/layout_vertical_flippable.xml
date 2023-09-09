@@ -90,7 +90,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:styleFontColor="@{viewModel.cardStyleFontColor}"
-                    app:styleFontFamily="@{viewModel.cardStyleFontFamily}" />
+                    app:styleFontFamily="@{viewModel.cardStyleFontFamily}"
+                    app:styleFontSize="@{Integer.parseInt(viewModel.styleFontSize)}" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivCardType"
@@ -136,7 +137,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:styleFontColor="@{viewModel.cardStyleFontColor}"
-                    app:styleFontFamily="@{viewModel.cardStyleFontFamily}" />
+                    app:styleFontFamily="@{viewModel.cardStyleFontFamily}"
+                    app:styleFontSize="@{Integer.parseInt(viewModel.styleFontSize)}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvExpiration"
@@ -168,7 +170,8 @@
                     app:layout_constraintEnd_toStartOf="@+id/tvCardCVV"
                     app:layout_constraintStart_toStartOf="parent"
                     app:styleFontColor="@{viewModel.cardStyleFontColor}"
-                    app:styleFontFamily="@{viewModel.cardStyleFontFamily}" />
+                    app:styleFontFamily="@{viewModel.cardStyleFontFamily}"
+                    app:styleFontSize="@{Integer.parseInt(viewModel.styleFontSize)}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvCVV"
@@ -200,7 +203,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvCardExpiry"
                     app:styleFontColor="@{viewModel.cardStyleFontColor}"
-                    app:styleFontFamily="@{viewModel.cardStyleFontFamily}" />
+                    app:styleFontFamily="@{viewModel.cardStyleFontFamily}"
+                    app:styleFontSize="@{Integer.parseInt(viewModel.styleFontSize)}" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

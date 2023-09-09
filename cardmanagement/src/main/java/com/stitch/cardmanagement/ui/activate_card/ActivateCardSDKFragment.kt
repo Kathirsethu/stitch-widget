@@ -84,6 +84,10 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
             )
         }
         viewModel.onActivateCardClick = {
+            viewModel.retryCount.set(0)
+            viewModel.getWidgetsSecureSessionKey(requireContext())
+        }
+        viewModel.onActivateCardSuccess = {
             viewModel.getCards()
             viewModel.cardCVV.set("")
             Toast.success(getString(R.string.activate_card_successfully))

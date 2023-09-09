@@ -89,13 +89,16 @@ open class CardManagementSDKViewModel : ViewModel() {
     val isCardActivated = ObservableField(false)
     val isCardInvalid = ObservableField(false)
 
-    private val retryCount = ObservableField(0)
+    val retryCount = ObservableField(0)
 
     lateinit var onShowMaskedCardNumberClick: () -> Unit
     lateinit var onShowMaskedCardCVVClick: () -> Unit
     lateinit var onActivateCardClick: () -> Unit
     lateinit var onResetPINClick: () -> Unit
     lateinit var onSetPINClick: () -> Unit
+    lateinit var onActivateCardSuccess: () -> Unit
+    lateinit var onResetPINSuccess: () -> Unit
+    lateinit var onSetPINSuccess: () -> Unit
 
     lateinit var networkListener: () -> Boolean
     lateinit var progressBarListener: (isVisible: Boolean) -> Unit
@@ -252,7 +255,7 @@ open class CardManagementSDKViewModel : ViewModel() {
             request = ApiManager.widgetSecureActivateCardAsync(widgetsSecureActivateCardRequest),
             response = {
                 if (it != null) {
-                    onActivateCardClick.invoke()
+                    onActivateCardSuccess.invoke()
                 }
             },
             errorResponse = { errorCode, errorMessage ->
@@ -283,7 +286,7 @@ open class CardManagementSDKViewModel : ViewModel() {
             request = ApiManager.widgetSecureSetPINAsync(widgetsSecureSetPINRequest),
             response = {
                 if (it != null) {
-                    onSetPINClick.invoke()
+                    onSetPINSuccess.invoke()
                 }
             },
             errorResponse = { errorCode, errorMessage ->
@@ -315,7 +318,7 @@ open class CardManagementSDKViewModel : ViewModel() {
             request = ApiManager.widgetSecureChangePINAsync(widgetsSecureChangePINRequest),
             response = {
                 if (it != null) {
-                    onResetPINClick.invoke()
+                    onResetPINSuccess.invoke()
                 }
             },
             errorResponse = { errorCode, errorMessage ->

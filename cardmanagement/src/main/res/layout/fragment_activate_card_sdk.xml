@@ -102,7 +102,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_color_base_corner_12"
                 android:gravity="center"
-                android:onClick="@{()->viewModel.getWidgetsSecureSessionKey(context)}"
+                android:onClick="@{()->viewModel.onActivateCardClick.invoke()}"
                 android:padding="16dp"
                 android:text="@string/activate_card"
                 android:textColor="@color/white"
