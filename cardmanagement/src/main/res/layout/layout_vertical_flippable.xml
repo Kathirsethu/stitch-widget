@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:paddingBottom="16dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvCustomerCardBack"
