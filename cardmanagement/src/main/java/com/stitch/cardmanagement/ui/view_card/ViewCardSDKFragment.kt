@@ -169,7 +169,7 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             if (viewModel.isCardCVVMasked.get() == true) {
                 Timer().schedule(object : TimerTask() {
                     override fun run() {
-                        viewModel.isCardCVVMasked.set(false)
+                        viewModel.isCardCVVMasked.set(true)
                     }
                 }, 30000)
             }
