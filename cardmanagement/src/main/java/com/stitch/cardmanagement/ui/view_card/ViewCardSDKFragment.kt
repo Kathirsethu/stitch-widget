@@ -16,6 +16,8 @@ import com.stitch.cardmanagement.databinding.FragmentViewCardSdkBinding
 import com.stitch.cardmanagement.ui.CardManagementSDKFragment
 import com.stitch.cardmanagement.utilities.Constants
 import com.stitch.cardmanagement.utilities.OnSwipeTouchListener
+import java.util.Timer
+import java.util.TimerTask
 
 open class ViewCardSDKFragment : CardManagementSDKFragment() {
 
@@ -65,10 +67,10 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
     private fun config() {
         binding.viewModel = viewModel
         binding.layoutDefault.viewModel = viewModel
-        binding.layoutHorizontal.viewModel = viewModel
-        binding.layoutHorizontalFlippable1.viewModel = viewModel
-        binding.layoutVerticalFlippable.viewModel = viewModel
-        binding.layoutHorizontalFlippable2.viewModel = viewModel
+        binding.layoutVertical.viewModel = viewModel
+        binding.layoutVerticalFlippable1.viewModel = viewModel
+        binding.layoutHorizontalFlippable.viewModel = viewModel
+        binding.layoutVerticalFlippable2.viewModel = viewModel
 
         viewModel.networkListener = networkListener
         viewModel.progressBarListener = progressBarListener
@@ -94,33 +96,33 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
 
         viewModel.isFront.observe(viewLifecycleOwner) {
             when (viewModel.style.get()) {
-                getString(R.string.style_horizontal_flippable_1) -> {
+                getString(R.string.style_vertical_flippable_1) -> {
                     flipCard(
                         it,
-                        binding.layoutHorizontalFlippable1.cvCustomerCardFront,
-                        binding.layoutHorizontalFlippable1.cvCustomerCardBack
+                        binding.layoutVerticalFlippable1.cvCustomerCardFront,
+                        binding.layoutVerticalFlippable1.cvCustomerCardBack
                     )
                 }
 
-                getString(R.string.style_vertical_flippable) -> {
+                getString(R.string.style_horizontal_flippable) -> {
                     flipCard(
                         it,
-                        binding.layoutVerticalFlippable.cvCustomerCardFront,
-                        binding.layoutVerticalFlippable.cvCustomerCardBack
+                        binding.layoutHorizontalFlippable.cvCustomerCardFront,
+                        binding.layoutHorizontalFlippable.cvCustomerCardBack
                     )
                 }
 
-                getString(R.string.style_horizontal_flippable_2) -> {
+                getString(R.string.style_vertical_flippable_2) -> {
                     flipCard(
                         it,
-                        binding.layoutHorizontalFlippable2.cvCustomerCardFront,
-                        binding.layoutHorizontalFlippable2.cvCustomerCardBack
+                        binding.layoutVerticalFlippable2.cvCustomerCardFront,
+                        binding.layoutVerticalFlippable2.cvCustomerCardBack
                     )
                 }
             }
         }
 
-        binding.layoutHorizontalFlippable1.clCustomerCard.setOnTouchListener(object :
+        binding.layoutVerticalFlippable1.clCustomerCard.setOnTouchListener(object :
             OnSwipeTouchListener(requireContext()) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
@@ -133,7 +135,7 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             }
         })
 
-        binding.layoutVerticalFlippable.clCustomerCard.setOnTouchListener(object :
+        binding.layoutHorizontalFlippable.clCustomerCard.setOnTouchListener(object :
             OnSwipeTouchListener(requireContext()) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
@@ -146,7 +148,7 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             }
         })
 
-        binding.layoutHorizontalFlippable2.clCustomerCard.setOnTouchListener(object :
+        binding.layoutVerticalFlippable2.clCustomerCard.setOnTouchListener(object :
             OnSwipeTouchListener(requireContext()) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
@@ -164,6 +166,13 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
         }
 
         viewModel.onShowMaskedCardCVVClick = {
+            if (viewModel.isCardCVVMasked.get() == true) {
+                Timer().schedule(object : TimerTask() {
+                    override fun run() {
+                        viewModel.isCardCVVMasked.set(false)
+                    }
+                }, 30000)
+            }
             viewModel.isCardCVVMasked.set(!(viewModel.isCardCVVMasked.get() ?: true))
         }
         if (viewModel.card.get() != null) {
@@ -195,12 +204,12 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
         backAnimation =
             AnimatorInflater.loadAnimator(requireContext(), R.animator.back_animator) as AnimatorSet
         val scale = requireContext().resources.displayMetrics.density
-        binding.layoutHorizontalFlippable1.cvCustomerCardFront.cameraDistance = 8000 * scale
-        binding.layoutHorizontalFlippable1.cvCustomerCardBack.cameraDistance = 8000 * scale
-        binding.layoutVerticalFlippable.cvCustomerCardFront.cameraDistance = 8000 * scale
-        binding.layoutVerticalFlippable.cvCustomerCardBack.cameraDistance = 8000 * scale
-        binding.layoutHorizontalFlippable2.cvCustomerCardFront.cameraDistance = 8000 * scale
-        binding.layoutHorizontalFlippable2.cvCustomerCardBack.cameraDistance = 8000 * scale
+        binding.layoutVerticalFlippable1.cvCustomerCardFront.cameraDistance = 8000 * scale
+        binding.layoutVerticalFlippable1.cvCustomerCardBack.cameraDistance = 8000 * scale
+        binding.layoutHorizontalFlippable.cvCustomerCardFront.cameraDistance = 8000 * scale
+        binding.layoutHorizontalFlippable.cvCustomerCardBack.cameraDistance = 8000 * scale
+        binding.layoutVerticalFlippable2.cvCustomerCardFront.cameraDistance = 8000 * scale
+        binding.layoutVerticalFlippable2.cvCustomerCardBack.cameraDistance = 8000 * scale
     }
 
     fun setCardStyle(style: String, savedCardSettings: SavedCardSettings) {
@@ -212,29 +221,29 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
 
     private fun updateCardStyle() {
         binding.layoutDefault.root.visibility = View.GONE
-        binding.layoutHorizontal.root.visibility = View.GONE
-        binding.layoutHorizontalFlippable1.root.visibility = View.GONE
-        binding.layoutVerticalFlippable.root.visibility = View.GONE
-        binding.layoutHorizontalFlippable2.root.visibility = View.GONE
+        binding.layoutVertical.root.visibility = View.GONE
+        binding.layoutVerticalFlippable1.root.visibility = View.GONE
+        binding.layoutHorizontalFlippable.root.visibility = View.GONE
+        binding.layoutVerticalFlippable2.root.visibility = View.GONE
         when (viewModel.style.get()) {
             getString(R.string.style_default) -> {
                 binding.layoutDefault.root.visibility = View.VISIBLE
             }
 
-            getString(R.string.style_horizontal) -> {
-                binding.layoutHorizontal.root.visibility = View.VISIBLE
+            getString(R.string.style_vertical) -> {
+                binding.layoutVertical.root.visibility = View.VISIBLE
             }
 
-            getString(R.string.style_horizontal_flippable_1) -> {
-                binding.layoutHorizontalFlippable1.root.visibility = View.VISIBLE
+            getString(R.string.style_vertical_flippable_1) -> {
+                binding.layoutVerticalFlippable1.root.visibility = View.VISIBLE
             }
 
-            getString(R.string.style_vertical_flippable) -> {
-                binding.layoutVerticalFlippable.root.visibility = View.VISIBLE
+            getString(R.string.style_horizontal_flippable) -> {
+                binding.layoutHorizontalFlippable.root.visibility = View.VISIBLE
             }
 
-            getString(R.string.style_horizontal_flippable_2) -> {
-                binding.layoutHorizontalFlippable2.root.visibility = View.VISIBLE
+            getString(R.string.style_vertical_flippable_2) -> {
+                binding.layoutVerticalFlippable2.root.visibility = View.VISIBLE
             }
 
             else -> {

@@ -42,10 +42,10 @@
     <string name="card_holder_name">Cardholder Name</string>
 
     <string name="style_default">Default</string>
-    <string name="style_horizontal">Horizontal</string>
-    <string name="style_horizontal_flippable_1">Horizontal Flippable 1</string>
-    <string name="style_vertical_flippable">Vertical Flippable</string>
-    <string name="style_horizontal_flippable_2">Horizontal Flippable 2</string>
+    <string name="style_vertical">Vertical</string>
+    <string name="style_vertical_flippable_1">Vertical Flippable 1</string>
+    <string name="style_horizontal_flippable">Horizontal Flippable</string>
+    <string name="style_vertical_flippable_2">Vertical Flippable 2</string>
 
     <string name="style_outlined">Outlined</string>
     <string name="style_filled">Filled</string>
