@@ -408,6 +408,7 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             backAnimation.start()
             backAnimation.doOnEnd {
                 targetFront.visibility = View.GONE
+                targetBack.visibility = View.VISIBLE
             }
         } else {
             frontAnimation.setTarget(targetBack)
@@ -416,6 +417,7 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             frontAnimation.start()
             frontAnimation.doOnEnd {
                 targetBack.visibility = View.GONE
+                targetFront.visibility = View.VISIBLE
             }
         }
     }
