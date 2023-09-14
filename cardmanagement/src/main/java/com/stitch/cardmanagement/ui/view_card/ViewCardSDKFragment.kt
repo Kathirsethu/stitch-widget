@@ -2,11 +2,15 @@ package com.stitch.cardmanagement.ui.view_card
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.DecelerateInterpolator
+import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.stitch.cardmanagement.R
@@ -18,6 +22,7 @@ import com.stitch.cardmanagement.utilities.Constants
 import com.stitch.cardmanagement.utilities.OnSwipeTouchListener
 import java.util.Timer
 import java.util.TimerTask
+
 
 open class ViewCardSDKFragment : CardManagementSDKFragment() {
 
@@ -400,16 +405,34 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
     }
 
     private fun flipCard(isFront: Boolean?, targetFront: View, targetBack: View) {
+        val oa1 = ObjectAnimator.ofFloat(targetFront, "scaleX", 1f, 0f)
+        val oa2 = ObjectAnimator.ofFloat(targetBack, "scaleX", 0f, 1f)
         if (isFront != null && !isFront) {
-            frontAnimation.setTarget(targetFront)
+            /*frontAnimation.setTarget(targetFront)
             backAnimation.setTarget(targetBack)
             frontAnimation.start()
-            backAnimation.start()
+            backAnimation.start()*/
+            oa1.interpolator = DecelerateInterpolator()
+            oa2.interpolator = AccelerateDecelerateInterpolator()
+            oa1.start()
+            oa1.doOnEnd {
+                targetFront.visibility = View.GONE
+                targetBack.visibility = View.VISIBLE
+            }
+            oa2.start()
         } else {
-            frontAnimation.setTarget(targetBack)
+            /*frontAnimation.setTarget(targetBack)
             backAnimation.setTarget(targetFront)
             backAnimation.start()
-            frontAnimation.start()
+            frontAnimation.start()*/
+            oa2.interpolator = DecelerateInterpolator()
+            oa1.interpolator = AccelerateDecelerateInterpolator()
+            oa2.start()
+            oa1.start()
+            oa1.doOnEnd {
+                targetFront.visibility = View.VISIBLE
+                targetBack.visibility = View.GONE
+            }
         }
     }
 
