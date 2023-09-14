@@ -204,13 +204,13 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             ) as AnimatorSet
         backAnimation =
             AnimatorInflater.loadAnimator(requireContext(), R.animator.back_animator) as AnimatorSet
-//        val scale = requireContext().resources.displayMetrics.density
-//        binding.layoutVerticalFlippable1.cvCustomerCardFront.cameraDistance = 8000 * scale
-//        binding.layoutVerticalFlippable1.cvCustomerCardBack.cameraDistance = 8000 * scale
-//        binding.layoutHorizontalFlippable.cvCustomerCardFront.cameraDistance = 8000 * scale
-//        binding.layoutHorizontalFlippable.cvCustomerCardBack.cameraDistance = 8000 * scale
-//        binding.layoutVerticalFlippable2.cvCustomerCardFront.cameraDistance = 8000 * scale
-//        binding.layoutVerticalFlippable2.cvCustomerCardBack.cameraDistance = 8000 * scale
+        val scale = requireContext().resources.displayMetrics.density
+        binding.layoutVerticalFlippable1.cvCustomerCardFront.cameraDistance = 8000 * scale
+        binding.layoutVerticalFlippable1.cvCustomerCardBack.cameraDistance = 8000 * scale
+        binding.layoutHorizontalFlippable.cvCustomerCardFront.cameraDistance = 8000 * scale
+        binding.layoutHorizontalFlippable.cvCustomerCardBack.cameraDistance = 8000 * scale
+        binding.layoutVerticalFlippable2.cvCustomerCardFront.cameraDistance = 8000 * scale
+        binding.layoutVerticalFlippable2.cvCustomerCardBack.cameraDistance = 8000 * scale
     }
 
     fun setCardStyle(style: String, savedCardSettings: SavedCardSettings) {
@@ -407,7 +407,7 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             frontAnimation.start()
             backAnimation.start()
             backAnimation.doOnEnd {
-                targetBack.visibility = View.GONE
+                targetFront.visibility = View.GONE
             }
         } else {
             frontAnimation.setTarget(targetBack)
@@ -415,7 +415,7 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             backAnimation.start()
             frontAnimation.start()
             frontAnimation.doOnEnd {
-                targetFront.visibility = View.GONE
+                targetBack.visibility = View.GONE
             }
         }
     }
