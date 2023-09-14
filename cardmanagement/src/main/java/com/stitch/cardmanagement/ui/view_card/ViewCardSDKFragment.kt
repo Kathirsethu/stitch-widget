@@ -18,6 +18,7 @@ import com.stitch.cardmanagement.data.model.SavedCardSettings
 import com.stitch.cardmanagement.databinding.FragmentViewCardSdkBinding
 import com.stitch.cardmanagement.ui.CardManagementSDKFragment
 import com.stitch.cardmanagement.utilities.Constants
+import com.stitch.cardmanagement.utilities.OnSwipeTouchListener
 import java.util.Timer
 import java.util.TimerTask
 
@@ -125,9 +126,7 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             }
         }
 
-        binding.layoutVerticalFlippable1.clCustomerCard.setOnClickListener {
-            viewModel.isFront.value = !(viewModel.isFront.value ?: true)
-        }/*.setOnTouchListener(object :
+        binding.layoutVerticalFlippable1.clCustomerCard.setOnTouchListener(object :
             OnSwipeTouchListener(requireContext()) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
@@ -148,11 +147,9 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
                 super.onSwipeDown()
                 viewModel.isFront.value = !(viewModel.isFront.value ?: true)
             }
-        })*/
+        })
 
-        binding.layoutHorizontalFlippable.clCustomerCard.setOnClickListener {
-            viewModel.isFront.value = !(viewModel.isFront.value ?: true)
-        }/*setOnTouchListener(object :
+        binding.layoutHorizontalFlippable.clCustomerCard.setOnTouchListener(object :
             OnSwipeTouchListener(requireContext()) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
@@ -173,11 +170,9 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
                 super.onSwipeDown()
                 viewModel.isFront.value = !(viewModel.isFront.value ?: true)
             }
-        })*/
+        })
 
-        binding.layoutVerticalFlippable2.clCustomerCard.setOnClickListener {
-            viewModel.isFront.value = !(viewModel.isFront.value ?: true)
-        }/*.setOnTouchListener(object :
+        binding.layoutVerticalFlippable2.clCustomerCard.setOnTouchListener(object :
             OnSwipeTouchListener(requireContext()) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
@@ -198,7 +193,7 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
                 super.onSwipeDown()
                 viewModel.isFront.value = !(viewModel.isFront.value ?: true)
             }
-        })*/
+        })
 
         viewModel.onShowMaskedCardNumberClick = {
             viewModel.isCardNumberMasked.set(!(viewModel.isCardNumberMasked.get() ?: true))
