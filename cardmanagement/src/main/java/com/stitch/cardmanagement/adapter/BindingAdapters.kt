@@ -72,24 +72,6 @@ fun styleFontFamily(view: TextView, resourceId: Int) {
 
 @BindingAdapter("styleFontColor")
 fun styleFontColor(view: TextView, resourceId: Int) {
-    val states = arrayOf(
-        intArrayOf(android.R.attr.state_enabled), // enabled
-        intArrayOf(-android.R.attr.state_enabled), // disabled
-        intArrayOf(-android.R.attr.state_checked), // unchecked
-        intArrayOf(android.R.attr.state_pressed),  // pressed
-        intArrayOf(android.R.attr.state_focused), // focused
-        intArrayOf(-android.R.attr.state_focused)  // unfocused
-    )
-    val colors = intArrayOf(
-        resourceId,
-        resourceId,
-        resourceId,
-        resourceId,
-        resourceId,
-        resourceId
-    )
-    val colorStateList = ColorStateList(states, colors)
-    view.backgroundTintList = colorStateList
     view.setTextColor(resourceId)
 }
 
