@@ -415,10 +415,10 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             oa1.interpolator = DecelerateInterpolator()
             oa2.interpolator = AccelerateDecelerateInterpolator()
             oa1.start()
-            oa1.doOnEnd {
+            /*oa1.doOnEnd {
                 targetFront.visibility = View.GONE
                 targetBack.visibility = View.VISIBLE
-            }
+            }*/
             oa2.start()
         } else {
             /*frontAnimation.setTarget(targetBack)
@@ -429,10 +429,10 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             oa1.interpolator = AccelerateDecelerateInterpolator()
             oa2.start()
             oa1.start()
-            oa1.doOnEnd {
+            /*oa1.doOnEnd {
                 targetFront.visibility = View.VISIBLE
                 targetBack.visibility = View.GONE
-            }
+            }*/
         }
     }
 
