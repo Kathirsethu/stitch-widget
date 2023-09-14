@@ -18,7 +18,6 @@ import com.stitch.cardmanagement.data.model.SavedCardSettings
 import com.stitch.cardmanagement.databinding.FragmentViewCardSdkBinding
 import com.stitch.cardmanagement.ui.CardManagementSDKFragment
 import com.stitch.cardmanagement.utilities.Constants
-import com.stitch.cardmanagement.utilities.OnSwipeTouchListener
 import java.util.Timer
 import java.util.TimerTask
 
@@ -126,7 +125,9 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             }
         }
 
-        binding.layoutVerticalFlippable1.clCustomerCard.setOnTouchListener(object :
+        binding.layoutVerticalFlippable1.clCustomerCard.setOnClickListener {
+            viewModel.isFront.value = !(viewModel.isFront.value ?: true)
+        }/*.setOnTouchListener(object :
             OnSwipeTouchListener(requireContext()) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
@@ -137,9 +138,21 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
                 super.onSwipeRight()
                 viewModel.isFront.value = !(viewModel.isFront.value ?: true)
             }
-        })
 
-        binding.layoutHorizontalFlippable.clCustomerCard.setOnTouchListener(object :
+            override fun onSwipeUp() {
+                super.onSwipeUp()
+                viewModel.isFront.value = !(viewModel.isFront.value ?: true)
+            }
+
+            override fun onSwipeDown() {
+                super.onSwipeDown()
+                viewModel.isFront.value = !(viewModel.isFront.value ?: true)
+            }
+        })*/
+
+        binding.layoutHorizontalFlippable.clCustomerCard.setOnClickListener {
+            viewModel.isFront.value = !(viewModel.isFront.value ?: true)
+        }/*setOnTouchListener(object :
             OnSwipeTouchListener(requireContext()) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
@@ -150,9 +163,21 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
                 super.onSwipeRight()
                 viewModel.isFront.value = !(viewModel.isFront.value ?: true)
             }
-        })
 
-        binding.layoutVerticalFlippable2.clCustomerCard.setOnTouchListener(object :
+            override fun onSwipeUp() {
+                super.onSwipeUp()
+                viewModel.isFront.value = !(viewModel.isFront.value ?: true)
+            }
+
+            override fun onSwipeDown() {
+                super.onSwipeDown()
+                viewModel.isFront.value = !(viewModel.isFront.value ?: true)
+            }
+        })*/
+
+        binding.layoutVerticalFlippable2.clCustomerCard.setOnClickListener {
+            viewModel.isFront.value = !(viewModel.isFront.value ?: true)
+        }/*.setOnTouchListener(object :
             OnSwipeTouchListener(requireContext()) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
@@ -163,7 +188,17 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
                 super.onSwipeRight()
                 viewModel.isFront.value = !(viewModel.isFront.value ?: true)
             }
-        })
+
+            override fun onSwipeUp() {
+                super.onSwipeUp()
+                viewModel.isFront.value = !(viewModel.isFront.value ?: true)
+            }
+
+            override fun onSwipeDown() {
+                super.onSwipeDown()
+                viewModel.isFront.value = !(viewModel.isFront.value ?: true)
+            }
+        })*/
 
         viewModel.onShowMaskedCardNumberClick = {
             viewModel.isCardNumberMasked.set(!(viewModel.isCardNumberMasked.get() ?: true))
@@ -404,35 +439,27 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
     }
 
     private fun flipCard(isFront: Boolean?, targetFront: View, targetBack: View) {
-        val oa1: ObjectAnimator;
-        val oa2: ObjectAnimator;
+        /*val oa1: ObjectAnimator
+        val oa2: ObjectAnimator*/
         if (isFront != null && !isFront) {
-            /*frontAnimation.setTarget(targetFront)
+            frontAnimation.setTarget(targetFront)
             backAnimation.setTarget(targetBack)
             frontAnimation.start()
-            backAnimation.start()*/
-            oa1 = ObjectAnimator.ofFloat(targetFront, "scaleX", 1f, 0f)
-            oa2 = ObjectAnimator.ofFloat(targetBack, "scaleX", 0f, 1f)
-            /*oa1.doOnEnd {
-                targetFront.visibility = View.GONE
-                targetBack.visibility = View.VISIBLE
-            }*/
+            backAnimation.start()
+            /*oa1 = ObjectAnimator.ofFloat(targetFront, "scaleX", 1f, 0f)
+            oa2 = ObjectAnimator.ofFloat(targetBack, "scaleX", 0f, 1f)*/
         } else {
-            /*frontAnimation.setTarget(targetBack)
+            frontAnimation.setTarget(targetBack)
             backAnimation.setTarget(targetFront)
             backAnimation.start()
-            frontAnimation.start()*/
-            oa1 = ObjectAnimator.ofFloat(targetBack, "scaleX", 1f, 0f)
-            oa2 = ObjectAnimator.ofFloat(targetFront, "scaleX", 0f, 1f)
-            /*oa1.doOnEnd {
-                targetFront.visibility = View.VISIBLE
-                targetBack.visibility = View.GONE
-            }*/
+            frontAnimation.start()
+            /*oa1 = ObjectAnimator.ofFloat(targetBack, "scaleX", 1f, 0f)
+            oa2 = ObjectAnimator.ofFloat(targetFront, "scaleX", 0f, 1f)*/
         }
-        oa1.interpolator = DecelerateInterpolator()
+        /*oa1.interpolator = DecelerateInterpolator()
         oa2.interpolator = AccelerateDecelerateInterpolator()
         oa1.start()
-        oa2.start()
+        oa2.start()*/
     }
 
     fun retryFetchCard(sdkData: SDKData?, savedCardSettings: SavedCardSettings) {
