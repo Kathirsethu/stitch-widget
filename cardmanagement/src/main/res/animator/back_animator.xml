@@ -6,15 +6,15 @@
         android:valueFrom="1.0"
         android:valueTo="0.0" />
     <objectAnimator
-        android:duration="1000"
+        android:duration="1500"
         android:propertyName="rotationY"
         android:repeatMode="reverse"
-        android:valueFrom="180"
+        android:valueFrom="-180"
         android:valueTo="0" />
     <objectAnimator
         android:duration="0"
         android:propertyName="alpha"
-        android:startOffset="500"
+        android:startOffset="750"
         android:valueFrom="0.0"
         android:valueTo="1.0" />
 </set>

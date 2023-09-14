@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.stitch.cardmanagement.R
@@ -203,13 +204,13 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             ) as AnimatorSet
         backAnimation =
             AnimatorInflater.loadAnimator(requireContext(), R.animator.back_animator) as AnimatorSet
-        val scale = requireContext().resources.displayMetrics.density
-        binding.layoutVerticalFlippable1.cvCustomerCardFront.cameraDistance = 8000 * scale
-        binding.layoutVerticalFlippable1.cvCustomerCardBack.cameraDistance = 8000 * scale
-        binding.layoutHorizontalFlippable.cvCustomerCardFront.cameraDistance = 8000 * scale
-        binding.layoutHorizontalFlippable.cvCustomerCardBack.cameraDistance = 8000 * scale
-        binding.layoutVerticalFlippable2.cvCustomerCardFront.cameraDistance = 8000 * scale
-        binding.layoutVerticalFlippable2.cvCustomerCardBack.cameraDistance = 8000 * scale
+//        val scale = requireContext().resources.displayMetrics.density
+//        binding.layoutVerticalFlippable1.cvCustomerCardFront.cameraDistance = 8000 * scale
+//        binding.layoutVerticalFlippable1.cvCustomerCardBack.cameraDistance = 8000 * scale
+//        binding.layoutHorizontalFlippable.cvCustomerCardFront.cameraDistance = 8000 * scale
+//        binding.layoutHorizontalFlippable.cvCustomerCardBack.cameraDistance = 8000 * scale
+//        binding.layoutVerticalFlippable2.cvCustomerCardFront.cameraDistance = 8000 * scale
+//        binding.layoutVerticalFlippable2.cvCustomerCardBack.cameraDistance = 8000 * scale
     }
 
     fun setCardStyle(style: String, savedCardSettings: SavedCardSettings) {
@@ -257,7 +258,7 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
         if (viewModel.savedCardSettings.get()?.fontFamily != null) {
             viewModel.cardStyleFontFamily.set(viewModel.savedCardSettings.get()?.fontFamily)
         } else {
-            viewModel.cardStyleFontFamily.set(R.font.euclid_flex_bold)
+            viewModel.cardStyleFontFamily.set(R.font.euclid_flex_regular)
         }
         if (viewModel.savedCardSettings.get()?.fontColor != null) {
             viewModel.cardStyleFontColor.set(viewModel.savedCardSettings.get()?.fontColor)
@@ -405,11 +406,17 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             backAnimation.setTarget(targetBack)
             frontAnimation.start()
             backAnimation.start()
+            backAnimation.doOnEnd {
+                targetBack.visibility = View.GONE
+            }
         } else {
             frontAnimation.setTarget(targetBack)
             backAnimation.setTarget(targetFront)
             backAnimation.start()
             frontAnimation.start()
+            frontAnimation.doOnEnd {
+                targetFront.visibility = View.GONE
+            }
         }
     }
 

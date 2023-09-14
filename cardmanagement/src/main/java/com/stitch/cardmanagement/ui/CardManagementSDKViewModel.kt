@@ -350,7 +350,7 @@ open class CardManagementSDKViewModel : ViewModel() {
         //decoding data
         val encryptedBytes: ByteArray = Base64.decode(parts?.get(1), Base64.DEFAULT)
 
-        val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+        val cipher = Cipher.getInstance("AES/GCM/NoPadding")
         val ivParameterSpec = IvParameterSpec(ivBytes)
         cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
         val cipherText = cipher.doFinal(encryptedBytes)
@@ -366,7 +366,7 @@ open class CardManagementSDKViewModel : ViewModel() {
         SecureRandom().nextBytes(ivBytes)
         val ivBase64 = Base64.encodeToString(ivBytes, Base64.DEFAULT)
 
-        val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+        val cipher = Cipher.getInstance("AES/GCM/NoPadding")
         val ivParameterSpec = IvParameterSpec(ivBytes)
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec)
 
