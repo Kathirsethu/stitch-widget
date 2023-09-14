@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.stitch.cardmanagement.R
@@ -406,19 +405,11 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             backAnimation.setTarget(targetBack)
             frontAnimation.start()
             backAnimation.start()
-            backAnimation.doOnEnd {
-                targetFront.visibility = View.GONE
-                targetBack.visibility = View.VISIBLE
-            }
         } else {
             frontAnimation.setTarget(targetBack)
             backAnimation.setTarget(targetFront)
             backAnimation.start()
             frontAnimation.start()
-            frontAnimation.doOnEnd {
-                targetBack.visibility = View.GONE
-                targetFront.visibility = View.VISIBLE
-            }
         }
     }
 

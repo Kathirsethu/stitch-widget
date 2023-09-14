@@ -16,6 +16,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPIN"
             style="@style/TextInputLayoutStyle.Outline"
+            app:boxBackgroundColor="@color/white"
             app:hintTextColor="@color/black"
             app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +44,7 @@
             android:id="@+id/tilConfirmPIN"
             style="@style/TextInputLayoutStyle.Outline"
             android:layout_marginTop="12dp"
+            app:boxBackgroundColor="@color/white"
             app:hintTextColor="@color/black"
             app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
