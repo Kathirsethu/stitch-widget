@@ -19,7 +19,9 @@
             app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:styleTILColor="@{viewModel.cardStyleFontColor}"
+            app:styleTILFontFamily="@{viewModel.cardStyleFontFamily}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etOldPIN"
@@ -31,6 +33,7 @@
                 android:maxLength="4"
                 android:paddingTop="32dp"
                 android:text="@={viewModel.oldPin}"
+                android:textCursorDrawable="@null"
                 app:styleFontColor="@{viewModel.cardStyleFontColor}"
                 app:styleFontFamily="@{viewModel.cardStyleFontFamily}"
                 app:styleFontSize="@{Integer.parseInt(viewModel.styleFontSize)}" />
@@ -43,7 +46,9 @@
             app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilOldPIN">
+            app:layout_constraintTop_toBottomOf="@+id/tilOldPIN"
+            app:styleTILColor="@{viewModel.cardStyleFontColor}"
+            app:styleTILFontFamily="@{viewModel.cardStyleFontFamily}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNewPIN"
@@ -55,6 +60,7 @@
                 android:maxLength="4"
                 android:paddingTop="32dp"
                 android:text="@={viewModel.newPin}"
+                android:textCursorDrawable="@null"
                 app:styleFontColor="@{viewModel.cardStyleFontColor}"
                 app:styleFontFamily="@{viewModel.cardStyleFontFamily}"
                 app:styleFontSize="@{Integer.parseInt(viewModel.styleFontSize)}" />

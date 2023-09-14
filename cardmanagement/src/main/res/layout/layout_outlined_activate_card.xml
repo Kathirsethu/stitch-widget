@@ -20,7 +20,9 @@
             app:isGone="@{viewModel.isCardActivated || viewModel.isCardInvalid}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:styleTILColor="@{viewModel.cardStyleFontColor}"
+            app:styleTILFontFamily="@{viewModel.cardStyleFontFamily}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCardNumber"
@@ -31,6 +33,7 @@
                 android:importantForAutofill="no"
                 android:inputType="none"
                 android:text="@={viewModel.cardNumber}"
+                android:textCursorDrawable="@null"
                 app:styleFontColor="@{viewModel.cardStyleFontColor}"
                 app:styleFontFamily="@{viewModel.cardStyleFontFamily}"
                 app:styleFontSize="@{Integer.parseInt(viewModel.styleFontSize)}" />
@@ -44,7 +47,9 @@
             app:isGone="@{viewModel.isCardActivated || viewModel.isCardInvalid}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilCardNumber">
+            app:layout_constraintTop_toBottomOf="@+id/tilCardNumber"
+            app:styleTILColor="@{viewModel.cardStyleFontColor}"
+            app:styleTILFontFamily="@{viewModel.cardStyleFontFamily}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCardCVV"
@@ -55,6 +60,7 @@
                 android:inputType="number"
                 android:maxLength="3"
                 android:text="@={viewModel.cardCVV}"
+                android:textCursorDrawable="@null"
                 app:styleFontColor="@{viewModel.cardStyleFontColor}"
                 app:styleFontFamily="@{viewModel.cardStyleFontFamily}"
                 app:styleFontSize="@{Integer.parseInt(viewModel.styleFontSize)}" />
