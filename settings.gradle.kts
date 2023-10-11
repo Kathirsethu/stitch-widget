@@ -16,5 +16,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Stitch Widget"
-include(":cardmanagement")
+include(":stitchwidgets")
  

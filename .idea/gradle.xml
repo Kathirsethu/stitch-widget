@@ -11,7 +11,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/cardmanagement" />
+            <option value="$PROJECT_DIR$/stitchwidgets" />
           </set>
         </option>
       </GradleProjectSettings>

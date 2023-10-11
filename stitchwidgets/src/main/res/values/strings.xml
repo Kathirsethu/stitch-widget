@@ -1,0 +1,65 @@
+<resources>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="ok">OK</string>
+    <string name="app_name">StitchWidgets</string>
+
+    <string name="placeholder_card_number">Card Number</string>
+    <string name="placeholder_style_sheet">Style Sheet</string>
+    <string name="placeholder_card_number_mandatory">Card Number*</string>
+    <string name="placeholder_card_cvv">Card CVV*</string>
+    <string name="placeholder_four_digit_pin">4 Digit PIN*</string>
+    <string name="placeholder_confirm_pin">Confirm PIN*</string>
+    <string name="placeholder_four_digit_old_pin">4 Digit Old PIN*</string>
+    <string name="placeholder_new_pin">New PIN*</string>
+
+    <string name="invalid_cvv">CVV is required.</string>
+    <string name="invalid_pin">PIN is required.</string>
+    <string name="invalid_confirm_pin">Confirm PIN is required.</string>
+    <string name="invalid_pin_mismatch">The new pin &amp; confirm pin must be same.</string>
+    <string name="invalid_old_pin">Old PIN is required.</string>
+    <string name="invalid_new_pin">New PIN is required.</string>
+    <string name="invalid_change_pin_mismatch">Old Pin and New Pin must be different.</string>
+
+    <string name="card_activated">Card is in Activated State</string>
+    <string name="card_not_activated">Card not in Activated State</string>
+    <string name="card_invalid">Card is in Invalid State</string>
+
+    <string name="card_number_required">Card Number (required)*</string>
+    <string name="pin_required">PIN (required)*</string>
+    <string name="set_pin">Set Pin</string>
+
+    <string name="cards">Card List</string>
+    <string name="view_card">View Card</string>
+    <string name="activate_card">Activate Card</string>
+    <string name="set_card_pin">Set Card Pin</string>
+    <string name="change_pin">Change Pin</string>
+    <string name="widget_setting">Widget Setting</string>
+
+    <string name="card_number">Card Number</string>
+    <string name="pan_last_four">PAN Last Four</string>
+    <string name="card_type">Card Type</string>
+    <string name="state">State</string>
+    <string name="card_holder_name">Cardholder Name</string>
+
+    <string name="style_default">Default</string>
+    <string name="style_vertical">Vertical</string>
+    <string name="style_vertical_flippable_1">Vertical Flippable 1</string>
+    <string name="style_horizontal_flippable">Horizontal Flippable</string>
+    <string name="style_vertical_flippable_2">Vertical Flippable 2</string>
+
+    <string name="style_outlined">Outlined</string>
+    <string name="style_filled">Filled</string>
+    <string name="style_standard">Standard</string>
+
+    <string name="activate_card_successfully">Card Activated Successfully</string>
+    <string name="pin_set_successfully">Pin Set Successfully</string>
+    <string name="pin_change_successfully">Pin Changed Successfully</string>
+    <string name="card_created_successfully">Card Created Successfully</string>
+
+    <string name="account_number">Account Number</string>
+    <string name="expiration">Expiration</string>
+    <string name="cvv">Cvv</string>
+
+    <string name="masked_card_number">XXXX-XXXX-XXXX-XXXX</string>
+    <string name="masked_card_cvv">XXX</string>
+</resources>
