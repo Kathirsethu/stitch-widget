@@ -17,9 +17,9 @@ android {
         minSdk 24
         targetSdk 34
         multiDexEnabled true
-        buildConfigField "String", "BASE_URL", '"https://sandbox.stitch.fi"'
+        buildConfigField "String", "BASE_URL", '"https://dev.stitch.fi"'
         buildConfigField "String", "API_VERSION", '"/stitch-ui-api-zitadel/v1/stitchapp/api"'
-        buildConfigField "String", "WIDGETS_SECURE_API_VERSION", '"/stitch-rest-api/v1/widgets/secure"'
+        buildConfigField "String", "WIDGETS_SECURE_API_VERSION", '"/qa/v1/widgets/secure"'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -75,7 +75,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.stitch.stitchwidgets'
                 artifactId = 'stitch-widget'
-                version = '0.0.33'
+                version = '0.0.34'
             }
         }
     }
