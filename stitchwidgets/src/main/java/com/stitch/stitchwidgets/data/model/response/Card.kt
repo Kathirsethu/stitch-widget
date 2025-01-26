@@ -12,6 +12,8 @@ data class Card(
     var modifiedTime: String? = "",
     @SerializedName("cardNumber")
     var cardNumber: String? = "",
+    @SerializedName("cardId")
+    var cardId: String? = "",
     @SerializedName("panFirstSix")
     var panFirst6: String? = "",
     @SerializedName("panLastFour")
