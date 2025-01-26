@@ -39,6 +39,6 @@ data class Card(
 ) : Parcelable {
 
     override fun toString(): String {
-        return cardNumber ?: ""
+        return cardId ?: ""
     }
 }
