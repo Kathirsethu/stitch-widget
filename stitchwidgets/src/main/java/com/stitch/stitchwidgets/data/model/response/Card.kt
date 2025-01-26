@@ -12,9 +12,9 @@ data class Card(
     var modifiedTime: Long? = 0,
     @SerializedName("cardNumber")
     var cardNumber: String? = "",
-    @SerializedName("panFirst6")
+    @SerializedName("panFirstSix")
     var panFirst6: String? = "",
-    @SerializedName("panLast4")
+    @SerializedName("panLastFour")
     var panLast4: String? = "",
     var type: String? = "",
     var state: String? = "",
@@ -27,12 +27,13 @@ data class Card(
     @SerializedName("reissue")
     var reissue: Boolean? = false,
     var expiry: String? = "",
-    @SerializedName("customerNumber")
+    @SerializedName("customerId")
     var customerNumber: String? = "",
     @SerializedName("embossedName")
     var embossedName: String? = "",
     @SerializedName("programName")
     var programName: String? = "",
+    var cvv2: String? = "",
 ) : Parcelable {
 
     override fun toString(): String {
