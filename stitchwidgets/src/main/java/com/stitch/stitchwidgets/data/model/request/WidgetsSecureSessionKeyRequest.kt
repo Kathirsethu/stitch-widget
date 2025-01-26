@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 class WidgetsSecureSessionKeyRequest(
     var token: String,
-    @SerializedName("deviceFingerPrint")
+    @SerializedName("deviceFingerprint")
     var deviceFingerprint: String,
 )
