@@ -7,9 +7,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Card(
     @SerializedName("creationTime")
-    var creationTime: Long? = 0,
+    var creationTime: String? = "",
     @SerializedName("modifiedTime")
-    var modifiedTime: Long? = 0,
+    var modifiedTime: String? = "",
     @SerializedName("cardNumber")
     var cardNumber: String? = "",
     @SerializedName("panFirstSix")
