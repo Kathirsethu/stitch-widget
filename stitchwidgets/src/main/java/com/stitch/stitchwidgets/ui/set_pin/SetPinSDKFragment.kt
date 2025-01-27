@@ -85,7 +85,7 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
         }
         viewModel.onSetPINClick = {
             viewModel.retryCount.set(0)
-            viewModel.getWidgetsSecureSessionKey(requireContext())
+            viewModel.getWidgetSecureSetPIN(viewModel.sdkData.get()?.secureToken ?: "")
         }
         viewModel.onSetPINSuccess = {
             viewModel.getCards()
