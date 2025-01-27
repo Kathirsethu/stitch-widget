@@ -183,11 +183,11 @@ open class CardManagementSDKViewModel : ViewModel() {
                         }
 
                         Constants.ViewType.SET_CARD_PIN -> {
-                            getWidgetSecureSetPIN(it.key)
+                            getWidgetSecureSetPIN(it.key, it.generatedKey)
                         }
 
                         Constants.ViewType.RESET_CARD_PIN -> {
-                            getWidgetSecureChangePIN(it.key)
+                            getWidgetSecureChangePIN(it.key, it.generatedKey)
                         }
                     }
                 }
@@ -278,10 +278,10 @@ open class CardManagementSDKViewModel : ViewModel() {
         )
     }
 
-    private fun getWidgetSecureSetPIN(key: String) {
+    private fun getWidgetSecureSetPIN(key: String, token: String) {
         val widgetsSecureSetPINRequest = WidgetsSecureSetPINRequest(
             pin = encrypt(pin.get() ?: "", key).replace("\n", ""),
-            token = secureToken.get() ?: "", deviceFingerprint = fingerPrint.get() ?: "",
+            token = token, deviceFingerprint = fingerPrint.get() ?: "",
         )
         ApiManager.call(
             toast = false,
@@ -309,11 +309,11 @@ open class CardManagementSDKViewModel : ViewModel() {
         )
     }
 
-    private fun getWidgetSecureChangePIN(key: String) {
+    private fun getWidgetSecureChangePIN(key: String, token: String) {
         val widgetsSecureChangePINRequest = WidgetsSecureChangePINRequest(
             existingPin = encrypt(oldPin.get() ?: "", key).replace("\n", ""),
             pin = encrypt(newPin.get() ?: "", key).replace("\n", ""),
-            token = secureToken.get() ?: "", deviceFingerprint = fingerPrint.get() ?: "",
+            token = token, deviceFingerprint = fingerPrint.get() ?: "",
         )
         ApiManager.call(
             toast = false,
