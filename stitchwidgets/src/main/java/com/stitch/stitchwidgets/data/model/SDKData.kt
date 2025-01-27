@@ -14,6 +14,5 @@ data class SDKData(
     var customerNumber: String? = "",
     var programName: String? = "",
     var secureToken: String? = "",
-    var key: String? = "",
     var fingerPrint: String? = "",
 ) : Parcelable
