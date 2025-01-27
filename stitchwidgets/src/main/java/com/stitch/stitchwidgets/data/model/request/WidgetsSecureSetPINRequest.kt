@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 class WidgetsSecureSetPINRequest(
     var pin: String,
     var token: String,
-    @SerializedName("deviceFingerPrint")
+    @SerializedName("device_fingerprint")
     var deviceFingerprint: String,
 )
