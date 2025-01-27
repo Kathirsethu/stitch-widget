@@ -85,7 +85,7 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
         }
         viewModel.onSetPINClick = {
             viewModel.retryCount.set(0)
-            viewModel.getWidgetSecureSetPIN(viewModel.sdkData.get()?.secureToken ?: "")
+            viewModel.getWidgetsSecureSessionKey(requireContext())
         }
         viewModel.onSetPINSuccess = {
             viewModel.getCards()
@@ -164,7 +164,7 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
             viewModel.cardStyleButtonBackgroundColor.set(viewModel.savedCardSettings.get()?.buttonBackgroundColor)
         } else {
             viewModel.cardStyleButtonBackgroundColor.set(
-                ContextCompat.getColor(requireContext(), R.color.white)
+                ContextCompat.getColor(requireContext(), R.color.colorBase)
             )
         }
         if (viewModel.savedCardSettings.get()?.fontSize != null &&

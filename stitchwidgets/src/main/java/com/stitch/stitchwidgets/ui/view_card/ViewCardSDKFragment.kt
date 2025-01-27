@@ -308,7 +308,7 @@ open class ViewCardSDKFragment : CardManagementSDKFragment() {
             viewModel.cardStyleButtonBackgroundColor.set(viewModel.savedCardSettings.get()?.buttonBackgroundColor)
         } else {
             viewModel.cardStyleButtonBackgroundColor.set(
-                ContextCompat.getColor(requireContext(), R.color.white)
+                ContextCompat.getColor(requireContext(), R.color.colorBase)
             )
         }
         if (viewModel.savedCardSettings.get()?.fontSize != null &&

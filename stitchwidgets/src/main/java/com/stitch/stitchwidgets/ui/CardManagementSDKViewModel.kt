@@ -278,7 +278,7 @@ open class CardManagementSDKViewModel : ViewModel() {
         )
     }
 
-    fun getWidgetSecureSetPIN(key: String) {
+    private fun getWidgetSecureSetPIN(key: String) {
         val widgetsSecureSetPINRequest = WidgetsSecureSetPINRequest(
             pin = encrypt(pin.get() ?: "", key).replace("\n", ""),
             token = secureToken.get() ?: "", deviceFingerprint = fingerPrint.get() ?: "",
