@@ -19,7 +19,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="8dp"
             app:isGone="@{!viewModel.showCardResetPin}"
             app:layout_constraintTop_toTopOf="parent">
@@ -47,7 +47,7 @@
                 android:text="@string/pin_required"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:fontFamily="@font/euclid_flex_bold"
+                app:fontFamily="@font/inter"
                 app:isGone="@{viewModel.isCardNotActivate}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,21 +81,21 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvChangePIN"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/bg_color_base_corner_12"
                 android:gravity="center"
                 android:onClick="@{()->viewModel.onResetPINClick.invoke()}"
                 android:padding="16dp"
                 android:text="@string/change_pin"
-                android:textColor="@color/white"
                 android:textSize="14sp"
-                app:fontFamily="@font/euclid_flex_bold"
+                app:fontFamily="@font/inter_semi_bold"
                 app:isGone="@{viewModel.isCardNotActivate}"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutStandard" />
+                app:styleButtonBackgroundColor="@{viewModel.cardStyleButtonBackgroundColor}"
+                app:styleButtonFontColor="@{viewModel.cardStyleButtonFontColor}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

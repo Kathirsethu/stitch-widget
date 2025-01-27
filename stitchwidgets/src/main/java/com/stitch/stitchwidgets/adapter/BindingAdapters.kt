@@ -75,6 +75,16 @@ fun styleFontColor(view: TextView, resourceId: Int) {
     view.setTextColor(resourceId)
 }
 
+@BindingAdapter("styleButtonFontColor")
+fun styleButtonFontColor(view: TextView, resourceId: Int) {
+    view.setTextColor(resourceId)
+}
+
+@BindingAdapter("styleButtonBackgroundColor")
+fun styleButtonBackgroundColor(view: TextView, resourceId: Int) {
+    view.setBackgroundColor(resourceId)
+}
+
 @BindingAdapter("styleTILFontFamily")
 fun styleTILFontFamily(view: TextInputLayout, resourceId: Int) {
     view.typeface = ResourcesCompat.getFont(view.context, resourceId)

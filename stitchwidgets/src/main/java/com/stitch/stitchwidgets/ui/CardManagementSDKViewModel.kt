@@ -67,6 +67,8 @@ open class CardManagementSDKViewModel : ViewModel() {
 
     val cardStyleFontFamily = ObservableField<Int>()
     val cardStyleFontColor = ObservableField<Int>()
+    val cardStyleButtonFontColor = ObservableField<Int>()
+    val cardStyleButtonBackgroundColor = ObservableField<Int>()
     val styleFontSize = ObservableField("")
     val cardStyleBackground = ObservableField<Any>()
     val cardStyleNumberTopPadding = ObservableField("0")
@@ -362,7 +364,7 @@ open class CardManagementSDKViewModel : ViewModel() {
         val keyBytes = Base64.decode(key, Base64.DEFAULT)
         val secretKey: SecretKey = SecretKeySpec(keyBytes, "AES")
 
-        val ivBytes = ByteArray(16)
+        val ivBytes = ByteArray(12)
         SecureRandom().nextBytes(ivBytes)
         val ivBase64 = Base64.encodeToString(ivBytes, Base64.DEFAULT)
 

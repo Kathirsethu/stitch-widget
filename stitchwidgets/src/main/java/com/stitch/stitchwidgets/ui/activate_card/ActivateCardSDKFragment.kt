@@ -152,6 +152,20 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
                 ContextCompat.getColor(requireContext(), R.color.black)
             )
         }
+        if (viewModel.savedCardSettings.get()?.buttonFontColor != null) {
+            viewModel.cardStyleButtonFontColor.set(viewModel.savedCardSettings.get()?.buttonFontColor)
+        } else {
+            viewModel.cardStyleButtonFontColor.set(
+                ContextCompat.getColor(requireContext(), R.color.white)
+            )
+        }
+        if (viewModel.savedCardSettings.get()?.buttonBackgroundColor != null) {
+            viewModel.cardStyleButtonBackgroundColor.set(viewModel.savedCardSettings.get()?.buttonBackgroundColor)
+        } else {
+            viewModel.cardStyleButtonBackgroundColor.set(
+                ContextCompat.getColor(requireContext(), R.color.white)
+            )
+        }
         if (viewModel.savedCardSettings.get()?.fontSize != null &&
             viewModel.savedCardSettings.get()?.fontSize.toString().isNotEmpty()
         ) {
