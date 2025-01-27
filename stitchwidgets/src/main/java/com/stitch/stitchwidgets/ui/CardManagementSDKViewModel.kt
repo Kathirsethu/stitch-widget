@@ -183,11 +183,11 @@ open class CardManagementSDKViewModel : ViewModel() {
                         }
 
                         Constants.ViewType.SET_CARD_PIN -> {
-                            getWidgetSecureSetPIN(it.generatedKey)
+                            getWidgetSecureSetPIN(it.key)
                         }
 
                         Constants.ViewType.RESET_CARD_PIN -> {
-                            getWidgetSecureChangePIN(it.generatedKey)
+                            getWidgetSecureChangePIN(it.key)
                         }
                     }
                 }

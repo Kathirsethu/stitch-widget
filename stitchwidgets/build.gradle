@@ -75,7 +75,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.stitch.stitchwidgets'
                 artifactId = 'stitch-widget'
-                version = '0.0.46'
+                version = '0.0.47'
             }
         }
     }
