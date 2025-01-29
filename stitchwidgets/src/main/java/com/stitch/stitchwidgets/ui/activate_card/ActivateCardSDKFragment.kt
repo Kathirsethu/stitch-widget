@@ -143,7 +143,7 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
         if (viewModel.savedCardSettings.get()?.fontFamily != null) {
             viewModel.cardStyleFontFamily.set(viewModel.savedCardSettings.get()?.fontFamily)
         } else {
-            viewModel.cardStyleFontFamily.set(R.font.euclid_flex_regular)
+            viewModel.cardStyleFontFamily.set(R.font.inter_regular)
         }
         if (viewModel.savedCardSettings.get()?.fontColor != null) {
             viewModel.cardStyleFontColor.set(viewModel.savedCardSettings.get()?.fontColor)
