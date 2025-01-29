@@ -154,7 +154,7 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
             viewModel.cardStyleFontColor.set(viewModel.savedCardSettings.get()?.fontColor)
         } else {
             viewModel.cardStyleFontColor.set(
-                ContextCompat.getColor(requireContext(), R.color.black)
+                ContextCompat.getColor(requireContext(), R.color.text_color)
             )
         }
         if (viewModel.savedCardSettings.get()?.buttonFontColor != null) {
@@ -178,7 +178,7 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
                 viewModel.savedCardSettings.get()?.fontSize.toString()
             )
         } else {
-            viewModel.styleFontSize.set("14")
+            viewModel.styleFontSize.set("16")
         }
         setCardData()
     }

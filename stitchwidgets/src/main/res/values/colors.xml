@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorBase">#3441FF</color>
+    <color name="colorBase">#0A1BFF</color>
     <color name="colorBase_25">#403441FF</color>
     <color name="color_inactive">#D0D5DD</color>
     <color name="login_logo_bg">#FCF8EE</color>
