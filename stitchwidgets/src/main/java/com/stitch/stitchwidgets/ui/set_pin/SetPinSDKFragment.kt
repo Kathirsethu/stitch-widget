@@ -26,6 +26,7 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
         lateinit var logoutListener: (unAuth: Boolean) -> Unit
         lateinit var savedCardSettings: SavedCardSettings
         lateinit var reFetchSessionToken: (viewType: String) -> Unit
+        lateinit var onSetPinSuccess: () -> Unit
 
         fun newInstance(
             networkListener: () -> Boolean,
@@ -33,6 +34,7 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
             logoutListener: (unAuth: Boolean) -> Unit,
             savedCardSettings: SavedCardSettings,
             reFetchSessionToken: (viewType: String) -> Unit,
+            onSetPinSuccess: () -> Unit,
         ): SetPinSDKFragment {
             val setPinSDKFragment = SetPinSDKFragment()
             this.networkListener = networkListener
@@ -40,6 +42,7 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
             this.logoutListener = logoutListener
             this.savedCardSettings = savedCardSettings
             this.reFetchSessionToken = reFetchSessionToken
+            this.onSetPinSuccess = onSetPinSuccess
             return setPinSDKFragment
         }
     }
@@ -92,6 +95,7 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
             viewModel.pin.set("")
             viewModel.confirmPin.set("")
             Toast.success(getString(R.string.pin_set_successfully))
+            onSetPinSuccess.invoke()
         }
     }
 

@@ -13,20 +13,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPIN"
-            style="@style/TextInputLayoutStyle.Standard"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPinLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_four_digit_pin"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            app:fontFamily="@font/inter_regular"
             app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPIN"
+            style="@style/TextInputLayoutStyle.Standard"
+            android:layout_marginTop="8dp"
+            app:isGone="@{viewModel.isCardNotActivate}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPinLabel"
             app:styleTILColor="@{viewModel.cardStyleFontColor}"
             app:styleTILFontFamily="@{viewModel.cardStyleFontFamily}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPIN"
                 style="@style/EditTextStyle.NoBorder"
-                android:hint="@string/placeholder_four_digit_pin"
+                android:hint="@string/placeholder_four_digit_old_pin"
                 android:imeOptions="actionNext"
                 android:importantForAutofill="no"
                 android:inputType="number"
@@ -40,14 +54,28 @@
                 app:styleFontSize="@{Integer.parseInt(viewModel.styleFontSize)}" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilConfirmPIN"
-            style="@style/TextInputLayoutStyle.Standard"
-            android:layout_marginTop="12dp"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvConfirmPinLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/placeholder_set_confirm_pin"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            app:fontFamily="@font/inter_regular"
             app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilPIN"
+            app:layout_constraintTop_toBottomOf="@+id/tilPIN" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfirmPIN"
+            style="@style/TextInputLayoutStyle.Standard"
+            android:layout_marginTop="8dp"
+            app:isGone="@{viewModel.isCardNotActivate}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvConfirmPinLabel"
             app:styleTILColor="@{viewModel.cardStyleFontColor}"
             app:styleTILFontFamily="@{viewModel.cardStyleFontFamily}">
 
