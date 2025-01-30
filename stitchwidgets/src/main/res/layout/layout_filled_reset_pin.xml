@@ -128,7 +128,7 @@
                 android:inputType="number"
                 android:maxLength="4"
                 android:paddingTop="32dp"
-                android:text="@={viewModel.confirmPin}"
+                android:text="@={viewModel.confirmChangePin}"
                 android:textCursorDrawable="@null"
                 app:styleFontColor="@{viewModel.cardStyleFontColor}"
                 app:styleFontFamily="@{viewModel.cardStyleFontFamily}"

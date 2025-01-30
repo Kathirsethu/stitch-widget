@@ -131,7 +131,7 @@
                 android:maxLength="4"
                 android:paddingStart="4dp"
                 android:paddingEnd="0dp"
-                android:text="@={viewModel.confirmPin}"
+                android:text="@={viewModel.confirmChangePin}"
                 android:textCursorDrawable="@null"
                 app:styleFontColor="@{viewModel.cardStyleFontColor}"
                 app:styleFontFamily="@{viewModel.cardStyleFontFamily}"
