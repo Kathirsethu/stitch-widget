@@ -24,10 +24,6 @@ object RetrofitFactory {
             .newBuilder()
             .url(newUrl)
             .addHeader("X-Requested-With", "XMLHttpRequest")
-            .addHeader(
-                "Authorization",
-                "Bearer tAbq-jACrwADxI_dJI8vqqyViSq_1GJd0AeZ8KQwqNGZqLt49wZ73dRVLRuV0noVrLAqYxTZ9NqcaluKBtLXcg=="
-            )
             .build()
 
         chain.proceed(newRequest)
@@ -44,10 +40,6 @@ object RetrofitFactory {
             .newBuilder()
             .url(newUrl)
             .addHeader("X-Correlation-ID", "$random")
-            .addHeader(
-                "Authorization",
-                "Bearer tAbq-jACrwADxI_dJI8vqqyViSq_1GJd0AeZ8KQwqNGZqLt49wZ73dRVLRuV0noVrLAqYxTZ9NqcaluKBtLXcg=="
-            )
             .build()
 
         chain.proceed(newRequest)
