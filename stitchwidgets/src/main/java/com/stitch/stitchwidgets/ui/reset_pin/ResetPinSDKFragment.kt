@@ -94,6 +94,7 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
             viewModel.getCards()
             viewModel.oldPin.set("")
             viewModel.newPin.set("")
+            viewModel.confirmChangePin.set("")
             Toast.success(getString(R.string.pin_change_successfully))
             onResetPinSuccess.invoke()
         }

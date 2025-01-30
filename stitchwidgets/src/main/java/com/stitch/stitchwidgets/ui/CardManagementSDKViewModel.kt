@@ -57,6 +57,7 @@ open class CardManagementSDKViewModel : ViewModel() {
     val cardExpiry = ObservableField("")
     val oldPin = ObservableField("")
     val newPin = ObservableField("")
+    val confirmChangePin = ObservableField("")
     val pin = ObservableField("")
     val confirmPin = ObservableField("")
     val cardTypeImage = ObservableField(R.drawable.ic_visa)
@@ -160,8 +161,13 @@ open class CardManagementSDKViewModel : ViewModel() {
         if (viewType.get() == Constants.ViewType.RESET_CARD_PIN) {
             if (oldPin.validateOldPIN(context = context)) return
             if (newPin.validateNewPIN(context = context)) return
+            if (confirmChangePin.validateConfirmPIN(context = context)) return
             if (oldPin.get() == newPin.get()) {
                 Toast.error(context.getString(R.string.invalid_change_pin_mismatch))
+                return
+            }
+            if (pin.get() != confirmChangePin.get()) {
+                Toast.error(context.getString(R.string.invalid_pin_mismatch))
                 return
             }
         }
