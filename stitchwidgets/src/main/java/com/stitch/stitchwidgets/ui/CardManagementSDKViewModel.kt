@@ -166,7 +166,7 @@ open class CardManagementSDKViewModel : ViewModel() {
                 Toast.error(context.getString(R.string.invalid_change_pin_mismatch))
                 return
             }
-            if (pin.get() != confirmChangePin.get()) {
+            if (newPin.get() != confirmChangePin.get()) {
                 Toast.error(context.getString(R.string.invalid_pin_mismatch))
                 return
             }
