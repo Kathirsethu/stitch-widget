@@ -40,7 +40,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etOldPIN"
                 style="@style/EditTextStyle.NoBorder"
-                android:hint="@string/placeholder_four_digit_old_pin"
+                android:hint="@string/placeholder_enter_four_digit_pin"
                 android:imeOptions="actionNext"
                 android:importantForAutofill="no"
                 android:inputType="number"
@@ -81,7 +81,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNewPIN"
                 style="@style/EditTextStyle.NoBorder"
-                android:hint="@string/placeholder_new_pin"
+                android:hint="@string/placeholder_enter_four_digit_pin"
                 android:imeOptions="actionNext"
                 android:importantForAutofill="no"
                 android:inputType="number"
@@ -122,7 +122,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etConfirmPIN"
                 style="@style/EditTextStyle.NoBorder"
-                android:hint="@string/placeholder_confirm_pin"
+                android:hint="@string/placeholder_re_enter_four_digit_pin"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="number"

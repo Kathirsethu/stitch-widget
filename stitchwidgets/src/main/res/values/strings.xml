@@ -8,10 +8,9 @@
     <string name="placeholder_card_number_mandatory">Card Number*</string>
     <string name="placeholder_card_cvv">Card CVV*</string>
     <string name="placeholder_four_digit_pin">4 Digit PIN*</string>
-    <string name="placeholder_confirm_pin">Re-enter 4-Digit PIN</string>
     <string name="placeholder_set_confirm_pin">Confirm PIN*</string>
-    <string name="placeholder_four_digit_old_pin">Enter 4-Digit PIN</string>
-    <string name="placeholder_new_pin">Enter 4-Digit PIN</string>
+    <string name="placeholder_enter_four_digit_pin">Enter 4-Digit PIN</string>
+    <string name="placeholder_re_enter_four_digit_pin">Re-enter 4-Digit PIN</string>
 
     <string name="invalid_cvv">CVV is required.</string>
     <string name="invalid_pin">PIN is required.</string>
