@@ -3,8 +3,7 @@ package com.stitch.stitchwidgets.data.model.response
 import com.google.gson.annotations.SerializedName
 
 data class WidgetsSecureCardResponse(
-    @SerializedName("accountNumber")
-    var accountNumber: String,
-    var expiry: String,
-    var cvv: String,
+    @SerializedName("items")
+    var items: Card,
+    var status: String,
 )

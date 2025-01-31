@@ -118,8 +118,8 @@ class CardBottomSheetViewModel : ViewModel() {
                 if (it != null) {
                     card = (Card(
                         cardNumber = cardNumber,
-                        cvv2 = decrypt(it.cvv, generatedKey),
-                        expiry = getCardExpiry(decrypt(it.expiry, generatedKey)),
+                        cvv2 = decrypt(it.items.cvv2, generatedKey),
+                        expiry = getCardExpiry(decrypt(it.items.expiry, generatedKey)),
                         state = "activated"
                     ))
                     setCardData.invoke()
