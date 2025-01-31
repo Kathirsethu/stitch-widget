@@ -104,7 +104,7 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
         viewModel.customerNumber.set(viewModel.sdkData.get()?.customerNumber)
         viewModel.programName.set(viewModel.sdkData.get()?.programName)
         viewModel.secureToken.set(viewModel.sdkData.get()?.secureToken)
-        viewModel.fingerPrint.set(viewModel.sdkData.get()?.fingerPrint)
+        viewModel.fingerPrint.set(viewModel.deviceFingerPrint(requireContext()))
         setFormStyleProperties()
     }
 
