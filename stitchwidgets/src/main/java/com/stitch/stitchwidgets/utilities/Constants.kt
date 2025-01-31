@@ -13,6 +13,7 @@ open class Constants {
     object ParcelConstants {
 
         const val SDK_DATA = "sdk_data"
+        const val CARD_NUMBER = "card_number"
     }
 
     object CardState {

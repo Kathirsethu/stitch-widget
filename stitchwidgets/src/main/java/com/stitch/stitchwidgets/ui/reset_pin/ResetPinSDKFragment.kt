@@ -74,7 +74,8 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
         viewModel.reFetchSessionToken = reFetchSessionToken
 
         viewModel.viewType.set(Constants.ViewType.RESET_CARD_PIN)
-
+        viewModel.cardNumber.set(arguments?.getString(Constants.ParcelConstants.CARD_NUMBER))
+        viewModel.showCardResetPin.set(true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             setSDKData(
                 arguments?.getParcelable(Constants.ParcelConstants.SDK_DATA, SDKData::class.java),

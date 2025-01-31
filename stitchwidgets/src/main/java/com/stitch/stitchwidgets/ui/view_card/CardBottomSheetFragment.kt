@@ -118,9 +118,11 @@ class CardBottomSheetFragment : BottomSheetDialogFragment() {
         }
         viewModel.onSetPinClick = {
             onSetPinClick.invoke()
+            dismiss()
         }
         viewModel.onChangePinClick = {
             onChangePinClick.invoke()
+            dismiss()
         }
     }
 

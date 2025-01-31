@@ -10,7 +10,6 @@ import com.stitch.stitchwidgets.data.model.request.WidgetsSecureCardRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureSessionKeyRequest
 import com.stitch.stitchwidgets.data.model.response.Card
 import com.stitch.stitchwidgets.data.remote.ApiManager
-import com.stitch.stitchwidgets.utilities.CardUtils
 import java.math.BigInteger
 import java.net.InetAddress
 import java.net.NetworkInterface
@@ -116,12 +115,7 @@ class CardBottomSheetViewModel : ViewModel() {
             response = {
                 if (it != null) {
                     card = (Card(
-                        cardNumber = CardUtils.getCardNumber(
-                            decrypt(
-                                cardNumber,
-                                generatedKey
-                            )
-                        ),
+                        cardNumber = cardNumber,
                         cvv2 = decrypt(it.cvv, generatedKey),
                         expiry = getCardExpiry(decrypt(it.expiry, generatedKey)),
                         state = "activated"
