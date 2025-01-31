@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.stitch.stitchwidgets.ui.view_card.CardBottomSheetViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_top_corner_24"
+        android:padding="16dp"
+        tools:context=".ui.demo.DemoCardBottomSheetFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvYourCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/your_cards"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:fontFamily="@font/inter_semi_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/layoutDemoCard"
+            layout="@layout/item_card_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvYourCard" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSetPin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{()->viewModel.onSetPinClick.invoke()}"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDemoCard">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivSetPin"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_set_pin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSetPin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/set_card_pin"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:fontFamily="@font/inter_semi_bold"
+                app:layout_constraintBottom_toTopOf="@+id/tvManageYourCard"
+                app:layout_constraintStart_toEndOf="@+id/ivSetPin"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvManageYourCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/set_your_card_pin"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:fontFamily="@font/inter_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivSetPin"
+                app:layout_constraintTop_toBottomOf="@+id/tvSetPin" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivSetPinChevron"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clChangePin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:onClick="@{()->viewModel.onChangePinClick.invoke()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clSetPin">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivChangePin"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_change_pin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvChangePin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/change_pin"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:fontFamily="@font/inter_semi_bold"
+                app:layout_constraintBottom_toTopOf="@+id/tvManageYourCardPin"
+                app:layout_constraintStart_toEndOf="@+id/ivChangePin"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvManageYourCardPin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/manage_your_card_pin"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:fontFamily="@font/inter_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivChangePin"
+                app:layout_constraintTop_toBottomOf="@+id/tvChangePin" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivChangePinChevron"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="numberTopPadding"
+            type="String" />
+
+        <variable
+            name="numberBottomPadding"
+            type="String" />
+
+        <variable
+            name="numberLeftPadding"
+            type="String" />
+
+        <variable
+            name="numberRightPadding"
+            type="String" />
+
+        <variable
+            name="expiryTopPadding"
+            type="String" />
+
+        <variable
+            name="expiryBottomPadding"
+            type="String" />
+
+        <variable
+            name="expiryLeftPadding"
+            type="String" />
+
+        <variable
+            name="expiryRightPadding"
+            type="String" />
+
+        <variable
+            name="cvvTopPadding"
+            type="String" />
+
+        <variable
+            name="cvvBottomPadding"
+            type="String" />
+
+        <variable
+            name="cvvLeftPadding"
+            type="String" />
+
+        <variable
+            name="cvvRightPadding"
+            type="String" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvCustomerCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="false"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clCustomerCardBg"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/new_card_bg">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCardMedia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNameOnCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:fontFamily="@font/inconsolata_semi_bold"
+                app:layout_constraintEnd_toStartOf="@+id/ivCardType"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCardType"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_visa_new"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCardNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:cardStyleBottomPadding="@{Integer.parseInt(numberBottomPadding)}"
+                app:cardStyleLeftPadding="@{Integer.parseInt(numberLeftPadding)}"
+                app:cardStyleRightPadding="@{Integer.parseInt(numberRightPadding)}"
+                app:cardStyleTopPadding="@{Integer.parseInt(numberTopPadding)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCardProfileNameLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/card_holder_name"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvCardProfileName"
+                app:layout_constraintEnd_toStartOf="@+id/clExpiryCvv"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCardProfileName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/clExpiryCvv"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clExpiryCvv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvCardProfileNameLabel">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCardExpiryLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/valid_thru"
+                    android:textSize="12sp"
+                    app:cardStyleBottomPadding="@{Integer.parseInt(expiryBottomPadding)}"
+                    app:cardStyleLeftPadding="@{Integer.parseInt(expiryLeftPadding)}"
+                    app:cardStyleRightPadding="@{Integer.parseInt(expiryRightPadding)}"
+                    app:cardStyleTopPadding="@{Integer.parseInt(expiryTopPadding)}"
+                    app:layout_constraintBottom_toTopOf="@+id/tvCardExpiry"
+                    app:layout_constraintEnd_toStartOf="@+id/tvCardCVVLabel"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCardExpiry"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardStyleBottomPadding="@{Integer.parseInt(expiryBottomPadding)}"
+                    app:cardStyleLeftPadding="@{Integer.parseInt(expiryLeftPadding)}"
+                    app:cardStyleRightPadding="@{Integer.parseInt(expiryRightPadding)}"
+                    app:cardStyleTopPadding="@{Integer.parseInt(expiryTopPadding)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tvCardExpiryLabel"
+                    app:layout_constraintStart_toStartOf="@+id/tvCardExpiryLabel" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCardCVVLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cvv"
+                    android:textAllCaps="true"
+                    android:textSize="12sp"
+                    app:cardStyleBottomPadding="@{Integer.parseInt(cvvBottomPadding)}"
+                    app:cardStyleLeftPadding="@{Integer.parseInt(cvvLeftPadding)}"
+                    app:cardStyleRightPadding="@{Integer.parseInt(cvvRightPadding)}"
+                    app:cardStyleTopPadding="@{Integer.parseInt(cvvTopPadding)}"
+                    app:layout_constraintBottom_toTopOf="@+id/tvCardCVV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvCardExpiryLabel" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCardCVV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardStyleBottomPadding="@{Integer.parseInt(cvvBottomPadding)}"
+                    app:cardStyleLeftPadding="@{Integer.parseInt(cvvLeftPadding)}"
+                    app:cardStyleRightPadding="@{Integer.parseInt(cvvRightPadding)}"
+                    app:cardStyleTopPadding="@{Integer.parseInt(cvvTopPadding)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvCardCVVLabel" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

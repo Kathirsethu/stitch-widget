@@ -60,8 +60,13 @@
     <string name="expiration">Expiration</string>
     <string name="cvv">Cvv</string>
 
-    <string name="masked_card_number">XXXX-XXXX-XXXX-XXXX</string>
+    <string name="mask_demo_card">XXXX XXXX XXXX</string>
+    <string name="masked_card_number">XXXX XXXX XXXX XXXX</string>
     <string name="masked_card_cvv">XXX</string>
+    <string name="valid_thru">Valid thru</string>
+    <string name="your_cards">Your cards</string>
+    <string name="set_your_card_pin">Set your card pin</string>
+    <string name="manage_your_card_pin">Manage your card pin</string>
 
     <string name="current_pin">Current PIN</string>
     <string name="new_pin">New PIN</string>
