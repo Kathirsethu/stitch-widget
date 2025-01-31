@@ -231,7 +231,7 @@ open class CardManagementSDKViewModel : ViewModel() {
             request = ApiManager.widgetSecureCardAsync(widgetsSecureCardRequest),
             response = {
                 if (it != null) {
-                    accountNumber.set(
+                    /*accountNumber.set(
                         CardUtils.getCardNumber(decrypt(it.accountNumber, generatedKey))
                     )
                     cardExpiry.set(
@@ -240,7 +240,7 @@ open class CardManagementSDKViewModel : ViewModel() {
                     cardCVV.set(decrypt(it.cvv, generatedKey))
                     cardTypeImage.set(
                         CardUtils.getCardType(accountNumber.get() ?: "")
-                    )
+                    )*/
                 }
             },
             errorResponse = { errorCode, errorMessage ->
