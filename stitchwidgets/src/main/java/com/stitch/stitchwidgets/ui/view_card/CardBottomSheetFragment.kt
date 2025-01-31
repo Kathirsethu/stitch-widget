@@ -27,6 +27,7 @@ class CardBottomSheetFragment : BottomSheetDialogFragment() {
         lateinit var onSetPinClick: () -> Unit
         lateinit var onChangePinClick: () -> Unit
         lateinit var secureToken: String
+        lateinit var cardNumber: String
 
         fun newInstance(
             networkListener: () -> Boolean,
@@ -37,6 +38,7 @@ class CardBottomSheetFragment : BottomSheetDialogFragment() {
             onSetPinClick: () -> Unit,
             onChangePinClick: () -> Unit,
             secureToken: String,
+            cardNumber: String,
         ): CardBottomSheetFragment {
             val cardBottomSheetFragment = CardBottomSheetFragment()
             this.networkListener = networkListener
@@ -45,6 +47,7 @@ class CardBottomSheetFragment : BottomSheetDialogFragment() {
             this.savedCardSettings = savedCardSettings
             this.reFetchSessionToken = reFetchSessionToken
             this.secureToken = secureToken
+            this.cardNumber = cardNumber
             this.onSetPinClick = onSetPinClick
             this.onChangePinClick = onChangePinClick
             return cardBottomSheetFragment
@@ -76,18 +79,22 @@ class CardBottomSheetFragment : BottomSheetDialogFragment() {
         viewModel.logoutListener = logoutListener
 
         viewModel.secureToken = secureToken
+        viewModel.cardNumber = cardNumber
+        viewModel.getWidgetSecureSessionKey(requireContext())
         setCardStyleProperties()
-        binding.layoutDemoCard.tvCardNumber.text =
-            if (viewModel.isCardNumberMaskEnabled.get() == null || viewModel.isCardNumberMaskEnabled.get() == true) String.format(
-                "%s %s",
-                getString(R.string.mask_demo_card),
-                viewModel.card.cardNumber?.let {
-                    it.substring(it.length - 4, it.length)
-                }) else viewModel.card.cardNumber
-        binding.layoutDemoCard.tvCardProfileName.text = "Navin Sivaji"
-        binding.layoutDemoCard.tvCardExpiry.text = viewModel.card.expiry
-        binding.layoutDemoCard.tvCardCVV.text =
-            if (viewModel.isCardCVVMaskEnabled.get() == null || viewModel.isCardCVVMaskEnabled.get() == true) "XXX" else viewModel.card.cvv2
+        viewModel.setCardData = {
+            binding.layoutDemoCard.tvCardNumber.text =
+                if (viewModel.isCardNumberMaskEnabled.get() == null || viewModel.isCardNumberMaskEnabled.get() == true) String.format(
+                    "%s %s",
+                    getString(R.string.mask_demo_card),
+                    viewModel.card.cardNumber?.let {
+                        it.substring(it.length - 4, it.length)
+                    }) else viewModel.card.cardNumber
+            binding.layoutDemoCard.tvCardProfileName.text = "Navin Sivaji"
+            binding.layoutDemoCard.tvCardExpiry.text = viewModel.card.expiry
+            binding.layoutDemoCard.tvCardCVV.text =
+                if (viewModel.isCardCVVMaskEnabled.get() == null || viewModel.isCardCVVMaskEnabled.get() == true) "XXX" else viewModel.card.cvv2
+        }
         binding.layoutDemoCard.tvCardNumber.setOnClickListener {
             if (viewModel.isCardNumberMaskEnabled.get() == null || viewModel.isCardNumberMaskEnabled.get() == true) {
                 viewModel.isCardNumberMasked.set(!(viewModel.isCardNumberMasked.get() ?: true))
