@@ -15,6 +15,7 @@ import com.stitch.stitchwidgets.databinding.FragmentResetPinSdkBinding
 import com.stitch.stitchwidgets.ui.CardManagementSDKFragment
 import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
+import okhttp3.internal.http.HTTP_BAD_REQUEST
 
 open class ResetPinSDKFragment : CardManagementSDKFragment() {
 
@@ -27,6 +28,7 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
         lateinit var savedCardSettings: SavedCardSettings
         lateinit var reFetchSessionToken: (viewType: String) -> Unit
         lateinit var onResetPinSuccess: () -> Unit
+        lateinit var onResetPINError: () -> Unit
 
         fun newInstance(
             networkListener: () -> Boolean,
@@ -35,6 +37,7 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
             savedCardSettings: SavedCardSettings,
             reFetchSessionToken: (viewType: String) -> Unit,
             onResetPinSuccess: () -> Unit,
+            onResetPINError: () -> Unit,
         ): ResetPinSDKFragment {
             val resetPinSDKFragment = ResetPinSDKFragment()
             this.networkListener = networkListener
@@ -43,6 +46,7 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
             this.savedCardSettings = savedCardSettings
             this.reFetchSessionToken = reFetchSessionToken
             this.onResetPinSuccess = onResetPinSuccess
+            this.onResetPINError = onResetPINError
             return resetPinSDKFragment
         }
     }
@@ -98,6 +102,11 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
             viewModel.confirmChangePin.set("")
             Toast.success(getString(R.string.pin_change_successfully))
             onResetPinSuccess.invoke()
+        }
+        viewModel.onResetPINError = { errorCode, errorMessage ->
+            onResetPINError.invoke()
+            if (errorCode == HTTP_BAD_REQUEST && errorMessage.isNullOrEmpty())
+                Toast.success(getString(R.string.invalid_old_pin_api_response))
         }
     }
 

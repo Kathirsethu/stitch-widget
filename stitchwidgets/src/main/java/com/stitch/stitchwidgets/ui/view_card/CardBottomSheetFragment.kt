@@ -80,7 +80,8 @@ class CardBottomSheetFragment : BottomSheetDialogFragment() {
 
         viewModel.secureToken = secureToken
         viewModel.cardNumber = cardNumber
-        viewModel.getWidgetSecureSessionKey(requireContext())
+        val deviceFingerPrint: String = viewModel.deviceFingerPrint(requireContext())
+        viewModel.getWidgetSecureSessionKey(deviceFingerPrint)
         setCardStyleProperties()
         viewModel.setCardData = {
             binding.layoutDemoCard.tvCardNumber.text =

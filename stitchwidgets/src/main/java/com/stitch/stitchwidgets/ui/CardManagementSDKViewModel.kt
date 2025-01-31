@@ -108,6 +108,7 @@ open class CardManagementSDKViewModel : ViewModel() {
     lateinit var onSetPINClick: () -> Unit
     lateinit var onActivateCardSuccess: () -> Unit
     lateinit var onResetPINSuccess: () -> Unit
+    lateinit var onResetPINError: (errorCode: Int?, errorMessage: String?) -> Unit
     lateinit var onSetPINSuccess: () -> Unit
 
     lateinit var networkListener: () -> Boolean
@@ -347,6 +348,7 @@ open class CardManagementSDKViewModel : ViewModel() {
                 } else {
                     Toast.error(errorMessage ?: "")
                 }
+                onResetPINError.invoke(errorCode, errorMessage)
             },
             networkListener = networkListener,
             progressBarListener = progressBarListener,

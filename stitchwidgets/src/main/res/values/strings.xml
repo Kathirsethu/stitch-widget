@@ -19,6 +19,7 @@
     <string name="invalid_old_pin">Old PIN is required.</string>
     <string name="invalid_new_pin">New PIN is required.</string>
     <string name="invalid_change_pin_mismatch">Old Pin and New Pin must be different.</string>
+    <string name="invalid_old_pin_api_response">Invalid Old PIN</string>
 
     <string name="card_activated">Card is in Activated State</string>
     <string name="card_not_activated">Card not in Activated State</string>
