@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.stitch.stitchwidgets.R
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.databinding.FragmentCardBottomSheetBinding
 
-class CardBottomSheetFragment : BottomSheetDialogFragment() {
+class CardBottomSheetFragment : Fragment() {
     private lateinit var binding: FragmentCardBottomSheetBinding
     private val viewModel: CardBottomSheetViewModel by viewModels()
 
@@ -23,9 +23,7 @@ class CardBottomSheetFragment : BottomSheetDialogFragment() {
         lateinit var progressBarListener: (isVisible: Boolean) -> Unit
         lateinit var logoutListener: (unAuth: Boolean) -> Unit
         lateinit var savedCardSettings: SavedCardSettings
-        lateinit var reFetchSessionToken: (viewType: String) -> Unit
-        lateinit var onSetPinClick: () -> Unit
-        lateinit var onChangePinClick: () -> Unit
+        private lateinit var reFetchSessionToken: (viewType: String) -> Unit
         lateinit var secureToken: String
         lateinit var cardNumber: String
 
@@ -35,8 +33,6 @@ class CardBottomSheetFragment : BottomSheetDialogFragment() {
             logoutListener: (unAuth: Boolean) -> Unit,
             savedCardSettings: SavedCardSettings,
             reFetchSessionToken: (viewType: String) -> Unit,
-            onSetPinClick: () -> Unit,
-            onChangePinClick: () -> Unit,
             secureToken: String,
             cardNumber: String,
         ): CardBottomSheetFragment {
@@ -48,8 +44,6 @@ class CardBottomSheetFragment : BottomSheetDialogFragment() {
             this.reFetchSessionToken = reFetchSessionToken
             this.secureToken = secureToken
             this.cardNumber = cardNumber
-            this.onSetPinClick = onSetPinClick
-            this.onChangePinClick = onChangePinClick
             return cardBottomSheetFragment
         }
     }
@@ -116,14 +110,6 @@ class CardBottomSheetFragment : BottomSheetDialogFragment() {
                 binding.layoutDemoCard.tvCardCVV.text =
                     if (viewModel.isCardCVVMasked.get() == null || viewModel.isCardCVVMasked.get() == false) viewModel.card.cvv2 else "XXX"
             }
-        }
-        viewModel.onSetPinClick = {
-            onSetPinClick.invoke()
-            dismiss()
-        }
-        viewModel.onChangePinClick = {
-            onChangePinClick.invoke()
-            dismiss()
         }
     }
 

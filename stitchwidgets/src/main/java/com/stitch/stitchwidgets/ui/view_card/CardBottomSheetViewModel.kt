@@ -32,8 +32,6 @@ class CardBottomSheetViewModel : ViewModel() {
     var isCardCVVMaskEnabled = ObservableField(true)
     var isCardNumberMasked = ObservableField(true)
     var isCardCVVMasked = ObservableField(true)
-    lateinit var onSetPinClick: () -> Unit
-    lateinit var onChangePinClick: () -> Unit
     private val retryCount = ObservableField(0)
     lateinit var setCardData: () -> Unit
 
