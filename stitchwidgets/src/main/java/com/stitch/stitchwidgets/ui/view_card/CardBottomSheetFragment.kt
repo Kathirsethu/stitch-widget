@@ -25,7 +25,6 @@ class CardBottomSheetFragment : Fragment() {
         lateinit var savedCardSettings: SavedCardSettings
         private lateinit var reFetchSessionToken: (viewType: String) -> Unit
         lateinit var secureToken: String
-        lateinit var cardNumber: String
 
         fun newInstance(
             networkListener: () -> Boolean,
@@ -34,7 +33,6 @@ class CardBottomSheetFragment : Fragment() {
             savedCardSettings: SavedCardSettings,
             reFetchSessionToken: (viewType: String) -> Unit,
             secureToken: String,
-            cardNumber: String,
         ): CardBottomSheetFragment {
             val cardBottomSheetFragment = CardBottomSheetFragment()
             this.networkListener = networkListener
@@ -43,7 +41,6 @@ class CardBottomSheetFragment : Fragment() {
             this.savedCardSettings = savedCardSettings
             this.reFetchSessionToken = reFetchSessionToken
             this.secureToken = secureToken
-            this.cardNumber = cardNumber
             return cardBottomSheetFragment
         }
     }
@@ -73,7 +70,6 @@ class CardBottomSheetFragment : Fragment() {
         viewModel.logoutListener = logoutListener
 
         viewModel.secureToken = secureToken
-        viewModel.cardNumber = cardNumber
         val deviceFingerPrint: String = viewModel.deviceFingerPrint(requireContext())
         viewModel.getWidgetSecureSessionKey(deviceFingerPrint)
         setCardStyleProperties()

@@ -116,7 +116,7 @@ class CardBottomSheetViewModel : ViewModel() {
             response = {
                 if (it != null) {
                     card = (Card(
-                        cardNumber = CardUtils.getCardNumber(cardNumber),
+                        cardNumber = CardUtils.getCardNumber(it.items.cardId ?: ""),
                         cvv2 = decrypt(it.items.cvv2, generatedKey),
                         expiry = getCardExpiry(decrypt(it.items.expiry, generatedKey)),
                         state = "activated"

@@ -74,7 +74,8 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
         viewModel.reFetchSessionToken = reFetchSessionToken
 
         viewModel.viewType.set(Constants.ViewType.SET_CARD_PIN)
-        viewModel.cardNumber.set(arguments?.getString(Constants.ParcelConstants.CARD_NUMBER))
+        if (!arguments?.getString(Constants.ParcelConstants.CARD_NUMBER).isNullOrEmpty())
+            viewModel.cardNumber.set(arguments?.getString(Constants.ParcelConstants.CARD_NUMBER))
         viewModel.showCardSetPin.set(true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             setSDKData(
