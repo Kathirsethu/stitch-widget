@@ -19,7 +19,7 @@ android {
         multiDexEnabled true
         buildConfigField "String", "BASE_URL", '"https://sit.stitch.fi"'
         buildConfigField "String", "API_VERSION", '"/stitch-ui-api-zitadel/v1/stitchapp/api"'
-        buildConfigField "String", "WIDGETS_SECURE_API_VERSION", '"/qa/v1/widgets/secure"'
+        buildConfigField "String", "WIDGETS_SECURE_API_VERSION", '"/v1/widgets/secure"'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -75,7 +75,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.stitch.stitchwidgets'
                 artifactId = 'stitch-widget'
-                version = '0.0.75'
+                version = '0.0.76'
             }
         }
     }
