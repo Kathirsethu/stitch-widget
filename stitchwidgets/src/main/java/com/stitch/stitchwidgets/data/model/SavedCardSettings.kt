@@ -29,4 +29,5 @@ data class SavedCardSettings(
     var cvvEndPadding: Int? = null,
     var isCardNumberMasked: Boolean? = null,
     var isCardCVVMasked: Boolean? = null,
+    var isEyeButton: Boolean? = null,
 ) : Parcelable

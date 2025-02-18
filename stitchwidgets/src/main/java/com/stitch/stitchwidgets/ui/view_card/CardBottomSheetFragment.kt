@@ -85,9 +85,69 @@ class CardBottomSheetFragment : Fragment() {
             binding.layoutDemoCard.tvCardExpiry.text = viewModel.card.expiry
             binding.layoutDemoCard.tvCardCVV.text =
                 if (viewModel.isCardCVVMaskEnabled.get() == null || viewModel.isCardCVVMaskEnabled.get() == true) "XXX" else viewModel.card.cvv2
+            if (viewModel.isCardNumberEye.get() == true) {
+                binding.layoutDemoCard.ivCardNumberEye.visibility = View.VISIBLE
+                if (viewModel.isCardNumberMasked.get() == null || viewModel.isCardNumberMasked.get() == false) {
+                    binding.layoutDemoCard.ivCardNumberEye.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(), R.drawable.ic_password_hidden
+                        )
+                    )
+                } else {
+                    binding.layoutDemoCard.ivCardNumberEye.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(), R.drawable.ic_password_visible
+                        )
+                    )
+                }
+            } else {
+                binding.layoutDemoCard.ivCardNumberEye.visibility = View.GONE
+            }
+            if (viewModel.isCVVEye.get() == true) {
+                binding.layoutDemoCard.ivCVVEye.visibility = View.VISIBLE
+                if (viewModel.isCardCVVMasked.get() == null || viewModel.isCardCVVMasked.get() == false) {
+                    binding.layoutDemoCard.ivCVVEye.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(), R.drawable.ic_password_hidden
+                        )
+                    )
+                } else {
+                    binding.layoutDemoCard.ivCVVEye.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(), R.drawable.ic_password_visible
+                        )
+                    )
+                }
+            } else {
+                binding.layoutDemoCard.ivCVVEye.visibility = View.GONE
+            }
+        }
+        binding.layoutDemoCard.ivCardNumberEye.setOnClickListener {
+            if (viewModel.isCardNumberMaskEnabled.get() == null || viewModel.isCardNumberMaskEnabled.get() == true) {
+                viewModel.isCardNumberMasked.set(!(viewModel.isCardNumberMasked.get() ?: true))
+                if (viewModel.isCardNumberMasked.get() == null || viewModel.isCardNumberMasked.get() == false) {
+                    binding.layoutDemoCard.ivCardNumberEye.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(), R.drawable.ic_password_hidden
+                        )
+                    )
+                    binding.layoutDemoCard.tvCardNumber.text = viewModel.card.cardNumber
+                } else {
+                    binding.layoutDemoCard.ivCardNumberEye.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(), R.drawable.ic_password_visible
+                        )
+                    )
+                    binding.layoutDemoCard.tvCardNumber.text =
+                        String.format("%s %s", getString(R.string.mask_demo_card),
+                            viewModel.card.cardNumber?.let {
+                                it.substring(it.length - 4, it.length)
+                            })
+                }
+            }
         }
         binding.layoutDemoCard.tvCardNumber.setOnClickListener {
-            if (viewModel.isCardNumberMaskEnabled.get() == null || viewModel.isCardNumberMaskEnabled.get() == true) {
+            if (viewModel.isCardNumberEye.get() == false && (viewModel.isCardNumberMaskEnabled.get() == null || viewModel.isCardNumberMaskEnabled.get() == true)) {
                 viewModel.isCardNumberMasked.set(!(viewModel.isCardNumberMasked.get() ?: true))
                 binding.layoutDemoCard.tvCardNumber.text =
                     if (viewModel.isCardNumberMasked.get() == null || viewModel.isCardNumberMasked.get() == false) {
@@ -100,8 +160,28 @@ class CardBottomSheetFragment : Fragment() {
                     }
             }
         }
-        binding.layoutDemoCard.tvCardCVV.setOnClickListener {
+        binding.layoutDemoCard.ivCVVEye.setOnClickListener {
             if (viewModel.isCardCVVMaskEnabled.get() == null || viewModel.isCardCVVMaskEnabled.get() == true) {
+                viewModel.isCardCVVMasked.set(!(viewModel.isCardCVVMasked.get() ?: true))
+                if (viewModel.isCardCVVMasked.get() == null || viewModel.isCardCVVMasked.get() == false) {
+                    binding.layoutDemoCard.ivCVVEye.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(), R.drawable.ic_password_hidden
+                        )
+                    )
+                    binding.layoutDemoCard.tvCardCVV.text = viewModel.card.cvv2
+                } else {
+                    binding.layoutDemoCard.ivCVVEye.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(), R.drawable.ic_password_visible
+                        )
+                    )
+                    binding.layoutDemoCard.tvCardCVV.text = "XXX"
+                }
+            }
+        }
+        binding.layoutDemoCard.tvCardCVV.setOnClickListener {
+            if (viewModel.isCVVEye.get() == false && (viewModel.isCardCVVMaskEnabled.get() == null || viewModel.isCardCVVMaskEnabled.get() == true)) {
                 viewModel.isCardCVVMasked.set(!(viewModel.isCardCVVMasked.get() ?: true))
                 binding.layoutDemoCard.tvCardCVV.text =
                     if (viewModel.isCardCVVMasked.get() == null || viewModel.isCardCVVMasked.get() == false) viewModel.card.cvv2 else "XXX"
@@ -357,5 +437,7 @@ class CardBottomSheetFragment : Fragment() {
         }
         viewModel.isCardNumberMaskEnabled.set(savedCardSettings.isCardNumberMasked)
         viewModel.isCardCVVMaskEnabled.set(savedCardSettings.isCardCVVMasked)
+        viewModel.isCardNumberEye.set(savedCardSettings.isEyeButton)
+        viewModel.isCVVEye.set(savedCardSettings.isEyeButton)
     }
 }

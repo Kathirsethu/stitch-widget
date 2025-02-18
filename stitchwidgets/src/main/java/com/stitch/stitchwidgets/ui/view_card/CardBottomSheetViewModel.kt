@@ -32,6 +32,8 @@ class CardBottomSheetViewModel : ViewModel() {
     var isCardCVVMaskEnabled = ObservableField(true)
     var isCardNumberMasked = ObservableField(true)
     var isCardCVVMasked = ObservableField(true)
+    var isCardNumberEye = ObservableField(true)
+    var isCVVEye = ObservableField(true)
     private val retryCount = ObservableField(0)
     lateinit var setCardData: () -> Unit
 

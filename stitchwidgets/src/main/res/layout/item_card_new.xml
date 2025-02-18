@@ -112,6 +112,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCardNumberEye"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_password_visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvCardNumber"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCardProfileNameLabel"
                 android:layout_width="0dp"
@@ -190,13 +199,22 @@
                     android:id="@+id/tvCardCVV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
                     app:cardStyleBottomPadding="@{Integer.parseInt(cvvBottomPadding)}"
                     app:cardStyleLeftPadding="@{Integer.parseInt(cvvLeftPadding)}"
                     app:cardStyleRightPadding="@{Integer.parseInt(cvvRightPadding)}"
                     app:cardStyleTopPadding="@{Integer.parseInt(cvvTopPadding)}"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ivCVVEye"
                     app:layout_constraintStart_toStartOf="@+id/tvCardCVVLabel" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCVVEye"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_password_visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
