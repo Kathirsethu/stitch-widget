@@ -85,7 +85,7 @@ class CardBottomSheetFragment : Fragment() {
             binding.layoutDemoCard.tvCardExpiry.text = viewModel.card.expiry
             binding.layoutDemoCard.tvCardCVV.text =
                 if (viewModel.isCardCVVMaskEnabled.get() == null || viewModel.isCardCVVMaskEnabled.get() == true) "XXX" else viewModel.card.cvv2
-            if (viewModel.isCardNumberEye.get() == true) {
+            if (viewModel.isCardNumberEye.get() == null || viewModel.isCardNumberEye.get() == true) {
                 binding.layoutDemoCard.ivCardNumberEye.visibility = View.VISIBLE
                 if (viewModel.isCardNumberMasked.get() == null || viewModel.isCardNumberMasked.get() == false) {
                     binding.layoutDemoCard.ivCardNumberEye.setImageDrawable(
@@ -103,7 +103,7 @@ class CardBottomSheetFragment : Fragment() {
             } else {
                 binding.layoutDemoCard.ivCardNumberEye.visibility = View.GONE
             }
-            if (viewModel.isCVVEye.get() == true) {
+            if (viewModel.isCVVEye.get() == null || viewModel.isCVVEye.get() == true) {
                 binding.layoutDemoCard.ivCVVEye.visibility = View.VISIBLE
                 if (viewModel.isCardCVVMasked.get() == null || viewModel.isCardCVVMasked.get() == false) {
                     binding.layoutDemoCard.ivCVVEye.setImageDrawable(
@@ -147,7 +147,7 @@ class CardBottomSheetFragment : Fragment() {
             }
         }
         binding.layoutDemoCard.tvCardNumber.setOnClickListener {
-            if (viewModel.isCardNumberEye.get() == false && (viewModel.isCardNumberMaskEnabled.get() == null || viewModel.isCardNumberMaskEnabled.get() == true)) {
+            if (viewModel.isCardNumberEye.get() != null && viewModel.isCardNumberEye.get() == false && (viewModel.isCardNumberMaskEnabled.get() == null || viewModel.isCardNumberMaskEnabled.get() == true)) {
                 viewModel.isCardNumberMasked.set(!(viewModel.isCardNumberMasked.get() ?: true))
                 binding.layoutDemoCard.tvCardNumber.text =
                     if (viewModel.isCardNumberMasked.get() == null || viewModel.isCardNumberMasked.get() == false) {
@@ -181,7 +181,7 @@ class CardBottomSheetFragment : Fragment() {
             }
         }
         binding.layoutDemoCard.tvCardCVV.setOnClickListener {
-            if (viewModel.isCVVEye.get() == false && (viewModel.isCardCVVMaskEnabled.get() == null || viewModel.isCardCVVMaskEnabled.get() == true)) {
+            if (viewModel.isCVVEye.get() != null && viewModel.isCVVEye.get() == false && (viewModel.isCardCVVMaskEnabled.get() == null || viewModel.isCardCVVMaskEnabled.get() == true)) {
                 viewModel.isCardCVVMasked.set(!(viewModel.isCardCVVMasked.get() ?: true))
                 binding.layoutDemoCard.tvCardCVV.text =
                     if (viewModel.isCardCVVMasked.get() == null || viewModel.isCardCVVMasked.get() == false) viewModel.card.cvv2 else "XXX"
