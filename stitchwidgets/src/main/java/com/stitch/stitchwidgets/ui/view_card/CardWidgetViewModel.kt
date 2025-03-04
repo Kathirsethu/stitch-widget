@@ -23,7 +23,7 @@ import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
-class CardBottomSheetViewModel : ViewModel() {
+class CardWidgetViewModel : ViewModel() {
 
     var card = Card()
     var cardNumber: String = ""
@@ -41,7 +41,7 @@ class CardBottomSheetViewModel : ViewModel() {
     lateinit var progressBarListener: (isVisible: Boolean) -> Unit
     lateinit var logoutListener: (unAuth: Boolean) -> Unit
 
-    fun deviceFingerPrint(context: Context): String {
+    fun deviceFingerprint(context: Context): String {
         val strIPAddress: String = getIPAddress()
         val modelName = Build.MODEL
         val device = Settings.Secure.getString(
@@ -49,9 +49,9 @@ class CardBottomSheetViewModel : ViewModel() {
             Settings.Secure.ANDROID_ID
         )
         val androidVersion = Build.VERSION.RELEASE
-        val deviceFingerPrint = "$strIPAddress : $modelName : $device : $androidVersion"
+        val deviceFingerprint = "$strIPAddress : $modelName : $device : $androidVersion"
         val md = MessageDigest.getInstance("MD5")
-        return BigInteger(1, md.digest(deviceFingerPrint.toByteArray())).toString(16)
+        return BigInteger(1, md.digest(deviceFingerprint.toByteArray())).toString(16)
             .padStart(32, '0')
     }
 
@@ -75,9 +75,9 @@ class CardBottomSheetViewModel : ViewModel() {
         return ""
     }
 
-    fun getWidgetSecureSessionKey(deviceFingerPrint: String) {
+    fun getWidgetSecureSessionKey(deviceFingerprint: String) {
         val widgetsSecureSessionKeyRequest = WidgetsSecureSessionKeyRequest(
-            token = secureToken, deviceFingerprint = deviceFingerPrint,
+            token = secureToken, deviceFingerprint = deviceFingerprint,
         )
         ApiManager.call(
             request = ApiManager.widgetSecureSessionKeyAsync(
@@ -85,7 +85,7 @@ class CardBottomSheetViewModel : ViewModel() {
             ),
             response = {
                 if (it != null) {
-                    getWidgetsSecureCard(it.generatedKey, it.key, deviceFingerPrint)
+                    getWidgetsSecureCard(it.generatedKey, it.key, deviceFingerprint)
                 }
             },
             errorResponse = { errorCode, errorMessage ->
@@ -106,10 +106,10 @@ class CardBottomSheetViewModel : ViewModel() {
     private fun getWidgetsSecureCard(
         token: String,
         generatedKey: String,
-        deviceFingerPrint: String
+        deviceFingerprint: String
     ) {
         val widgetsSecureCardRequest = WidgetsSecureCardRequest(
-            token = token, deviceFingerprint = deviceFingerPrint
+            token = token, deviceFingerprint = deviceFingerprint
         )
         ApiManager.call(
             request = ApiManager.widgetSecureCardAsync(

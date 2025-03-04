@@ -1,4 +1,4 @@
-package com.stitch.stitchwidgets.ui.activate_card
+package com.stitch.stitchwidgets.ui.set_pin
 
 import android.os.Build
 import android.os.Bundle
@@ -11,14 +11,14 @@ import com.stitch.stitchwidgets.R
 import com.stitch.stitchwidgets.data.model.SDKData
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.data.model.response.Card
-import com.stitch.stitchwidgets.databinding.FragmentActivateCardSdkBinding
+import com.stitch.stitchwidgets.databinding.FragmentSetPinSdkBinding
 import com.stitch.stitchwidgets.ui.CardManagementSDKFragment
 import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
 
-open class ActivateCardSDKFragment : CardManagementSDKFragment() {
+open class SetPinSDKFragment : CardManagementSDKFragment() {
 
-    private lateinit var binding: FragmentActivateCardSdkBinding
+    private lateinit var binding: FragmentSetPinSdkBinding
 
     companion object {
         lateinit var networkListener: () -> Boolean
@@ -26,6 +26,7 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
         lateinit var logoutListener: (unAuth: Boolean) -> Unit
         lateinit var savedCardSettings: SavedCardSettings
         lateinit var reFetchSessionToken: (viewType: String) -> Unit
+        lateinit var onSetPinSuccess: () -> Unit
 
         fun newInstance(
             networkListener: () -> Boolean,
@@ -33,14 +34,16 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
             logoutListener: (unAuth: Boolean) -> Unit,
             savedCardSettings: SavedCardSettings,
             reFetchSessionToken: (viewType: String) -> Unit,
-        ): ActivateCardSDKFragment {
-            val activateCardSDKFragment = ActivateCardSDKFragment()
+            onSetPinSuccess: () -> Unit,
+        ): SetPinSDKFragment {
+            val setPinSDKFragment = SetPinSDKFragment()
             this.networkListener = networkListener
             this.progressBarListener = progressBarListener
             this.logoutListener = logoutListener
             this.savedCardSettings = savedCardSettings
             this.reFetchSessionToken = reFetchSessionToken
-            return activateCardSDKFragment
+            this.onSetPinSuccess = onSetPinSuccess
+            return setPinSDKFragment
         }
     }
 
@@ -51,7 +54,7 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
         binding =
             DataBindingUtil.inflate(
                 inflater,
-                R.layout.fragment_activate_card_sdk,
+                R.layout.fragment_set_pin_sdk,
                 container,
                 false
             )
@@ -70,8 +73,10 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
         viewModel.logoutListener = logoutListener
         viewModel.reFetchSessionToken = reFetchSessionToken
 
-        viewModel.viewType.set(Constants.ViewType.ACTIVATE_CARD)
-
+        viewModel.viewType.set(Constants.ViewType.SET_CARD_PIN)
+        if (!arguments?.getString(Constants.ParcelConstants.CARD_NUMBER).isNullOrEmpty())
+            viewModel.cardNumber.set(arguments?.getString(Constants.ParcelConstants.CARD_NUMBER))
+        viewModel.showCardSetPin.set(true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             setSDKData(
                 arguments?.getParcelable(Constants.ParcelConstants.SDK_DATA, SDKData::class.java),
@@ -83,14 +88,15 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
                 savedCardSettings
             )
         }
-        viewModel.onActivateCardClick = {
+        viewModel.onSetPINClick = {
             viewModel.retryCount.set(0)
             viewModel.getWidgetsSecureSessionKey(requireContext())
         }
-        viewModel.onActivateCardSuccess = {
-            viewModel.getCards()
-            viewModel.cardCVV.set("")
-            Toast.success(getString(R.string.activate_card_successfully))
+        viewModel.onSetPINSuccess = {
+            viewModel.pin.set("")
+            viewModel.confirmPin.set("")
+            Toast.success(getString(R.string.pin_set_successfully))
+            onSetPinSuccess.invoke()
         }
     }
 
@@ -104,7 +110,7 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
         viewModel.customerNumber.set(viewModel.sdkData.get()?.customerNumber)
         viewModel.programName.set(viewModel.sdkData.get()?.programName)
         viewModel.secureToken.set(viewModel.sdkData.get()?.secureToken)
-        viewModel.fingerPrint.set(viewModel.deviceFingerPrint(requireContext()))
+        viewModel.fingerPrint.set(viewModel.deviceFingerprint(requireContext()))
         setFormStyleProperties()
     }
 
@@ -118,7 +124,8 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
         })
         viewModel.sdkData.get()?.card = viewModel.card.get()
         viewModel.savedCardSettings.set(savedCardSettings)
-        viewModel.cardCVV.set("")
+        viewModel.pin.set("")
+        viewModel.confirmPin.set("")
         binding.layoutOutlined.root.visibility = View.GONE
         binding.layoutFilled.root.visibility = View.GONE
         binding.layoutStandard.root.visibility = View.GONE
@@ -135,7 +142,6 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
                 binding.layoutStandard.root.visibility = View.VISIBLE
             }
         }
-
         setFormStyleProperties()
     }
 
@@ -149,7 +155,7 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
             viewModel.cardStyleFontColor.set(viewModel.savedCardSettings.get()?.fontColor)
         } else {
             viewModel.cardStyleFontColor.set(
-                ContextCompat.getColor(requireContext(), R.color.black)
+                ContextCompat.getColor(requireContext(), R.color.text_color)
             )
         }
         if (viewModel.savedCardSettings.get()?.buttonFontColor != null) {
@@ -173,21 +179,20 @@ open class ActivateCardSDKFragment : CardManagementSDKFragment() {
                 viewModel.savedCardSettings.get()?.fontSize.toString()
             )
         } else {
-            viewModel.styleFontSize.set("14")
+            viewModel.styleFontSize.set("16")
         }
         setCardData()
     }
 
     private fun setCardData() {
         if (viewModel.card.get() != null) {
-            viewModel.showCardState.set(true)
-            viewModel.isCardActivated.set(viewModel.card.get()?.state == Constants.CardState.ACTIVATED)
-            viewModel.isCardInvalid.set(viewModel.card.get()?.state == Constants.CardState.INVALID)
+            viewModel.showCardSetPin.set(true)
+            viewModel.isCardNotActivate.set(viewModel.card.get()?.state != Constants.CardState.ACTIVATED)
             viewModel.cardNumber.set(viewModel.card.get()?.cardNumber)
         }
     }
 
-    fun retryActivateCard(sdkData: SDKData?, savedCardSettings: SavedCardSettings) {
+    fun retrySetPin(sdkData: SDKData?, savedCardSettings: SavedCardSettings) {
         setSDKData(sdkData, savedCardSettings)
         viewModel.getWidgetsSecureSessionKey(requireContext())
     }

@@ -7,6 +7,6 @@ class WidgetsSecureActivateCardRequest(
     var state: String = Constants.CardState.ACTIVATED,
     var memo: String = Constants.CardState.ACTIVATE_CARD_STATE,
     var token: String,
-    @SerializedName("deviceFingerPrint")
+    @SerializedName("deviceFingerprint")
     var deviceFingerprint: String,
 )

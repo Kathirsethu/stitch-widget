@@ -2,23 +2,27 @@ package com.stitch.stitchwidgets.data.remote
 
 import com.google.gson.Gson
 import com.stitch.stitchwidgets.data.model.BaseResponse
-import com.stitch.stitchwidgets.data.model.request.CommonGetRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureActivateCardRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureCardRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureChangePINRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureSessionKeyRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureSetPINRequest
-import com.stitch.stitchwidgets.data.model.response.Card
 import com.stitch.stitchwidgets.data.model.response.WidgetsSecureCardResponse
 import com.stitch.stitchwidgets.data.model.response.WidgetsSecureSessionKeyResponse
 import com.stitch.stitchwidgets.utilities.Toast
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Response
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
-import com.stitch.stitchwidgets.data.remote.RetrofitFactory.api as Api
 import com.stitch.stitchwidgets.data.remote.RetrofitFactory.apiWidget as ApiWidget
 import com.stitch.stitchwidgets.utilities.Networking.HttpErrorMessage as HttpMsg
 import com.stitch.stitchwidgets.utilities.Networking.InternalHttpCode.Companion as HttpCode
@@ -116,11 +120,6 @@ object ApiManager : ApiHelper {
     }
 
     private fun errorToast(error: String) = Toast.error(error)
-
-    override fun cardsAsync(
-        commonGetRequest: CommonGetRequest, auth: String
-    ): Deferred<Response<List<Card>>> =
-        Api.cardsAsync(commonGetRequest, auth)
 
     override fun widgetSecureSessionKeyAsync(widgetsSecureSessionKeyRequest: WidgetsSecureSessionKeyRequest): Deferred<Response<WidgetsSecureSessionKeyResponse>> =
         ApiWidget.widgetSecureSessionKeyAsync(widgetsSecureSessionKeyRequest)

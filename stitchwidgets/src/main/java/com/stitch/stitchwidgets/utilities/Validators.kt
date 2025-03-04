@@ -4,16 +4,6 @@ import android.content.Context
 import androidx.databinding.ObservableField
 import com.stitch.stitchwidgets.R
 
-fun ObservableField<String>.validateCVV(showToast: Boolean = true, context: Context) =
-    when (get().isNullOrEmpty()) {
-        false -> false
-        else -> {
-            if (showToast)
-                Toast.error(context.getString(R.string.invalid_cvv))
-            true
-        }
-    }
-
 fun ObservableField<String>.validatePIN(showToast: Boolean = true, context: Context): Boolean {
     return if ((get() ?: "").isEmpty()) {
         if (showToast)

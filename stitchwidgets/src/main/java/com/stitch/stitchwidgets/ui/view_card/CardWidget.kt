@@ -14,9 +14,9 @@ import com.stitch.stitchwidgets.R
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.databinding.FragmentCardBottomSheetBinding
 
-class CardBottomSheetFragment : Fragment() {
+class CardWidget : Fragment() {
     private lateinit var binding: FragmentCardBottomSheetBinding
-    private val viewModel: CardBottomSheetViewModel by viewModels()
+    private val viewModel: CardWidgetViewModel by viewModels()
 
     companion object {
         lateinit var networkListener: () -> Boolean
@@ -33,15 +33,15 @@ class CardBottomSheetFragment : Fragment() {
             savedCardSettings: SavedCardSettings,
             reFetchSessionToken: (viewType: String) -> Unit,
             secureToken: String,
-        ): CardBottomSheetFragment {
-            val cardBottomSheetFragment = CardBottomSheetFragment()
+        ): CardWidget {
+            val cardWidget = CardWidget()
             this.networkListener = networkListener
             this.progressBarListener = progressBarListener
             this.logoutListener = logoutListener
             this.savedCardSettings = savedCardSettings
             this.reFetchSessionToken = reFetchSessionToken
             this.secureToken = secureToken
-            return cardBottomSheetFragment
+            return cardWidget
         }
     }
 
@@ -70,8 +70,8 @@ class CardBottomSheetFragment : Fragment() {
         viewModel.logoutListener = logoutListener
 
         viewModel.secureToken = secureToken
-        val deviceFingerPrint: String = viewModel.deviceFingerPrint(requireContext())
-        viewModel.getWidgetSecureSessionKey(deviceFingerPrint)
+        val deviceFingerprint: String = viewModel.deviceFingerprint(requireContext())
+        viewModel.getWidgetSecureSessionKey(deviceFingerprint)
         setCardStyleProperties()
         viewModel.setCardData = {
             binding.layoutDemoCard.tvCardNumber.text =

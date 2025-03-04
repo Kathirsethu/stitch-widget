@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.stitch.stitchwidgets.ui.view_card.CardBottomSheetViewModel" />
+            type="com.stitch.stitchwidgets.ui.view_card.CardWidgetViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

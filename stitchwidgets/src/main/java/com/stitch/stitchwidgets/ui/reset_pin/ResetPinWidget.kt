@@ -1,4 +1,4 @@
-package com.stitch.stitchwidgets.ui.set_pin
+package com.stitch.stitchwidgets.ui.reset_pin
 
 import android.os.Build
 import android.os.Bundle
@@ -11,14 +11,15 @@ import com.stitch.stitchwidgets.R
 import com.stitch.stitchwidgets.data.model.SDKData
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.data.model.response.Card
-import com.stitch.stitchwidgets.databinding.FragmentSetPinSdkBinding
+import com.stitch.stitchwidgets.databinding.FragmentResetPinSdkBinding
 import com.stitch.stitchwidgets.ui.CardManagementSDKFragment
 import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
+import okhttp3.internal.http.HTTP_BAD_REQUEST
 
-open class SetPinSDKFragment : CardManagementSDKFragment() {
+open class ResetPinSDKFragment : CardManagementSDKFragment() {
 
-    private lateinit var binding: FragmentSetPinSdkBinding
+    private lateinit var binding: FragmentResetPinSdkBinding
 
     companion object {
         lateinit var networkListener: () -> Boolean
@@ -26,7 +27,8 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
         lateinit var logoutListener: (unAuth: Boolean) -> Unit
         lateinit var savedCardSettings: SavedCardSettings
         lateinit var reFetchSessionToken: (viewType: String) -> Unit
-        lateinit var onSetPinSuccess: () -> Unit
+        lateinit var onResetPinSuccess: () -> Unit
+        lateinit var onResetPINError: () -> Unit
 
         fun newInstance(
             networkListener: () -> Boolean,
@@ -34,16 +36,18 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
             logoutListener: (unAuth: Boolean) -> Unit,
             savedCardSettings: SavedCardSettings,
             reFetchSessionToken: (viewType: String) -> Unit,
-            onSetPinSuccess: () -> Unit,
-        ): SetPinSDKFragment {
-            val setPinSDKFragment = SetPinSDKFragment()
+            onResetPinSuccess: () -> Unit,
+            onResetPINError: () -> Unit,
+        ): ResetPinSDKFragment {
+            val resetPinSDKFragment = ResetPinSDKFragment()
             this.networkListener = networkListener
             this.progressBarListener = progressBarListener
             this.logoutListener = logoutListener
             this.savedCardSettings = savedCardSettings
             this.reFetchSessionToken = reFetchSessionToken
-            this.onSetPinSuccess = onSetPinSuccess
-            return setPinSDKFragment
+            this.onResetPinSuccess = onResetPinSuccess
+            this.onResetPINError = onResetPINError
+            return resetPinSDKFragment
         }
     }
 
@@ -54,7 +58,7 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
         binding =
             DataBindingUtil.inflate(
                 inflater,
-                R.layout.fragment_set_pin_sdk,
+                R.layout.fragment_reset_pin_sdk,
                 container,
                 false
             )
@@ -73,10 +77,10 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
         viewModel.logoutListener = logoutListener
         viewModel.reFetchSessionToken = reFetchSessionToken
 
-        viewModel.viewType.set(Constants.ViewType.SET_CARD_PIN)
+        viewModel.viewType.set(Constants.ViewType.RESET_CARD_PIN)
         if (!arguments?.getString(Constants.ParcelConstants.CARD_NUMBER).isNullOrEmpty())
             viewModel.cardNumber.set(arguments?.getString(Constants.ParcelConstants.CARD_NUMBER))
-        viewModel.showCardSetPin.set(true)
+        viewModel.showCardResetPin.set(true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             setSDKData(
                 arguments?.getParcelable(Constants.ParcelConstants.SDK_DATA, SDKData::class.java),
@@ -88,16 +92,21 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
                 savedCardSettings
             )
         }
-        viewModel.onSetPINClick = {
+        viewModel.onResetPINClick = {
             viewModel.retryCount.set(0)
             viewModel.getWidgetsSecureSessionKey(requireContext())
         }
-        viewModel.onSetPINSuccess = {
-            viewModel.getCards()
-            viewModel.pin.set("")
-            viewModel.confirmPin.set("")
-            Toast.success(getString(R.string.pin_set_successfully))
-            onSetPinSuccess.invoke()
+        viewModel.onResetPINSuccess = {
+            viewModel.oldPin.set("")
+            viewModel.newPin.set("")
+            viewModel.confirmChangePin.set("")
+            Toast.success(getString(R.string.pin_change_successfully))
+            onResetPinSuccess.invoke()
+        }
+        viewModel.onResetPINError = { errorCode, errorMessage ->
+            onResetPINError.invoke()
+            if (errorCode == HTTP_BAD_REQUEST && errorMessage.isNullOrEmpty())
+                Toast.success(getString(R.string.invalid_old_pin_api_response))
         }
     }
 
@@ -111,7 +120,7 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
         viewModel.customerNumber.set(viewModel.sdkData.get()?.customerNumber)
         viewModel.programName.set(viewModel.sdkData.get()?.programName)
         viewModel.secureToken.set(viewModel.sdkData.get()?.secureToken)
-        viewModel.fingerPrint.set(viewModel.deviceFingerPrint(requireContext()))
+        viewModel.fingerPrint.set(viewModel.deviceFingerprint(requireContext()))
         setFormStyleProperties()
     }
 
@@ -125,8 +134,8 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
         })
         viewModel.sdkData.get()?.card = viewModel.card.get()
         viewModel.savedCardSettings.set(savedCardSettings)
-        viewModel.pin.set("")
-        viewModel.confirmPin.set("")
+        viewModel.oldPin.set("")
+        viewModel.newPin.set("")
         binding.layoutOutlined.root.visibility = View.GONE
         binding.layoutFilled.root.visibility = View.GONE
         binding.layoutStandard.root.visibility = View.GONE
@@ -187,13 +196,13 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
 
     private fun setCardData() {
         if (viewModel.card.get() != null) {
-            viewModel.showCardSetPin.set(true)
+            viewModel.showCardResetPin.set(true)
             viewModel.isCardNotActivate.set(viewModel.card.get()?.state != Constants.CardState.ACTIVATED)
             viewModel.cardNumber.set(viewModel.card.get()?.cardNumber)
         }
     }
 
-    fun retrySetPin(sdkData: SDKData?, savedCardSettings: SavedCardSettings) {
+    fun retryResetPin(sdkData: SDKData?, savedCardSettings: SavedCardSettings) {
         setSDKData(sdkData, savedCardSettings)
         viewModel.getWidgetsSecureSessionKey(requireContext())
     }
