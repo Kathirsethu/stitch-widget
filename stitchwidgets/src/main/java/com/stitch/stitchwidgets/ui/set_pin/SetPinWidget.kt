@@ -11,14 +11,14 @@ import com.stitch.stitchwidgets.R
 import com.stitch.stitchwidgets.data.model.SDKData
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.data.model.response.Card
-import com.stitch.stitchwidgets.databinding.FragmentSetPinSdkBinding
+import com.stitch.stitchwidgets.databinding.WidgetSetPinBinding
 import com.stitch.stitchwidgets.ui.CardManagementSDKFragment
 import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
 
-open class SetPinSDKFragment : CardManagementSDKFragment() {
+open class SetPinWidget : CardManagementSDKFragment() {
 
-    private lateinit var binding: FragmentSetPinSdkBinding
+    private lateinit var binding: WidgetSetPinBinding
 
     companion object {
         lateinit var networkListener: () -> Boolean
@@ -35,15 +35,15 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
             savedCardSettings: SavedCardSettings,
             reFetchSessionToken: (viewType: String) -> Unit,
             onSetPinSuccess: () -> Unit,
-        ): SetPinSDKFragment {
-            val setPinSDKFragment = SetPinSDKFragment()
+        ): SetPinWidget {
+            val setPinWidget = SetPinWidget()
             this.networkListener = networkListener
             this.progressBarListener = progressBarListener
             this.logoutListener = logoutListener
             this.savedCardSettings = savedCardSettings
             this.reFetchSessionToken = reFetchSessionToken
             this.onSetPinSuccess = onSetPinSuccess
-            return setPinSDKFragment
+            return setPinWidget
         }
     }
 
@@ -54,7 +54,7 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
         binding =
             DataBindingUtil.inflate(
                 inflater,
-                R.layout.fragment_set_pin_sdk,
+                R.layout.widget_set_pin,
                 container,
                 false
             )
@@ -110,7 +110,7 @@ open class SetPinSDKFragment : CardManagementSDKFragment() {
         viewModel.customerNumber.set(viewModel.sdkData.get()?.customerNumber)
         viewModel.programName.set(viewModel.sdkData.get()?.programName)
         viewModel.secureToken.set(viewModel.sdkData.get()?.secureToken)
-        viewModel.fingerPrint.set(viewModel.deviceFingerprint(requireContext()))
+        viewModel.fingerprint.set(viewModel.deviceFingerprint(requireContext()))
         setFormStyleProperties()
     }
 

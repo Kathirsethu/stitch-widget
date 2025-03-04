@@ -11,15 +11,15 @@ import com.stitch.stitchwidgets.R
 import com.stitch.stitchwidgets.data.model.SDKData
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.data.model.response.Card
-import com.stitch.stitchwidgets.databinding.FragmentResetPinSdkBinding
+import com.stitch.stitchwidgets.databinding.WidgetResetPinBinding
 import com.stitch.stitchwidgets.ui.CardManagementSDKFragment
 import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
 import okhttp3.internal.http.HTTP_BAD_REQUEST
 
-open class ResetPinSDKFragment : CardManagementSDKFragment() {
+open class ResetPinWidget : CardManagementSDKFragment() {
 
-    private lateinit var binding: FragmentResetPinSdkBinding
+    private lateinit var binding: WidgetResetPinBinding
 
     companion object {
         lateinit var networkListener: () -> Boolean
@@ -38,8 +38,8 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
             reFetchSessionToken: (viewType: String) -> Unit,
             onResetPinSuccess: () -> Unit,
             onResetPINError: () -> Unit,
-        ): ResetPinSDKFragment {
-            val resetPinSDKFragment = ResetPinSDKFragment()
+        ): ResetPinWidget {
+            val resetPinWidget = ResetPinWidget()
             this.networkListener = networkListener
             this.progressBarListener = progressBarListener
             this.logoutListener = logoutListener
@@ -47,7 +47,7 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
             this.reFetchSessionToken = reFetchSessionToken
             this.onResetPinSuccess = onResetPinSuccess
             this.onResetPINError = onResetPINError
-            return resetPinSDKFragment
+            return resetPinWidget
         }
     }
 
@@ -58,7 +58,7 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
         binding =
             DataBindingUtil.inflate(
                 inflater,
-                R.layout.fragment_reset_pin_sdk,
+                R.layout.widget_reset_pin,
                 container,
                 false
             )
@@ -120,7 +120,7 @@ open class ResetPinSDKFragment : CardManagementSDKFragment() {
         viewModel.customerNumber.set(viewModel.sdkData.get()?.customerNumber)
         viewModel.programName.set(viewModel.sdkData.get()?.programName)
         viewModel.secureToken.set(viewModel.sdkData.get()?.secureToken)
-        viewModel.fingerPrint.set(viewModel.deviceFingerprint(requireContext()))
+        viewModel.fingerprint.set(viewModel.deviceFingerprint(requireContext()))
         setFormStyleProperties()
     }
 

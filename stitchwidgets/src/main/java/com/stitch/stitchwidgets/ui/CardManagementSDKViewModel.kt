@@ -47,7 +47,7 @@ open class CardManagementSDKViewModel : ViewModel() {
     val programName = ObservableField("")
     val viewType = ObservableField("")
     val secureToken = ObservableField("")
-    val fingerPrint = ObservableField("")
+    val fingerprint = ObservableField("")
     val style = ObservableField("")
     val isFront = MutableLiveData(true)
 
@@ -133,7 +133,7 @@ open class CardManagementSDKViewModel : ViewModel() {
             }
         }
         val widgetsSecureSessionKeyRequest = WidgetsSecureSessionKeyRequest(
-            token = secureToken.get() ?: "", deviceFingerprint = fingerPrint.get() ?: "",
+            token = secureToken.get() ?: "", deviceFingerprint = fingerprint.get() ?: "",
         )
         ApiManager.call(
             toast = false,
@@ -171,7 +171,7 @@ open class CardManagementSDKViewModel : ViewModel() {
     private fun getWidgetSecureSetPIN(key: String, token: String) {
         val widgetsSecureSetPINRequest = WidgetsSecureSetPINRequest(
             pin = encrypt(pin.get() ?: "", key).replace("\n", ""),
-            token = token, deviceFingerprint = fingerPrint.get() ?: "",
+            token = token, deviceFingerprint = fingerprint.get() ?: "",
         )
         ApiManager.call(
             toast = false,
@@ -203,7 +203,7 @@ open class CardManagementSDKViewModel : ViewModel() {
         val widgetsSecureChangePINRequest = WidgetsSecureChangePINRequest(
             existingPin = encrypt(oldPin.get() ?: "", key).replace("\n", ""),
             pin = encrypt(newPin.get() ?: "", key).replace("\n", ""),
-            token = token, deviceFingerprint = fingerPrint.get() ?: "",
+            token = token, deviceFingerprint = fingerprint.get() ?: "",
         )
         ApiManager.call(
             toast = false,

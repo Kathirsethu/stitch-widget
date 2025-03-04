@@ -12,10 +12,10 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.stitch.stitchwidgets.R
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
-import com.stitch.stitchwidgets.databinding.FragmentCardBottomSheetBinding
+import com.stitch.stitchwidgets.databinding.WidgetCardBinding
 
 class CardWidget : Fragment() {
-    private lateinit var binding: FragmentCardBottomSheetBinding
+    private lateinit var binding: WidgetCardBinding
     private val viewModel: CardWidgetViewModel by viewModels()
 
     companion object {
@@ -53,7 +53,7 @@ class CardWidget : Fragment() {
             binding =
                 DataBindingUtil.inflate(
                     inflater,
-                    R.layout.fragment_card_bottom_sheet,
+                    R.layout.widget_card,
                     container,
                     false
                 )

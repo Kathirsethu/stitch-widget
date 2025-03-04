@@ -6,7 +6,6 @@ open class Constants {
 
     object ViewType {
 
-        const val VIEW_CARD = "VIEW_CARD"
         const val SET_CARD_PIN = "SET_CARD_PIN"
         const val RESET_CARD_PIN = "RESET_CARD_PIN"
     }

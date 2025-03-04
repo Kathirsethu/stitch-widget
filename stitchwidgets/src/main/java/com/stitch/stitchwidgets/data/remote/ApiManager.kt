@@ -2,7 +2,6 @@ package com.stitch.stitchwidgets.data.remote
 
 import com.google.gson.Gson
 import com.stitch.stitchwidgets.data.model.BaseResponse
-import com.stitch.stitchwidgets.data.model.request.WidgetsSecureActivateCardRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureCardRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureChangePINRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureSessionKeyRequest
@@ -126,9 +125,6 @@ object ApiManager : ApiHelper {
 
     override fun widgetSecureCardAsync(widgetsSecureCardRequest: WidgetsSecureCardRequest): Deferred<Response<WidgetsSecureCardResponse>> =
         ApiWidget.widgetSecureCardAsync(widgetsSecureCardRequest)
-
-    override fun widgetSecureActivateCardAsync(widgetsSecureActivateCardRequest: WidgetsSecureActivateCardRequest): Deferred<Response<ResponseBody>> =
-        ApiWidget.widgetSecureActivateCardAsync(widgetsSecureActivateCardRequest)
 
     override fun widgetSecureSetPINAsync(widgetsSecureSetPINRequest: WidgetsSecureSetPINRequest): Deferred<Response<ResponseBody>> =
         ApiWidget.widgetSecureSetPINAsync(widgetsSecureSetPINRequest)
