@@ -8,6 +8,7 @@ import com.stitch.stitchwidgets.data.model.request.WidgetsSecureSessionKeyReques
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureSetPINRequest
 import com.stitch.stitchwidgets.data.model.response.WidgetsSecureCardResponse
 import com.stitch.stitchwidgets.data.model.response.WidgetsSecureSessionKeyResponse
+import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -124,23 +125,35 @@ object ApiManager : ApiHelper {
         baseUrl: String,
         widgetsSecureSessionKeyRequest: WidgetsSecureSessionKeyRequest
     ): Deferred<Response<WidgetsSecureSessionKeyResponse>> =
-        ApiWidget.widgetSecureSessionKeyAsync(baseUrl, widgetsSecureSessionKeyRequest)
+        ApiWidget.widgetSecureSessionKeyAsync(
+            baseUrl + Constants.APIEndPoints.WIDGETS_SECURE_SESSION_KEY,
+            widgetsSecureSessionKeyRequest
+        )
 
     override fun widgetSecureCardAsync(
         baseUrl: String,
         widgetsSecureCardRequest: WidgetsSecureCardRequest
     ): Deferred<Response<WidgetsSecureCardResponse>> =
-        ApiWidget.widgetSecureCardAsync(baseUrl, widgetsSecureCardRequest)
+        ApiWidget.widgetSecureCardAsync(
+            baseUrl + Constants.APIEndPoints.WIDGETS_SECURE_CARD,
+            widgetsSecureCardRequest
+        )
 
     override fun widgetSecureSetPINAsync(
         baseUrl: String,
         widgetsSecureSetPINRequest: WidgetsSecureSetPINRequest
     ): Deferred<Response<ResponseBody>> =
-        ApiWidget.widgetSecureSetPINAsync(baseUrl, widgetsSecureSetPINRequest)
+        ApiWidget.widgetSecureSetPINAsync(
+            baseUrl + Constants.APIEndPoints.SECURE_WIDGETS_SET_PIN,
+            widgetsSecureSetPINRequest
+        )
 
     override fun widgetSecureChangePINAsync(
         baseUrl: String,
         widgetsSecureChangePINRequest: WidgetsSecureChangePINRequest
     ): Deferred<Response<ResponseBody>> =
-        ApiWidget.widgetSecureChangePINAsync(baseUrl, widgetsSecureChangePINRequest)
+        ApiWidget.widgetSecureChangePINAsync(
+            baseUrl + Constants.APIEndPoints.SECURE_WIDGETS_CHANGE_PIN,
+            widgetsSecureChangePINRequest
+        )
 }
