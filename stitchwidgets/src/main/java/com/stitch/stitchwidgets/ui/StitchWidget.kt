@@ -15,6 +15,7 @@ open class StitchWidget : Fragment() {
 
     private lateinit var binding: WidgetStitchBinding
     val viewModel: StitchWidgetViewModel by viewModels()
+    var baseUrl = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
