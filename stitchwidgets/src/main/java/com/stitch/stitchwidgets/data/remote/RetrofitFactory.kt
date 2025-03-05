@@ -82,14 +82,12 @@ object RetrofitFactory {
 
     private fun retrofit(): Retrofit = Retrofit.Builder()
         .client(client)
-        .baseUrl(Constants().BASE_URL)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
     private fun retrofitWidget(): Retrofit = Retrofit.Builder()
         .client(clientWidget)
-        .baseUrl(Constants().BASE_URL)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()

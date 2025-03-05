@@ -12,11 +12,11 @@ import com.stitch.stitchwidgets.data.model.SDKData
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.data.model.response.Card
 import com.stitch.stitchwidgets.databinding.WidgetSetPinBinding
-import com.stitch.stitchwidgets.ui.CardManagementSDKFragment
+import com.stitch.stitchwidgets.ui.StitchWidget
 import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
 
-open class SetPinWidget : CardManagementSDKFragment() {
+open class SetPinWidget : StitchWidget() {
 
     private lateinit var binding: WidgetSetPinBinding
 

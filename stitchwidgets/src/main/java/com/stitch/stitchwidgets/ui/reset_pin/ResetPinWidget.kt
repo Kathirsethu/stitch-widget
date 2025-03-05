@@ -12,12 +12,12 @@ import com.stitch.stitchwidgets.data.model.SDKData
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.data.model.response.Card
 import com.stitch.stitchwidgets.databinding.WidgetResetPinBinding
-import com.stitch.stitchwidgets.ui.CardManagementSDKFragment
+import com.stitch.stitchwidgets.ui.StitchWidget
 import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
 import okhttp3.internal.http.HTTP_BAD_REQUEST
 
-open class ResetPinWidget : CardManagementSDKFragment() {
+open class ResetPinWidget : StitchWidget() {
 
     private lateinit var binding: WidgetResetPinBinding
 

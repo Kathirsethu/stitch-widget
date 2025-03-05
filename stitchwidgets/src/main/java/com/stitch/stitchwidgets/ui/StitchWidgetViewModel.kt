@@ -5,7 +5,6 @@ import android.os.Build
 import android.provider.Settings
 import android.util.Base64
 import androidx.databinding.ObservableField
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.stitch.stitchwidgets.R
 import com.stitch.stitchwidgets.data.model.SDKData
@@ -34,8 +33,9 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 
-open class CardManagementSDKViewModel : ViewModel() {
+open class StitchWidgetViewModel : ViewModel() {
 
+    var baseUrl = ""
     val sdkData = ObservableField<SDKData>()
     val savedCardSettings = ObservableField<SavedCardSettings>()
     val card = ObservableField<Card>()
@@ -49,7 +49,6 @@ open class CardManagementSDKViewModel : ViewModel() {
     val secureToken = ObservableField("")
     val fingerprint = ObservableField("")
     val style = ObservableField("")
-    val isFront = MutableLiveData(true)
 
     val accountNumber = ObservableField("")
     val accountNumberBack = ObservableField("")
@@ -66,7 +65,6 @@ open class CardManagementSDKViewModel : ViewModel() {
 
     val showCardSetPin = ObservableField(false)
     val showCardResetPin = ObservableField(false)
-    val showCardState = ObservableField(false)
 
     val cardStyleFontFamily = ObservableField<Int>()
     val cardStyleFontColor = ObservableField<Int>()
@@ -98,7 +96,6 @@ open class CardManagementSDKViewModel : ViewModel() {
 
     lateinit var onShowMaskedCardNumberClick: () -> Unit
     lateinit var onShowMaskedCardCVVClick: () -> Unit
-    lateinit var onActivateCardClick: () -> Unit
     lateinit var onResetPINClick: () -> Unit
     lateinit var onSetPINClick: () -> Unit
     lateinit var onResetPINSuccess: () -> Unit
@@ -137,7 +134,10 @@ open class CardManagementSDKViewModel : ViewModel() {
         )
         ApiManager.call(
             toast = false,
-            request = ApiManager.widgetSecureSessionKeyAsync(widgetsSecureSessionKeyRequest),
+            request = ApiManager.widgetSecureSessionKeyAsync(
+                baseUrl,
+                widgetsSecureSessionKeyRequest,
+            ),
             response = {
                 if (it != null) {
                     when (viewType.get()) {
@@ -175,7 +175,10 @@ open class CardManagementSDKViewModel : ViewModel() {
         )
         ApiManager.call(
             toast = false,
-            request = ApiManager.widgetSecureSetPINAsync(widgetsSecureSetPINRequest),
+            request = ApiManager.widgetSecureSetPINAsync(
+                baseUrl,
+                widgetsSecureSetPINRequest,
+            ),
             response = {
                 if (it != null) {
                     onSetPINSuccess.invoke()
@@ -207,7 +210,10 @@ open class CardManagementSDKViewModel : ViewModel() {
         )
         ApiManager.call(
             toast = false,
-            request = ApiManager.widgetSecureChangePINAsync(widgetsSecureChangePINRequest),
+            request = ApiManager.widgetSecureChangePINAsync(
+                baseUrl,
+                widgetsSecureChangePINRequest,
+            ),
             response = {
                 if (it != null) {
                     onResetPINSuccess.invoke()
@@ -230,25 +236,6 @@ open class CardManagementSDKViewModel : ViewModel() {
             progressBarListener = progressBarListener,
             logoutListener = logoutListener,
         )
-    }
-
-    private fun decrypt(encryptedText: String?, key: String): String {
-        val keyBytes = Base64.decode(key, Base64.DEFAULT)
-        val secretKey: SecretKey = SecretKeySpec(keyBytes, "AES")
-        val parts = encryptedText?.split("\\.".toRegex())?.dropLastWhile { it.isEmpty() }
-            ?.toTypedArray()
-        require(parts?.size == 2) { "Invalid input format" }
-        //decoding iv
-        val ivBytes: ByteArray = Base64.decode(parts?.get(0), Base64.DEFAULT)
-        //decoding data
-        val encryptedBytes: ByteArray = Base64.decode(parts?.get(1), Base64.DEFAULT)
-
-        val cipher = Cipher.getInstance("AES/GCM/NoPadding")
-        val ivParameterSpec = IvParameterSpec(ivBytes)
-        cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
-        val cipherText = cipher.doFinal(encryptedBytes)
-
-        return String(cipherText)
     }
 
     private fun encrypt(pin: String, key: String): String {

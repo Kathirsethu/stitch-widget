@@ -120,15 +120,27 @@ object ApiManager : ApiHelper {
 
     private fun errorToast(error: String) = Toast.error(error)
 
-    override fun widgetSecureSessionKeyAsync(widgetsSecureSessionKeyRequest: WidgetsSecureSessionKeyRequest): Deferred<Response<WidgetsSecureSessionKeyResponse>> =
-        ApiWidget.widgetSecureSessionKeyAsync(widgetsSecureSessionKeyRequest)
+    override fun widgetSecureSessionKeyAsync(
+        baseUrl: String,
+        widgetsSecureSessionKeyRequest: WidgetsSecureSessionKeyRequest
+    ): Deferred<Response<WidgetsSecureSessionKeyResponse>> =
+        ApiWidget.widgetSecureSessionKeyAsync(baseUrl, widgetsSecureSessionKeyRequest)
 
-    override fun widgetSecureCardAsync(widgetsSecureCardRequest: WidgetsSecureCardRequest): Deferred<Response<WidgetsSecureCardResponse>> =
-        ApiWidget.widgetSecureCardAsync(widgetsSecureCardRequest)
+    override fun widgetSecureCardAsync(
+        baseUrl: String,
+        widgetsSecureCardRequest: WidgetsSecureCardRequest
+    ): Deferred<Response<WidgetsSecureCardResponse>> =
+        ApiWidget.widgetSecureCardAsync(baseUrl, widgetsSecureCardRequest)
 
-    override fun widgetSecureSetPINAsync(widgetsSecureSetPINRequest: WidgetsSecureSetPINRequest): Deferred<Response<ResponseBody>> =
-        ApiWidget.widgetSecureSetPINAsync(widgetsSecureSetPINRequest)
+    override fun widgetSecureSetPINAsync(
+        baseUrl: String,
+        widgetsSecureSetPINRequest: WidgetsSecureSetPINRequest
+    ): Deferred<Response<ResponseBody>> =
+        ApiWidget.widgetSecureSetPINAsync(baseUrl, widgetsSecureSetPINRequest)
 
-    override fun widgetSecureChangePINAsync(widgetsSecureChangePINRequest: WidgetsSecureChangePINRequest): Deferred<Response<ResponseBody>> =
-        ApiWidget.widgetSecureChangePINAsync(widgetsSecureChangePINRequest)
+    override fun widgetSecureChangePINAsync(
+        baseUrl: String,
+        widgetsSecureChangePINRequest: WidgetsSecureChangePINRequest
+    ): Deferred<Response<ResponseBody>> =
+        ApiWidget.widgetSecureChangePINAsync(baseUrl, widgetsSecureChangePINRequest)
 }

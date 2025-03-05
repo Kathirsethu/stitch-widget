@@ -6,13 +6,13 @@
 
         <variable
             name="viewModel"
-            type="com.stitch.stitchwidgets.ui.CardManagementSDKViewModel" />
+            type="com.stitch.stitchwidgets.ui.StitchWidgetViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.stitch.stitchwidgets.ui.CardManagementSDKFragment">
+        tools:context="com.stitch.stitchwidgets.ui.StitchWidget">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

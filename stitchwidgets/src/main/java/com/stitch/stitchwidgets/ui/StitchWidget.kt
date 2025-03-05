@@ -8,13 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.stitch.stitchwidgets.R
-import com.stitch.stitchwidgets.databinding.FragmentCardManagementSdkBinding
+import com.stitch.stitchwidgets.databinding.WidgetStitchBinding
 import com.stitch.stitchwidgets.utilities.Toast
 
-open class CardManagementSDKFragment : Fragment() {
+open class StitchWidget : Fragment() {
 
-    private lateinit var binding: FragmentCardManagementSdkBinding
-    val viewModel: CardManagementSDKViewModel by viewModels()
+    private lateinit var binding: WidgetStitchBinding
+    val viewModel: StitchWidgetViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ open class CardManagementSDKFragment : Fragment() {
             binding =
                 DataBindingUtil.inflate(
                     inflater,
-                    R.layout.fragment_card_management_sdk,
+                    R.layout.widget_stitch,
                     container,
                     false
                 )

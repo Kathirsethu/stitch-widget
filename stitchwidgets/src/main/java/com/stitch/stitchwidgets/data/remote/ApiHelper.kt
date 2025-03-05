@@ -12,18 +12,31 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.Url
 
 sealed interface ApiHelper {
 
     @POST(Constants.APIEndPoints.WIDGETS_SECURE_SESSION_KEY)
-    fun widgetSecureSessionKeyAsync(@Body widgetsSecureSessionKeyRequest: WidgetsSecureSessionKeyRequest): Deferred<Response<WidgetsSecureSessionKeyResponse>>
+    fun widgetSecureSessionKeyAsync(
+        @Url baseUrl: String,
+        @Body widgetsSecureSessionKeyRequest: WidgetsSecureSessionKeyRequest
+    ): Deferred<Response<WidgetsSecureSessionKeyResponse>>
 
     @POST(Constants.APIEndPoints.WIDGETS_SECURE_CARD)
-    fun widgetSecureCardAsync(@Body widgetsSecureCardRequest: WidgetsSecureCardRequest): Deferred<Response<WidgetsSecureCardResponse>>
+    fun widgetSecureCardAsync(
+        @Url baseUrl: String,
+        @Body widgetsSecureCardRequest: WidgetsSecureCardRequest
+    ): Deferred<Response<WidgetsSecureCardResponse>>
 
     @POST(Constants.APIEndPoints.SECURE_WIDGETS_SET_PIN)
-    fun widgetSecureSetPINAsync(@Body widgetsSecureSetPINRequest: WidgetsSecureSetPINRequest): Deferred<Response<ResponseBody>>
+    fun widgetSecureSetPINAsync(
+        @Url baseUrl: String,
+        @Body widgetsSecureSetPINRequest: WidgetsSecureSetPINRequest
+    ): Deferred<Response<ResponseBody>>
 
     @POST(Constants.APIEndPoints.SECURE_WIDGETS_CHANGE_PIN)
-    fun widgetSecureChangePINAsync(@Body widgetsSecureChangePINRequest: WidgetsSecureChangePINRequest): Deferred<Response<ResponseBody>>
+    fun widgetSecureChangePINAsync(
+        @Url baseUrl: String,
+        @Body widgetsSecureChangePINRequest: WidgetsSecureChangePINRequest
+    ): Deferred<Response<ResponseBody>>
 }

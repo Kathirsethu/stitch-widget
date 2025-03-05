@@ -1,10 +1,5 @@
 package com.stitch.stitchwidgets.utilities
 
-import com.stitch.stitchwidgets.R
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.regex.Pattern
-
 object CardUtils {
 
     fun getCardNumber(cardNumber: String): String {

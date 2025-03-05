@@ -2,8 +2,6 @@ package com.stitch.stitchwidgets.utilities
 
 open class Constants {
 
-    var BASE_URL = ""
-
     object ViewType {
 
         const val SET_CARD_PIN = "SET_CARD_PIN"
