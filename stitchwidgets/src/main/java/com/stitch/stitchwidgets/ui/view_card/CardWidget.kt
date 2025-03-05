@@ -16,7 +16,7 @@ import com.stitch.stitchwidgets.databinding.WidgetCardBinding
 
 class CardWidget : Fragment() {
     private lateinit var binding: WidgetCardBinding
-    private val viewModel: CardWidgetViewModel by viewModels()
+    val viewModel: CardWidgetViewModel by viewModels()
 
     companion object {
         lateinit var networkListener: () -> Boolean
