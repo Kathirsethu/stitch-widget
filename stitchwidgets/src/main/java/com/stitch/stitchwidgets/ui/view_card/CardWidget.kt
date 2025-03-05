@@ -66,6 +66,7 @@ class CardWidget : Fragment() {
     private fun config() {
         binding.viewModel = viewModel
 
+        viewModel.baseUrl = baseUrl
         viewModel.networkListener = networkListener
         viewModel.progressBarListener = progressBarListener
         viewModel.logoutListener = logoutListener

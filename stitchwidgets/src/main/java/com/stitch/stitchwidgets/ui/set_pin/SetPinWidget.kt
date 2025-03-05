@@ -64,6 +64,7 @@ open class SetPinWidget : StitchWidget() {
 
     private fun config() {
         binding.viewModel = viewModel
+        viewModel.baseUrl = baseUrl
         binding.layoutOutlined.viewModel = viewModel
         binding.layoutFilled.viewModel = viewModel
         binding.layoutStandard.viewModel = viewModel
