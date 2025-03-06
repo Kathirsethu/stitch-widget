@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.stitch.stitchwidgets.R
+import com.stitch.stitchwidgets.WidgetSDK
 import com.stitch.stitchwidgets.data.model.SDKData
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.data.model.response.Card
@@ -19,12 +20,12 @@ import com.stitch.stitchwidgets.utilities.Toast
 open class SetPinWidget : StitchWidget() {
 
     private lateinit var binding: WidgetSetPinBinding
+    private lateinit var savedCardSettings: SavedCardSettings
 
     companion object {
         lateinit var networkListener: () -> Boolean
         lateinit var progressBarListener: (isVisible: Boolean) -> Unit
         lateinit var logoutListener: (unAuth: Boolean) -> Unit
-        lateinit var savedCardSettings: SavedCardSettings
         lateinit var reFetchSessionToken: (viewType: String) -> Unit
         lateinit var onSetPinSuccess: () -> Unit
 
@@ -40,11 +41,15 @@ open class SetPinWidget : StitchWidget() {
             this.networkListener = networkListener
             this.progressBarListener = progressBarListener
             this.logoutListener = logoutListener
-            this.savedCardSettings = savedCardSettings
             this.reFetchSessionToken = reFetchSessionToken
             this.onSetPinSuccess = onSetPinSuccess
             return setPinWidget
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        savedCardSettings = WidgetSDK.savedCardSettings
     }
 
     override fun onCreateView(

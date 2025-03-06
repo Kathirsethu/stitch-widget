@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.stitch.stitchwidgets.R
+import com.stitch.stitchwidgets.WidgetSDK
 import com.stitch.stitchwidgets.data.model.SDKData
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.data.model.response.Card
@@ -20,12 +21,12 @@ import okhttp3.internal.http.HTTP_BAD_REQUEST
 open class ResetPinWidget : StitchWidget() {
 
     private lateinit var binding: WidgetResetPinBinding
+    private lateinit var savedCardSettings: SavedCardSettings
 
     companion object {
         lateinit var networkListener: () -> Boolean
         lateinit var progressBarListener: (isVisible: Boolean) -> Unit
         lateinit var logoutListener: (unAuth: Boolean) -> Unit
-        lateinit var savedCardSettings: SavedCardSettings
         lateinit var reFetchSessionToken: (viewType: String) -> Unit
         lateinit var onResetPinSuccess: () -> Unit
         lateinit var onResetPINError: () -> Unit
@@ -34,7 +35,6 @@ open class ResetPinWidget : StitchWidget() {
             networkListener: () -> Boolean,
             progressBarListener: (isVisible: Boolean) -> Unit,
             logoutListener: (unAuth: Boolean) -> Unit,
-            savedCardSettings: SavedCardSettings,
             reFetchSessionToken: (viewType: String) -> Unit,
             onResetPinSuccess: () -> Unit,
             onResetPINError: () -> Unit,
@@ -43,12 +43,16 @@ open class ResetPinWidget : StitchWidget() {
             this.networkListener = networkListener
             this.progressBarListener = progressBarListener
             this.logoutListener = logoutListener
-            this.savedCardSettings = savedCardSettings
             this.reFetchSessionToken = reFetchSessionToken
             this.onResetPinSuccess = onResetPinSuccess
             this.onResetPINError = onResetPINError
             return resetPinWidget
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        savedCardSettings = WidgetSDK.savedCardSettings
     }
 
     override fun onCreateView(

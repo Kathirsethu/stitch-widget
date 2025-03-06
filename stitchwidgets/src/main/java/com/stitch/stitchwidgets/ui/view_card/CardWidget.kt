@@ -11,18 +11,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.stitch.stitchwidgets.R
+import com.stitch.stitchwidgets.WidgetSDK
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.databinding.WidgetCardBinding
 
 class CardWidget : Fragment() {
     private lateinit var binding: WidgetCardBinding
     private val viewModel: CardWidgetViewModel by viewModels()
+    private lateinit var savedCardSettings: SavedCardSettings
 
     companion object {
         lateinit var networkListener: () -> Boolean
         lateinit var progressBarListener: (isVisible: Boolean) -> Unit
         lateinit var logoutListener: (unAuth: Boolean) -> Unit
-        lateinit var savedCardSettings: SavedCardSettings
         private lateinit var reFetchSessionToken: (viewType: String) -> Unit
         lateinit var secureToken: String
 
@@ -30,7 +31,6 @@ class CardWidget : Fragment() {
             networkListener: () -> Boolean,
             progressBarListener: (isVisible: Boolean) -> Unit,
             logoutListener: (unAuth: Boolean) -> Unit,
-            savedCardSettings: SavedCardSettings,
             reFetchSessionToken: (viewType: String) -> Unit,
             secureToken: String,
         ): CardWidget {
@@ -38,11 +38,15 @@ class CardWidget : Fragment() {
             this.networkListener = networkListener
             this.progressBarListener = progressBarListener
             this.logoutListener = logoutListener
-            this.savedCardSettings = savedCardSettings
             this.reFetchSessionToken = reFetchSessionToken
             this.secureToken = secureToken
             return cardWidget
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        savedCardSettings = WidgetSDK.savedCardSettings
     }
 
     override fun onCreateView(

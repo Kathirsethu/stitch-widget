@@ -1,6 +1,7 @@
 package com.stitch.stitchwidgets
 
 import android.app.Application
+import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.di.AppContractor
 
 class WidgetSDK : Application() {
@@ -13,6 +14,7 @@ class WidgetSDK : Application() {
     companion object {
         private lateinit var contractor: AppContractor
         lateinit var baseUrl: String
+        lateinit var savedCardSettings: SavedCardSettings
 
         val appContractor by lazy {
             contractor
