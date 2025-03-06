@@ -17,7 +17,6 @@ import com.stitch.stitchwidgets.databinding.WidgetCardBinding
 class CardWidget : Fragment() {
     private lateinit var binding: WidgetCardBinding
     private val viewModel: CardWidgetViewModel by viewModels()
-    var baseUrl = ""
 
     companion object {
         lateinit var networkListener: () -> Boolean
@@ -66,7 +65,6 @@ class CardWidget : Fragment() {
     private fun config() {
         binding.viewModel = viewModel
 
-        viewModel.baseUrl = baseUrl
         viewModel.networkListener = networkListener
         viewModel.progressBarListener = progressBarListener
         viewModel.logoutListener = logoutListener

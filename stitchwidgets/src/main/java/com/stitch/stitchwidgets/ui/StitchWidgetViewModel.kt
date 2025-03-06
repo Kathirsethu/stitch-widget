@@ -35,7 +35,6 @@ import javax.crypto.spec.SecretKeySpec
 
 open class StitchWidgetViewModel : ViewModel() {
 
-    var baseUrl = ""
     val sdkData = ObservableField<SDKData>()
     val savedCardSettings = ObservableField<SavedCardSettings>()
     val card = ObservableField<Card>()
@@ -135,7 +134,6 @@ open class StitchWidgetViewModel : ViewModel() {
         ApiManager.call(
             toast = false,
             request = ApiManager.widgetSecureSessionKeyAsync(
-                baseUrl,
                 widgetsSecureSessionKeyRequest,
             ),
             response = {
@@ -176,7 +174,6 @@ open class StitchWidgetViewModel : ViewModel() {
         ApiManager.call(
             toast = false,
             request = ApiManager.widgetSecureSetPINAsync(
-                baseUrl,
                 widgetsSecureSetPINRequest,
             ),
             response = {
@@ -211,7 +208,6 @@ open class StitchWidgetViewModel : ViewModel() {
         ApiManager.call(
             toast = false,
             request = ApiManager.widgetSecureChangePINAsync(
-                baseUrl,
                 widgetsSecureChangePINRequest,
             ),
             response = {

@@ -25,7 +25,6 @@ import javax.crypto.spec.SecretKeySpec
 
 class CardWidgetViewModel : ViewModel() {
 
-    var baseUrl = ""
     var card = Card()
     var cardNumber: String = ""
     var secureToken: String = ""
@@ -82,7 +81,6 @@ class CardWidgetViewModel : ViewModel() {
         )
         ApiManager.call(
             request = ApiManager.widgetSecureSessionKeyAsync(
-                baseUrl,
                 widgetsSecureSessionKeyRequest
             ),
             response = {
@@ -115,7 +113,6 @@ class CardWidgetViewModel : ViewModel() {
         )
         ApiManager.call(
             request = ApiManager.widgetSecureCardAsync(
-                baseUrl,
                 widgetsSecureCardRequest,
             ),
             response = {
