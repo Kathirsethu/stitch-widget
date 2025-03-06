@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.view.inputmethod.InputMethodManager
-import com.stitch.stitchwidgets.WidgetSDK
 import java.io.File
 
 object Utils {
@@ -23,8 +22,8 @@ object Utils {
         }
     }
 
-    fun isDeviceRooted(): Boolean {
-        return isRootedBySuBinary() || isRootedByRootManagementApps() || isRootedByTestKeys() || isRootedByWritableSystem()
+    fun isDeviceRooted(context: Context): Boolean {
+        return isRootedBySuBinary() || isRootedByRootManagementApps(context) || isRootedByTestKeys() || isRootedByWritableSystem()
     }
 
     private fun isRootedBySuBinary(): Boolean {
@@ -43,7 +42,7 @@ object Utils {
         return false
     }
 
-    private fun isRootedByRootManagementApps(): Boolean {
+    private fun isRootedByRootManagementApps(context: Context): Boolean {
         val packages = arrayOf(
             "eu.chainfire.supersu",
             "com.noshufou.android.su"
@@ -51,7 +50,7 @@ object Utils {
 
         for (packageName in packages) {
             try {
-                val info = WidgetSDK.appContractor.context.packageManager.getApplicationInfo(
+                val info = context.packageManager.getApplicationInfo(
                     packageName,
                     0
                 )
