@@ -33,7 +33,6 @@ open class SetPinWidget : StitchWidget() {
             networkListener: () -> Boolean,
             progressBarListener: (isVisible: Boolean) -> Unit,
             logoutListener: (unAuth: Boolean) -> Unit,
-            savedCardSettings: SavedCardSettings,
             reFetchSessionToken: (viewType: String) -> Unit,
             onSetPinSuccess: () -> Unit,
         ): SetPinWidget {
