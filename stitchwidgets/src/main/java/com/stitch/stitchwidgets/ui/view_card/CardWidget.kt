@@ -46,7 +46,7 @@ class CardWidget : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        savedCardSettings = WidgetSDK.savedCardSettings
+        savedCardSettings = WidgetSDK.viewCardSettings
     }
 
     override fun onCreateView(

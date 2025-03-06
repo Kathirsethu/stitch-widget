@@ -49,7 +49,7 @@ open class SetPinWidget : StitchWidget() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        savedCardSettings = WidgetSDK.savedCardSettings
+        savedCardSettings = WidgetSDK.setPinSettings
     }
 
     override fun onCreateView(

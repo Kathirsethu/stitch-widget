@@ -14,7 +14,9 @@ class WidgetSDK : Application() {
     companion object {
         private lateinit var contractor: AppContractor
         lateinit var baseUrl: String
-        lateinit var savedCardSettings: SavedCardSettings
+        lateinit var viewCardSettings: SavedCardSettings
+        lateinit var setPinSettings: SavedCardSettings
+        lateinit var resetPinSettings: SavedCardSettings
 
         val appContractor by lazy {
             contractor
