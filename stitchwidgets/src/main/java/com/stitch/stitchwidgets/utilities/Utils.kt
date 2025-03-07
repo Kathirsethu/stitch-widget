@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.provider.Settings
 import android.view.inputmethod.InputMethodManager
+import com.stitch.stitchwidgets.R
 import java.io.File
 import java.math.BigInteger
 import java.net.InetAddress
@@ -30,7 +31,21 @@ object Utils {
     }
 
     fun isDeviceRooted(context: Context): Boolean {
-        return isRootedBySuBinary() || isRootedByRootManagementApps(context) || isRootedByTestKeys() || isRootedByWritableSystem()
+        val isDeviceRooted =
+            isRootedBySuBinary() || isRootedByRootManagementApps(context) || isRootedByTestKeys() || isRootedByWritableSystem()
+        try {
+            if (!isDeviceRooted) {
+                // Throw the custom exception immediately if a rooted device is detected
+                throw CardSDKException(
+                    context.getString(R.string.error_rooted_device),
+                    CardSDKException.INSECURE_ENVIRONMENT
+                )
+            }
+        } catch (e: CardSDKException) {
+            e.printStackTrace()
+            Toast.error(context.getString(R.string.error_rooted_device))
+        }
+        return false
     }
 
     fun deviceFingerprint(context: Context): String {

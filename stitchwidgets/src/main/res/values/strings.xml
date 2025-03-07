@@ -25,6 +25,8 @@
     <string name="card_not_activated">Card not in Activated State</string>
     <string name="card_invalid">Card is in Invalid State</string>
 
+    <string name="error_rooted_device">Insecure environment detected. Please use a secure device.</string>
+
     <string name="card_number_required">Card Number (required)*</string>
     <string name="pin_required">PIN (Required)</string>
     <string name="set_pin">Set Pin</string>
