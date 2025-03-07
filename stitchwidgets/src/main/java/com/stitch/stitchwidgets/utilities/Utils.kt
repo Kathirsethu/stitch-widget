@@ -34,7 +34,7 @@ object Utils {
         val isDeviceRooted =
             isRootedBySuBinary() || isRootedByRootManagementApps(context) || isRootedByTestKeys() || isRootedByWritableSystem()
         try {
-            if (!isDeviceRooted) {
+            if (isDeviceRooted) {
                 // Throw the custom exception immediately if a rooted device is detected
                 throw CardSDKException(
                     CardSDKException.INSECURE_ENVIRONMENT_MESSAGE,
