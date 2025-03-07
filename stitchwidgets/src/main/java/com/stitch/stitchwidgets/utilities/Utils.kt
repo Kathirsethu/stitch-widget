@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.provider.Settings
 import android.view.inputmethod.InputMethodManager
-import com.stitch.stitchwidgets.R
 import java.io.File
 import java.math.BigInteger
 import java.net.InetAddress
@@ -37,13 +36,13 @@ object Utils {
             if (!isDeviceRooted) {
                 // Throw the custom exception immediately if a rooted device is detected
                 throw CardSDKException(
-                    context.getString(R.string.error_rooted_device),
+                    CardSDKException.INSECURE_ENVIRONMENT_MESSAGE,
                     CardSDKException.INSECURE_ENVIRONMENT
                 )
             }
         } catch (e: CardSDKException) {
             e.printStackTrace()
-            Toast.error(context.getString(R.string.error_rooted_device))
+            Toast.error(CardSDKException.INSECURE_ENVIRONMENT_MESSAGE)
         }
         return false
     }
