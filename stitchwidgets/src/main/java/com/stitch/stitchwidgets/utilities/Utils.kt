@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.provider.Settings
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import java.io.File
 import java.math.BigInteger
 import java.net.InetAddress
@@ -42,7 +43,11 @@ object Utils {
             }
         } catch (e: CardSDKException) {
             e.printStackTrace()
-            Toast.error(CardSDKException.INSECURE_ENVIRONMENT_MESSAGE)
+            Toast.makeText(
+                context,
+                CardSDKException.INSECURE_ENVIRONMENT_MESSAGE,
+                Toast.LENGTH_SHORT
+            ).show()
         }
         return false
     }
