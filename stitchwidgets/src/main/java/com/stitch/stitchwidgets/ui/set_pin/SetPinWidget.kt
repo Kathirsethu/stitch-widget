@@ -16,6 +16,7 @@ import com.stitch.stitchwidgets.databinding.WidgetSetPinBinding
 import com.stitch.stitchwidgets.ui.StitchWidget
 import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
+import com.stitch.stitchwidgets.utilities.Utils
 
 open class SetPinWidget : StitchWidget() {
 
@@ -114,7 +115,7 @@ open class SetPinWidget : StitchWidget() {
         viewModel.customerNumber.set(viewModel.sdkData.get()?.customerNumber)
         viewModel.programName.set(viewModel.sdkData.get()?.programName)
         viewModel.secureToken.set(viewModel.sdkData.get()?.secureToken)
-        viewModel.fingerprint.set(viewModel.deviceFingerprint(requireContext()))
+        viewModel.fingerprint.set(Utils.deviceFingerprint(requireContext()))
         setFormStyleProperties()
     }
 

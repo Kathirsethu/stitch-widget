@@ -3,8 +3,15 @@ package com.stitch.stitchwidgets.utilities
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
+import android.provider.Settings
 import android.view.inputmethod.InputMethodManager
 import java.io.File
+import java.math.BigInteger
+import java.net.InetAddress
+import java.net.NetworkInterface
+import java.security.MessageDigest
+import java.util.Collections
 
 object Utils {
 
@@ -24,6 +31,40 @@ object Utils {
 
     fun isDeviceRooted(context: Context): Boolean {
         return isRootedBySuBinary() || isRootedByRootManagementApps(context) || isRootedByTestKeys() || isRootedByWritableSystem()
+    }
+
+    fun deviceFingerprint(context: Context): String {
+        val strIPAddress: String = getIPAddress()
+        val modelName = Build.MODEL
+        val device = Settings.Secure.getString(
+            context.contentResolver,
+            Settings.Secure.ANDROID_ID
+        )
+        val androidVersion = Build.VERSION.RELEASE
+        val deviceFingerprint = "$strIPAddress : $modelName : $device : $androidVersion"
+        val md = MessageDigest.getInstance("MD5")
+        return BigInteger(1, md.digest(deviceFingerprint.toByteArray())).toString(16)
+            .padStart(32, '0')
+    }
+
+    private fun getIPAddress(): String {
+        try {
+            val interfaces: List<NetworkInterface> =
+                Collections.list(NetworkInterface.getNetworkInterfaces())
+            for (inter in interfaces) {
+                val addresses: List<InetAddress> = Collections.list(inter.inetAddresses)
+                for (address in addresses) {
+                    if (!address.isLoopbackAddress) {
+                        val sAddress = address.hostAddress
+                        val isIPv4 = (sAddress?.indexOf(':') ?: 0) < 0
+                        if (isIPv4) return sAddress ?: ""
+                    }
+                }
+            }
+        } catch (ignored: Exception) {
+            ignored.printStackTrace()
+        }
+        return ""
     }
 
     private fun isRootedBySuBinary(): Boolean {

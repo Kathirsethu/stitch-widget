@@ -1,8 +1,6 @@
 package com.stitch.stitchwidgets.ui
 
 import android.content.Context
-import android.os.Build
-import android.provider.Settings
 import android.util.Base64
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
@@ -21,12 +19,7 @@ import com.stitch.stitchwidgets.utilities.validateNewPIN
 import com.stitch.stitchwidgets.utilities.validateOldPIN
 import com.stitch.stitchwidgets.utilities.validatePIN
 import java.io.File
-import java.math.BigInteger
-import java.net.InetAddress
-import java.net.NetworkInterface
-import java.security.MessageDigest
 import java.security.SecureRandom
-import java.util.Collections
 import javax.crypto.Cipher
 import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
@@ -250,39 +243,5 @@ open class StitchWidgetViewModel : ViewModel() {
         val encryptedText = Base64.encodeToString(encryptedBytes, Base64.DEFAULT)
 
         return "$ivBase64.$encryptedText"
-    }
-
-    fun deviceFingerprint(context: Context): String {
-        val strIPAddress: String = getIPAddress()
-        val modelName = Build.MODEL
-        val device = Settings.Secure.getString(
-            context.contentResolver,
-            Settings.Secure.ANDROID_ID
-        )
-        val androidVersion = Build.VERSION.RELEASE
-        val deviceFingerprint = "$strIPAddress : $modelName : $device : $androidVersion"
-        val md = MessageDigest.getInstance("MD5")
-        return BigInteger(1, md.digest(deviceFingerprint.toByteArray())).toString(16)
-            .padStart(32, '0')
-    }
-
-    private fun getIPAddress(): String {
-        try {
-            val interfaces: List<NetworkInterface> =
-                Collections.list(NetworkInterface.getNetworkInterfaces())
-            for (inter in interfaces) {
-                val addresses: List<InetAddress> = Collections.list(inter.inetAddresses)
-                for (address in addresses) {
-                    if (!address.isLoopbackAddress) {
-                        val sAddress = address.hostAddress
-                        val isIPv4 = (sAddress?.indexOf(':') ?: 0) < 0
-                        if (isIPv4) return sAddress ?: ""
-                    }
-                }
-            }
-        } catch (ignored: Exception) {
-            ignored.printStackTrace()
-        }
-        return ""
     }
 }

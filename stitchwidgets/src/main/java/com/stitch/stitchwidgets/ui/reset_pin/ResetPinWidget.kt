@@ -16,6 +16,7 @@ import com.stitch.stitchwidgets.databinding.WidgetResetPinBinding
 import com.stitch.stitchwidgets.ui.StitchWidget
 import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
+import com.stitch.stitchwidgets.utilities.Utils
 import okhttp3.internal.http.HTTP_BAD_REQUEST
 
 open class ResetPinWidget : StitchWidget() {
@@ -124,7 +125,7 @@ open class ResetPinWidget : StitchWidget() {
         viewModel.customerNumber.set(viewModel.sdkData.get()?.customerNumber)
         viewModel.programName.set(viewModel.sdkData.get()?.programName)
         viewModel.secureToken.set(viewModel.sdkData.get()?.secureToken)
-        viewModel.fingerprint.set(viewModel.deviceFingerprint(requireContext()))
+        viewModel.fingerprint.set(Utils.deviceFingerprint(requireContext()))
         setFormStyleProperties()
     }
 
