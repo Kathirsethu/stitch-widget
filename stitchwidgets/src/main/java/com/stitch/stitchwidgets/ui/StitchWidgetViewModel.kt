@@ -99,6 +99,11 @@ open class StitchWidgetViewModel : ViewModel() {
     lateinit var logoutListener: (unAuth: Boolean) -> Unit
     lateinit var reFetchSessionToken: (viewType: String) -> Unit
 
+    private lateinit var encryptionKey: String
+    private fun pin(): String = encrypt(pin.get() ?: "", encryptionKey)
+    private fun newPin(): String = encrypt(newPin.get() ?: "", encryptionKey)
+    private fun oldPin(): String = encrypt(oldPin.get() ?: "", encryptionKey)
+
     fun getWidgetsSecureSessionKey(context: Context) {
         if (viewType.get() == Constants.ViewType.SET_CARD_PIN) {
             if (pin.validatePIN(context = context)) return
@@ -131,14 +136,15 @@ open class StitchWidgetViewModel : ViewModel() {
             ),
             response = {
                 if (it != null) {
+                    encryptionKey = it.key
                     when (viewType.get()) {
 
                         Constants.ViewType.SET_CARD_PIN -> {
-                            getWidgetSecureSetPIN(it.key, it.generatedKey)
+                            getWidgetSecureSetPIN(it.generatedKey)
                         }
 
                         Constants.ViewType.RESET_CARD_PIN -> {
-                            getWidgetSecureChangePIN(it.key, it.generatedKey)
+                            getWidgetSecureChangePIN(it.generatedKey)
                         }
                     }
                 }
@@ -159,9 +165,9 @@ open class StitchWidgetViewModel : ViewModel() {
         )
     }
 
-    private fun getWidgetSecureSetPIN(key: String, token: String) {
+    private fun getWidgetSecureSetPIN(token: String) {
         val widgetsSecureSetPINRequest = WidgetsSecureSetPINRequest(
-            pin = encrypt(pin.get() ?: "", key).replace("\n", ""),
+            pin = pin(),
             token = token, deviceFingerprint = fingerprint.get() ?: "",
         )
         ApiManager.call(
@@ -192,10 +198,10 @@ open class StitchWidgetViewModel : ViewModel() {
         )
     }
 
-    private fun getWidgetSecureChangePIN(key: String, token: String) {
+    private fun getWidgetSecureChangePIN(token: String) {
         val widgetsSecureChangePINRequest = WidgetsSecureChangePINRequest(
-            existingPin = encrypt(oldPin.get() ?: "", key).replace("\n", ""),
-            pin = encrypt(newPin.get() ?: "", key).replace("\n", ""),
+            existingPin = oldPin(),
+            pin = newPin(),
             token = token, deviceFingerprint = fingerprint.get() ?: "",
         )
         ApiManager.call(
@@ -242,6 +248,6 @@ open class StitchWidgetViewModel : ViewModel() {
         val encryptedBytes = cipher.doFinal(pin.toByteArray())
         val encryptedText = Base64.encodeToString(encryptedBytes, Base64.DEFAULT)
 
-        return "$ivBase64.$encryptedText"
+        return "$ivBase64.$encryptedText".replace("\n", "")
     }
 }

@@ -52,7 +52,7 @@ object Utils {
         return false
     }
 
-    fun deviceFingerprint(context: Context): String {
+    fun getDeviceFingerprint(context: Context): String {
         val strIPAddress: String = getIPAddress()
         val modelName = Build.MODEL
         val device = Settings.Secure.getString(

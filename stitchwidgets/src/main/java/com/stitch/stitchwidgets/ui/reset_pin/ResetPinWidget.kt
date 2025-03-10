@@ -125,7 +125,7 @@ open class ResetPinWidget : StitchWidget() {
         viewModel.customerNumber.set(viewModel.sdkData.get()?.customerNumber)
         viewModel.programName.set(viewModel.sdkData.get()?.programName)
         viewModel.secureToken.set(viewModel.sdkData.get()?.secureToken)
-        viewModel.fingerprint.set(Utils.deviceFingerprint(requireContext()))
+        viewModel.fingerprint.set(Utils.getDeviceFingerprint(requireContext()))
         setFormStyleProperties()
     }
 

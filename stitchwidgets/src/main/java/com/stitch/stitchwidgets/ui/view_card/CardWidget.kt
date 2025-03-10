@@ -75,7 +75,7 @@ class CardWidget : Fragment() {
         viewModel.logoutListener = logoutListener
 
         viewModel.secureToken = secureToken
-        val deviceFingerprint: String = Utils.deviceFingerprint(requireContext())
+        val deviceFingerprint: String = Utils.getDeviceFingerprint(requireContext())
         viewModel.getWidgetSecureSessionKey(deviceFingerprint)
         setCardStyleProperties()
         viewModel.setCardData = {
