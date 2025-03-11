@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorBase">#0A1BFF</color>
-    <color name="colorBase_25">#403441FF</color>
     <color name="color_inactive">#D0D5DD</color>
-    <color name="login_logo_bg">#FCF8EE</color>
     <color name="black">#FF000000</color>
-    <color name="black_50">#50000000</color>
-    <color name="black_90">#90000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="red">#FFF44336</color>
-    <color name="red_25">#40F44336</color>
-    <color name="maroon">#A7076A</color>
-    <color name="grey">#707070</color>
     <color name="text_color">#344054</color>
     <color name="new_card_bg">#1D2939</color>
-    <color name="grey_1">#98A2B3</color>
 </resources>

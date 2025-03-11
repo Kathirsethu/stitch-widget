@@ -125,7 +125,7 @@ object Utils {
     }
 
     private fun isRootedByTestKeys(): Boolean {
-        val buildTags = android.os.Build.TAGS
+        val buildTags = Build.TAGS
         return buildTags != null && buildTags.contains("test-keys")
     }
 
