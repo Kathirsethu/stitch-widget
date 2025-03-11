@@ -25,22 +25,6 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCardNotActivated"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_red_25_corner_12"
-                android:gravity="center"
-                android:padding="16dp"
-                android:text="@string/card_not_activated"
-                android:textColor="@color/red"
-                android:textSize="14sp"
-                app:fontFamily="@font/euclid_flex_medium"
-                app:isGone="@{!viewModel.isCardNotActivate}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPINRequiredLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -48,7 +32,6 @@
                 android:textColor="@color/text_color"
                 android:textSize="16sp"
                 app:fontFamily="@font/inter"
-                app:isGone="@{viewModel.isCardNotActivate}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -100,7 +83,6 @@
                     android:text="@string/set_pin"
                     android:textSize="14sp"
                     app:fontFamily="@font/inter_semi_bold"
-                    app:isGone="@{viewModel.isCardNotActivate}"
                     app:styleButtonBackgroundColor="@{viewModel.cardStyleButtonBackgroundColor}"
                     app:styleButtonFontColor="@{viewModel.cardStyleButtonFontColor}" />
             </androidx.cardview.widget.CardView>

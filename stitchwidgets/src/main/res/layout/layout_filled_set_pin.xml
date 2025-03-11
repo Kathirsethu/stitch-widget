@@ -21,7 +21,6 @@
             android:textColor="@color/text_color"
             android:textSize="16sp"
             app:fontFamily="@font/inter_regular"
-            app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +29,6 @@
             android:id="@+id/tilPIN"
             style="@style/TextInputLayoutStyle.Filled"
             android:layout_marginTop="8dp"
-            app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPinLabel"
@@ -62,7 +60,6 @@
             android:textColor="@color/text_color"
             android:textSize="16sp"
             app:fontFamily="@font/inter_regular"
-            app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilPIN" />
@@ -71,7 +68,6 @@
             android:id="@+id/tilConfirmPIN"
             style="@style/TextInputLayoutStyle.Filled"
             android:layout_marginTop="8dp"
-            app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvConfirmPinLabel"

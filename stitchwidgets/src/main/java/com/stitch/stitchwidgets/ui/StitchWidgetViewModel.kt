@@ -40,7 +40,7 @@ open class StitchWidgetViewModel : ViewModel() {
     val viewType = ObservableField("")
     val secureToken = ObservableField("")
     val fingerprint = ObservableField("")
-    val style = ObservableField("")
+    val styleSheetType = ObservableField("")
 
     val accountNumber = ObservableField("")
     val accountNumberBack = ObservableField("")
@@ -79,10 +79,6 @@ open class StitchWidgetViewModel : ViewModel() {
     val cardMediaFile = ObservableField<File>()
     val isCardNumberMasked = ObservableField(false)
     val isCardCVVMasked = ObservableField(false)
-
-    val isCardNotActivate = ObservableField(false)
-    val isCardActivated = ObservableField(false)
-    val isCardInvalid = ObservableField(false)
 
     val retryCount = ObservableField(0)
 

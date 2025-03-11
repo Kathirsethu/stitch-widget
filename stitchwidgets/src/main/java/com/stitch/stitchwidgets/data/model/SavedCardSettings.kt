@@ -8,6 +8,7 @@ import java.io.File
 @Parcelize
 data class SavedCardSettings(
     var widgetStyle: String? = null,
+    var styleSheetType: String? = null,
     var fontFamily: Int? = null,
     var fontColor: Int? = null,
     var buttonFontColor: Int? = null,

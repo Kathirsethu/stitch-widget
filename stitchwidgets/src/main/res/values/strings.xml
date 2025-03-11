@@ -21,8 +21,6 @@
     <string name="invalid_change_pin_mismatch">Old Pin and New Pin must be different.</string>
     <string name="invalid_old_pin_api_response">Invalid Old PIN</string>
 
-    <string name="card_activated">Card is in Activated State</string>
-    <string name="card_not_activated">Card not in Activated State</string>
     <string name="card_invalid">Card is in Invalid State</string>
 
     <string name="error_rooted_device">Insecure environment detected. Please use a secure device.</string>
@@ -33,7 +31,6 @@
 
     <string name="cards">Card List</string>
     <string name="view_card">View Card</string>
-    <string name="activate_card">Activate Card</string>
     <string name="set_card_pin">Set Card Pin</string>
     <string name="change_pin">Change Pin</string>
     <string name="widget_setting">Widget Setting</string>
@@ -54,7 +51,6 @@
     <string name="style_filled">Filled</string>
     <string name="style_standard">Standard</string>
 
-    <string name="activate_card_successfully">Card Activated Successfully</string>
     <string name="pin_set_successfully">Pin Set Successfully</string>
     <string name="pin_change_successfully">Pin Changed Successfully</string>
     <string name="card_created_successfully">Card Created Successfully</string>

@@ -21,7 +21,6 @@
             android:textColor="@color/text_color"
             android:textSize="16sp"
             app:fontFamily="@font/inter_regular"
-            app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +29,6 @@
             android:id="@+id/tilOldPIN"
             style="@style/TextInputLayoutStyle.Standard"
             android:layout_marginTop="8dp"
-            app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCurrentPinLabel"
@@ -63,7 +61,6 @@
             android:textColor="@color/text_color"
             android:textSize="16sp"
             app:fontFamily="@font/inter_regular"
-            app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilOldPIN" />
@@ -72,7 +69,6 @@
             android:id="@+id/tilNewPIN"
             style="@style/TextInputLayoutStyle.Standard"
             android:layout_marginTop="8dp"
-            app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNewPinLabel"
@@ -105,7 +101,6 @@
             android:textColor="@color/text_color"
             android:textSize="16sp"
             app:fontFamily="@font/inter_regular"
-            app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilNewPIN" />
@@ -114,7 +109,6 @@
             android:id="@+id/tilConfirmPIN"
             style="@style/TextInputLayoutStyle.Standard"
             android:layout_marginTop="8dp"
-            app:isGone="@{viewModel.isCardNotActivate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvConfirmNewPinLabel"

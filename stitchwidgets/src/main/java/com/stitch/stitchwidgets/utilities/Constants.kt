@@ -14,13 +14,6 @@ open class Constants {
         const val CARD_NUMBER = "card_number"
     }
 
-    object CardState {
-
-        const val ACTIVATED = "activated"
-
-        const val ACTIVATE_CARD_STATE = "card shipped"
-    }
-
     object HTTPMethod {
 
         const val GET = "GET"
