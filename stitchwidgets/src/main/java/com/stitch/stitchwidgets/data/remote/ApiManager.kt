@@ -1,7 +1,6 @@
 package com.stitch.stitchwidgets.data.remote
 
 import com.google.gson.Gson
-import com.stitch.stitchwidgets.WidgetSDK
 import com.stitch.stitchwidgets.data.model.BaseResponse
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureCardRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureChangePINRequest
@@ -9,7 +8,6 @@ import com.stitch.stitchwidgets.data.model.request.WidgetsSecureSessionKeyReques
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureSetPINRequest
 import com.stitch.stitchwidgets.data.model.response.WidgetsSecureCardResponse
 import com.stitch.stitchwidgets.data.model.response.WidgetsSecureSessionKeyResponse
-import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -123,38 +121,30 @@ object ApiManager : ApiHelper {
     private fun errorToast(error: String) = Toast.error(error)
 
     override fun widgetSecureSessionKeyAsync(
-        versionedPath: String,
         widgetsSecureSessionKeyRequest: WidgetsSecureSessionKeyRequest
     ): Deferred<Response<WidgetsSecureSessionKeyResponse>> =
         ApiWidget.widgetSecureSessionKeyAsync(
-            versionedPath,
             widgetsSecureSessionKeyRequest
         )
 
     override fun widgetSecureCardAsync(
-        versionedPath: String,
         widgetsSecureCardRequest: WidgetsSecureCardRequest
     ): Deferred<Response<WidgetsSecureCardResponse>> =
         ApiWidget.widgetSecureCardAsync(
-            versionedPath,
             widgetsSecureCardRequest
         )
 
     override fun widgetSecureSetPINAsync(
-        versionedPath: String,
         widgetsSecureSetPINRequest: WidgetsSecureSetPINRequest
     ): Deferred<Response<ResponseBody>> =
         ApiWidget.widgetSecureSetPINAsync(
-            versionedPath,
             widgetsSecureSetPINRequest
         )
 
     override fun widgetSecureChangePINAsync(
-        versionedPath: String,
         widgetsSecureChangePINRequest: WidgetsSecureChangePINRequest
     ): Deferred<Response<ResponseBody>> =
         ApiWidget.widgetSecureChangePINAsync(
-            versionedPath,
             widgetsSecureChangePINRequest
         )
 }
