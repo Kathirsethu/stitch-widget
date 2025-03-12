@@ -313,116 +313,116 @@ class CardWidget : Fragment() {
         }.let {
             binding.layoutDemoCard.tvCardNumber.textSize = "24".toFloat()
         }
-        if (savedCardSettings.numberTopPadding != null &&
-            savedCardSettings.numberTopPadding.toString().isNotEmpty()
+        if (savedCardSettings.cardNumberPaddingTop != null &&
+            savedCardSettings.cardNumberPaddingTop.toString().isNotEmpty()
         ) {
-            savedCardSettings.numberTopPadding.toString()
+            savedCardSettings.cardNumberPaddingTop.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.numberTopPadding = it
         }
-        if (savedCardSettings.numberBottomPadding != null &&
-            savedCardSettings.numberBottomPadding.toString().isNotEmpty()
+        if (savedCardSettings.cardNumberPaddingBottom != null &&
+            savedCardSettings.cardNumberPaddingBottom.toString().isNotEmpty()
         ) {
-            savedCardSettings.numberBottomPadding.toString()
+            savedCardSettings.cardNumberPaddingBottom.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.numberBottomPadding = it
         }
-        if (savedCardSettings.numberStartPadding != null &&
-            savedCardSettings.numberStartPadding.toString().isNotEmpty()
+        if (savedCardSettings.cardNumberPaddingLeft != null &&
+            savedCardSettings.cardNumberPaddingLeft.toString().isNotEmpty()
         ) {
-            savedCardSettings.numberStartPadding.toString()
+            savedCardSettings.cardNumberPaddingLeft.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.numberLeftPadding = it
         }
-        if (savedCardSettings.numberEndPadding != null &&
-            savedCardSettings.numberEndPadding.toString().isNotEmpty()
+        if (savedCardSettings.cardNumberPaddingRight != null &&
+            savedCardSettings.cardNumberPaddingRight.toString().isNotEmpty()
         ) {
-            savedCardSettings.numberEndPadding.toString()
+            savedCardSettings.cardNumberPaddingRight.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.numberRightPadding = it
         }
-        if (savedCardSettings.expiryTopPadding != null &&
-            savedCardSettings.expiryTopPadding.toString().isNotEmpty()
+        if (savedCardSettings.expiryPaddingTop != null &&
+            savedCardSettings.expiryPaddingTop.toString().isNotEmpty()
         ) {
-            savedCardSettings.expiryTopPadding.toString()
+            savedCardSettings.expiryPaddingTop.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.expiryTopPadding = it
         }
-        if (savedCardSettings.expiryBottomPadding != null &&
-            savedCardSettings.expiryBottomPadding.toString().isNotEmpty()
+        if (savedCardSettings.expiryPaddingBottom != null &&
+            savedCardSettings.expiryPaddingBottom.toString().isNotEmpty()
         ) {
-            savedCardSettings.expiryBottomPadding.toString()
+            savedCardSettings.expiryPaddingBottom.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.expiryBottomPadding = it
         }
-        if (savedCardSettings.expiryStartPadding != null &&
-            savedCardSettings.expiryStartPadding.toString().isNotEmpty()
+        if (savedCardSettings.expiryPaddingLeft != null &&
+            savedCardSettings.expiryPaddingLeft.toString().isNotEmpty()
         ) {
-            savedCardSettings.expiryStartPadding.toString()
+            savedCardSettings.expiryPaddingLeft.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.expiryLeftPadding = it
         }
-        if (savedCardSettings.expiryEndPadding != null &&
-            savedCardSettings.expiryEndPadding.toString().isNotEmpty()
+        if (savedCardSettings.expiryPaddingRight != null &&
+            savedCardSettings.expiryPaddingRight.toString().isNotEmpty()
         ) {
-            savedCardSettings.expiryEndPadding.toString()
+            savedCardSettings.expiryPaddingRight.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.expiryRightPadding = it
         }
-        if (savedCardSettings.cvvTopPadding != null &&
-            savedCardSettings.cvvTopPadding.toString().isNotEmpty()
+        if (savedCardSettings.cvvPaddingTop != null &&
+            savedCardSettings.cvvPaddingTop.toString().isNotEmpty()
         ) {
-            savedCardSettings.cvvTopPadding.toString()
+            savedCardSettings.cvvPaddingTop.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.cvvTopPadding = it
         }
-        if (savedCardSettings.cvvBottomPadding != null &&
-            savedCardSettings.cvvBottomPadding.toString().isNotEmpty()
+        if (savedCardSettings.cvvPaddingBottom != null &&
+            savedCardSettings.cvvPaddingBottom.toString().isNotEmpty()
         ) {
-            savedCardSettings.cvvBottomPadding.toString()
+            savedCardSettings.cvvPaddingBottom.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.cvvBottomPadding = it
         }
-        if (savedCardSettings.cvvStartPadding != null &&
-            savedCardSettings.cvvStartPadding.toString().isNotEmpty()
+        if (savedCardSettings.cvvPaddingLeft != null &&
+            savedCardSettings.cvvPaddingLeft.toString().isNotEmpty()
         ) {
-            savedCardSettings.cvvStartPadding.toString()
+            savedCardSettings.cvvPaddingLeft.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.cvvLeftPadding = it
         }
-        if (savedCardSettings.cvvEndPadding != null &&
-            savedCardSettings.cvvEndPadding.toString().isNotEmpty()
+        if (savedCardSettings.cvvPaddingRight != null &&
+            savedCardSettings.cvvPaddingRight.toString().isNotEmpty()
         ) {
-            savedCardSettings.cvvEndPadding.toString()
+            savedCardSettings.cvvPaddingRight.toString()
         } else {
             "0"
         }.let {
             binding.layoutDemoCard.cvvRightPadding = it
         }
-        if (savedCardSettings.bgImageFile != null) {
-            Glide.with(requireContext()).load(savedCardSettings.bgImageFile)
+        if (savedCardSettings.backgroundImage != null) {
+            Glide.with(requireContext()).load(savedCardSettings.backgroundImage)
                 .into(binding.layoutDemoCard.ivCardMedia)
             binding.layoutDemoCard.ivCardMedia.visibility = View.VISIBLE
         } else {
@@ -440,9 +440,9 @@ class CardWidget : Fragment() {
                 }
             }
         }
-        viewModel.isCardNumberMaskEnabled.set(savedCardSettings.isCardNumberMasked)
-        viewModel.isCardCVVMaskEnabled.set(savedCardSettings.isCardCVVMasked)
-        viewModel.isCardNumberEye.set(savedCardSettings.isEyeButton)
-        viewModel.isCVVEye.set(savedCardSettings.isEyeButton)
+        viewModel.isCardNumberMaskEnabled.set(savedCardSettings.maskCardNumber)
+        viewModel.isCardCVVMaskEnabled.set(savedCardSettings.maskCvv)
+        viewModel.isCardNumberEye.set(savedCardSettings.showEyeIcon)
+        viewModel.isCVVEye.set(savedCardSettings.showEyeIcon)
     }
 }

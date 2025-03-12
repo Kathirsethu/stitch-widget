@@ -129,8 +129,8 @@ open class ResetPinWidget : StitchWidget() {
     }
 
     private fun setFormStyleProperties() {
-        if (viewModel.savedCardSettings.get()?.styleSheetType != null) {
-            viewModel.styleSheetType.set(viewModel.savedCardSettings.get()?.styleSheetType)
+        if (viewModel.savedCardSettings.get()?.textFieldVariant != null) {
+            viewModel.styleSheetType.set(viewModel.savedCardSettings.get()?.textFieldVariant)
         } else {
             viewModel.styleSheetType.set(getString(R.string.style_outlined))
         }
@@ -153,8 +153,8 @@ open class ResetPinWidget : StitchWidget() {
                 ContextCompat.getColor(requireContext(), R.color.white)
             )
         }
-        if (viewModel.savedCardSettings.get()?.buttonBackgroundColor != null) {
-            viewModel.cardStyleButtonBackgroundColor.set(viewModel.savedCardSettings.get()?.buttonBackgroundColor)
+        if (viewModel.savedCardSettings.get()?.buttonBackground != null) {
+            viewModel.cardStyleButtonBackgroundColor.set(viewModel.savedCardSettings.get()?.buttonBackground)
         } else {
             viewModel.cardStyleButtonBackgroundColor.set(
                 ContextCompat.getColor(requireContext(), R.color.colorBase)
