@@ -5,6 +5,7 @@ import android.util.Base64
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.stitch.stitchwidgets.R
+import com.stitch.stitchwidgets.WidgetSDK
 import com.stitch.stitchwidgets.data.model.SDKData
 import com.stitch.stitchwidgets.data.model.SavedCardSettings
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureChangePINRequest
@@ -128,6 +129,7 @@ open class StitchWidgetViewModel : ViewModel() {
         ApiManager.call(
             toast = false,
             request = ApiManager.widgetSecureSessionKeyAsync(
+                WidgetSDK.version + Constants.APIEndPoints.WIDGETS_SECURE_SESSION_KEY,
                 widgetsSecureSessionKeyRequest,
             ),
             response = {
@@ -169,6 +171,7 @@ open class StitchWidgetViewModel : ViewModel() {
         ApiManager.call(
             toast = false,
             request = ApiManager.widgetSecureSetPINAsync(
+                WidgetSDK.version + Constants.APIEndPoints.SECURE_WIDGETS_SET_PIN,
                 widgetsSecureSetPINRequest,
             ),
             response = {
@@ -203,6 +206,7 @@ open class StitchWidgetViewModel : ViewModel() {
         ApiManager.call(
             toast = false,
             request = ApiManager.widgetSecureChangePINAsync(
+                WidgetSDK.version + Constants.APIEndPoints.SECURE_WIDGETS_CHANGE_PIN,
                 widgetsSecureChangePINRequest,
             ),
             response = {

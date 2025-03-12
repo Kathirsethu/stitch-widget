@@ -127,7 +127,7 @@ object ApiManager : ApiHelper {
         widgetsSecureSessionKeyRequest: WidgetsSecureSessionKeyRequest
     ): Deferred<Response<WidgetsSecureSessionKeyResponse>> =
         ApiWidget.widgetSecureSessionKeyAsync(
-            WidgetSDK.version + Constants.APIEndPoints.WIDGETS_SECURE_SESSION_KEY,
+            versionedPath,
             widgetsSecureSessionKeyRequest
         )
 
@@ -136,7 +136,7 @@ object ApiManager : ApiHelper {
         widgetsSecureCardRequest: WidgetsSecureCardRequest
     ): Deferred<Response<WidgetsSecureCardResponse>> =
         ApiWidget.widgetSecureCardAsync(
-            WidgetSDK.version + Constants.APIEndPoints.WIDGETS_SECURE_CARD,
+            versionedPath,
             widgetsSecureCardRequest
         )
 
@@ -145,7 +145,7 @@ object ApiManager : ApiHelper {
         widgetsSecureSetPINRequest: WidgetsSecureSetPINRequest
     ): Deferred<Response<ResponseBody>> =
         ApiWidget.widgetSecureSetPINAsync(
-            WidgetSDK.version + Constants.APIEndPoints.SECURE_WIDGETS_SET_PIN,
+            versionedPath,
             widgetsSecureSetPINRequest
         )
 
@@ -154,7 +154,7 @@ object ApiManager : ApiHelper {
         widgetsSecureChangePINRequest: WidgetsSecureChangePINRequest
     ): Deferred<Response<ResponseBody>> =
         ApiWidget.widgetSecureChangePINAsync(
-            WidgetSDK.version + Constants.APIEndPoints.SECURE_WIDGETS_CHANGE_PIN,
+            versionedPath,
             widgetsSecureChangePINRequest
         )
 }

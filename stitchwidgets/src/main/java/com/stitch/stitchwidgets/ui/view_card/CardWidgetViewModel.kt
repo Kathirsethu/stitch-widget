@@ -3,11 +3,13 @@ package com.stitch.stitchwidgets.ui.view_card
 import android.util.Base64
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
+import com.stitch.stitchwidgets.WidgetSDK
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureCardRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureSessionKeyRequest
 import com.stitch.stitchwidgets.data.model.response.Card
 import com.stitch.stitchwidgets.data.remote.ApiManager
 import com.stitch.stitchwidgets.utilities.CardUtils
+import com.stitch.stitchwidgets.utilities.Constants
 import java.text.SimpleDateFormat
 import java.util.Locale
 import javax.crypto.Cipher
@@ -39,6 +41,7 @@ class CardWidgetViewModel : ViewModel() {
         )
         ApiManager.call(
             request = ApiManager.widgetSecureSessionKeyAsync(
+                WidgetSDK.version + Constants.APIEndPoints.WIDGETS_SECURE_SESSION_KEY,
                 widgetsSecureSessionKeyRequest
             ),
             response = {
@@ -71,6 +74,7 @@ class CardWidgetViewModel : ViewModel() {
         )
         ApiManager.call(
             request = ApiManager.widgetSecureCardAsync(
+                WidgetSDK.version + Constants.APIEndPoints.WIDGETS_SECURE_CARD,
                 widgetsSecureCardRequest,
             ),
             response = {
