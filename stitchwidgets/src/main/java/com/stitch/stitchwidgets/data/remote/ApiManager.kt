@@ -32,7 +32,6 @@ object ApiManager : ApiHelper {
     fun <T> call(
         request: Deferred<Response<T>>,
         progress: Boolean = true,
-        toast: Boolean = true,
         response: (T?) -> Unit = ::println,
         errorResponse: (Int?, String?) -> Unit,
         networkListener: () -> Boolean,
@@ -50,51 +49,21 @@ object ApiManager : ApiHelper {
                         body()?.let {
                             when (it) {
                                 is BaseResponse -> {
-                                    if (toast) Toast.error(it.message ?: "")
                                     response(it)
                                 }
 
                                 else -> response(it)
                             }
                         }
+
                         errorBody()?.let {
-                            val errorMessage: BaseResponse? = Gson().fromJson(
-                                it.string(),
-                                BaseResponse::class.java
+                            handleErrorBody(
+                                it,
+                                response,
+                                errorResponse,
+                                logoutListener,
+                                code()
                             )
-                            errorResponse(code(), errorMessage?.message)
-                            when (code()) {
-                                HttpCode.INTERNAL_SERVER_ERROR, HttpCode.SERVICE_UNAVAILABLE, HttpCode.BAD_GATEWAY -> errorToast(
-                                    HttpMsg.SERVICE_UNAVAILABLE
-                                )
-
-                                HttpCode.TIMEOUT_ERROR, HttpCode.TOO_MANY_REQUEST -> errorToast(
-                                    HttpMsg.TIMEOUT_ERROR
-                                )
-
-                                HttpCode.NOT_FOUND -> errorToast(HttpMsg.NOT_FOUND)
-                                HttpCode.UNAUTHORIZED_ACCESS -> {
-                                    logoutListener.invoke(true)
-                                    errorToast(HttpMsg.UNAUTHORIZED_ACCESS)
-                                }
-
-                                else -> {
-                                    Gson().fromJson(
-                                        it.string(),
-                                        BaseResponse::class.java
-                                    )?.let { baseResponse ->
-                                        if (toast) Toast.error(
-                                            baseResponse.message ?: baseResponse.errors()
-                                        )
-                                        try {
-                                            response(baseResponse as T)
-                                        } catch (e: ClassCastException) {
-                                            e.printStackTrace()
-                                        }
-                                    }
-                                }
-                            }
-                            response(null)
                         }
                     }
                 } catch (e: Exception) {
@@ -102,14 +71,65 @@ object ApiManager : ApiHelper {
                         is SocketTimeoutException -> errorToast(HttpMsg.TIMEOUT_ERROR)
                         is UnknownHostException -> errorToast(HttpMsg.INTERNAL_SERVER_ERROR + " Please contact admin...")
                         is ConnectException -> errorToast(HttpMsg.CONNECT_ERROR)
-                        is CancellationException -> {}
-//                        else -> errorToast(e.message.toString())
+                        is CancellationException -> errorToast(HttpMsg.NO_NETWORK_FOUND)
                     }
                 }
                 if (progress) progressBarListener.invoke(false)
             }
         }
         return callScope
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun <T> handleErrorBody(
+        responseBody: ResponseBody,
+        response: (T?) -> Unit,
+        errorResponse: (Int?, String?) -> Unit,
+        logoutListener: (unAuth: Boolean) -> Unit,
+        code: Int
+    ) {
+        val errorMessage: BaseResponse? = Gson().fromJson(
+            responseBody.string(),
+            BaseResponse::class.java
+        )
+        errorResponse(code, errorMessage?.message)
+        when (code) {
+            HttpCode.INTERNAL_SERVER_ERROR, HttpCode.SERVICE_UNAVAILABLE, HttpCode.BAD_GATEWAY -> errorToast(
+                HttpMsg.SERVICE_UNAVAILABLE
+            )
+
+            HttpCode.TIMEOUT_ERROR, HttpCode.TOO_MANY_REQUEST -> errorToast(
+                HttpMsg.TIMEOUT_ERROR
+            )
+
+            HttpCode.NOT_FOUND -> errorToast(HttpMsg.NOT_FOUND)
+            HttpCode.UNAUTHORIZED_ACCESS -> {
+                logoutListener.invoke(true)
+                errorToast(HttpMsg.UNAUTHORIZED_ACCESS)
+            }
+
+            else -> {
+                handleBaseResponseError(responseBody, response)
+            }
+        }
+        response(null)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun <T> handleBaseResponseError(
+        responseBody: ResponseBody,
+        response: (T?) -> Unit,
+    ) {
+        Gson().fromJson(
+            responseBody.string(),
+            BaseResponse::class.java
+        )?.let { baseResponse ->
+            try {
+                response(baseResponse as T)
+            } catch (e: ClassCastException) {
+                e.printStackTrace()
+            }
+        }
     }
 
     private var callScope: Job = Job()

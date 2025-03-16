@@ -38,12 +38,4 @@ object Toast {
 
     fun error(@StringRes message: Int, length: Int = Toast.LENGTH_LONG) =
         Toast.makeText(this.context, message, length).show()
-
-    fun normal(message: String, length: Int = Toast.LENGTH_LONG) {
-        val duration = if (message.length > 40) length else Toast.LENGTH_SHORT
-        Toast.makeText(this.context, message, duration).show()
-    }
-
-    fun normal(@StringRes message: Int, length: Int = Toast.LENGTH_LONG) =
-        Toast.makeText(this.context, message, length).show()
 }

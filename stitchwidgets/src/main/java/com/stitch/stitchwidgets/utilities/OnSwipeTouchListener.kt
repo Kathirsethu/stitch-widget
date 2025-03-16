@@ -21,9 +21,6 @@ internal open class OnSwipeTouchListener(context: Context) : View.OnTouchListene
 
     private open inner class GestureListener : SimpleOnGestureListener() {
 
-        private val SWIPE_THRESHOLD = 10
-        private val SWIPE_VELOCITY_THRESHOLD = 10
-
         override fun onDown(e: MotionEvent): Boolean {
             return true
         }
@@ -52,23 +49,12 @@ internal open class OnSwipeTouchListener(context: Context) : View.OnTouchListene
             try {
                 val diffY = (e2.y).minus(e1?.y ?: 0F)
                 val diffX = (e2.x).minus(e1?.x ?: 0F)
-                if (abs(diffX) > abs(diffY)) {
-                    if (abs(diffX) > SWIPE_THRESHOLD && abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                        if (diffX > 0) {
-                            onSwipeRight()
-                        } else {
-                            onSwipeLeft()
-                        }
-                    }
-                } else {
-                    if (abs(diffY) > SWIPE_THRESHOLD && abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-                        if (diffY > 0) {
-                            onSwipeDown()
-                        } else {
-                            onSwipeUp()
-                        }
-                    }
-                }
+                performActionOnFling(
+                    diffX,
+                    diffY,
+                    velocityX,
+                    velocityY,
+                )
             } catch (exception: Exception) {
                 exception.printStackTrace()
             }
@@ -76,11 +62,58 @@ internal open class OnSwipeTouchListener(context: Context) : View.OnTouchListene
         }
     }
 
-    open fun onSwipeRight() {}
-    open fun onSwipeLeft() {}
-    open fun onSwipeUp() {}
-    open fun onSwipeDown() {}
-    private fun onClick() {}
-    private fun onDoubleClick() {}
-    private fun onLongClick() {}
+    private fun performActionOnFling(
+        diffX: Float,
+        diffY: Float,
+        velocityX: Float,
+        velocityY: Float
+    ) {
+        val swipeThreshold = 10
+        val swipeVelocityThreshold = 10
+        if (abs(diffX) > abs(diffY)) {
+            if (abs(diffX) > swipeThreshold && abs(velocityX) > swipeVelocityThreshold) {
+                if (diffX > 0) {
+                    onSwipeRight()
+                } else {
+                    onSwipeLeft()
+                }
+            }
+        } else {
+            if (abs(diffY) > swipeThreshold && abs(velocityY) > swipeVelocityThreshold) {
+                if (diffY > 0) {
+                    onSwipeDown()
+                } else {
+                    onSwipeUp()
+                }
+            }
+        }
+    }
+
+    open fun onSwipeRight() {
+        //Callback when the view is swiped right
+    }
+
+    open fun onSwipeLeft() {
+        //Callback when the view is swiped left
+    }
+
+    open fun onSwipeUp() {
+        //Callback when the view is swiped up
+    }
+
+    open fun onSwipeDown() {
+        //Callback when the view is swiped down
+    }
+
+    private fun onClick() {
+        //Callback when the view is clicked
+    }
+
+    private fun onDoubleClick() {
+        //Callback when the view is double clicked
+    }
+
+    private fun onLongClick() {
+        //Callback when the view is long clicked
+    }
 }

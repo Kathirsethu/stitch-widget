@@ -2,6 +2,10 @@ package com.stitch.stitchwidgets.utilities
 
 open class Constants {
 
+    object SampleData {
+        const val CARD_PROFILE_NAME = "Navin Sivaji"
+    }
+
     object ViewType {
 
         const val SET_CARD_PIN = "SET_CARD_PIN"
