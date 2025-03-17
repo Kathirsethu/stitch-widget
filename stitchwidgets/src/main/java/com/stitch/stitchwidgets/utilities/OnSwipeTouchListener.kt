@@ -72,20 +72,28 @@ internal open class OnSwipeTouchListener(context: Context) : View.OnTouchListene
         val swipeVelocityThreshold = 10
         if (abs(diffX) > abs(diffY)) {
             if (abs(diffX) > swipeThreshold && abs(velocityX) > swipeVelocityThreshold) {
-                if (diffX > 0) {
-                    onSwipeRight()
-                } else {
-                    onSwipeLeft()
-                }
+                horizontalFling(diffX)
             }
         } else {
             if (abs(diffY) > swipeThreshold && abs(velocityY) > swipeVelocityThreshold) {
-                if (diffY > 0) {
-                    onSwipeDown()
-                } else {
-                    onSwipeUp()
-                }
+                verticalFling(diffY)
             }
+        }
+    }
+
+    private fun horizontalFling(diffX: Float) {
+        if (diffX > 0) {
+            onSwipeRight()
+        } else {
+            onSwipeLeft()
+        }
+    }
+
+    private fun verticalFling(diffY: Float) {
+        if (diffY > 0) {
+            onSwipeDown()
+        } else {
+            onSwipeUp()
         }
     }
 

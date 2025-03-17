@@ -48,31 +48,17 @@ object ApiManager : ApiHelper {
                     with(request.await()) {
                         body()?.let {
                             when (it) {
-                                is BaseResponse -> {
-                                    response(it)
-                                }
-
+                                is BaseResponse -> response(it)
                                 else -> response(it)
                             }
                         }
 
                         errorBody()?.let {
-                            handleErrorBody(
-                                it,
-                                response,
-                                errorResponse,
-                                logoutListener,
-                                code()
-                            )
+                            handleErrorBody(it, response, errorResponse, logoutListener, code())
                         }
                     }
                 } catch (e: Exception) {
-                    when (e) {
-                        is SocketTimeoutException -> errorToast(HttpMsg.TIMEOUT_ERROR)
-                        is UnknownHostException -> errorToast(HttpMsg.INTERNAL_SERVER_ERROR + " Please contact admin...")
-                        is ConnectException -> errorToast(HttpMsg.CONNECT_ERROR)
-                        is CancellationException -> errorToast(HttpMsg.NO_NETWORK_FOUND)
-                    }
+                    showExceptionToast(e)
                 }
                 if (progress) progressBarListener.invoke(false)
             }
@@ -129,6 +115,15 @@ object ApiManager : ApiHelper {
             } catch (e: ClassCastException) {
                 e.printStackTrace()
             }
+        }
+    }
+
+    private fun showExceptionToast(e: Exception) {
+        when (e) {
+            is SocketTimeoutException -> errorToast(HttpMsg.TIMEOUT_ERROR)
+            is UnknownHostException -> errorToast(HttpMsg.INTERNAL_SERVER_ERROR + " Please contact admin...")
+            is ConnectException -> errorToast(HttpMsg.CONNECT_ERROR)
+            is CancellationException -> errorToast(HttpMsg.NO_NETWORK_FOUND)
         }
     }
 
