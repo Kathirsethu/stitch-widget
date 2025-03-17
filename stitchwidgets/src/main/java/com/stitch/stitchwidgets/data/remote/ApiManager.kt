@@ -47,10 +47,7 @@ object ApiManager : ApiHelper {
                     if (progress) progressBarListener.invoke(true)
                     with(request.await()) {
                         body()?.let {
-                            when (it) {
-                                is BaseResponse -> response(it)
-                                else -> response(it)
-                            }
+                            response(it)
                         }
 
                         errorBody()?.let {
