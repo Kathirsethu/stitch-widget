@@ -34,12 +34,12 @@ object CardUtils {
 
     fun TextView.setWidgetFontSize(
         actualFontSize: Int?,
-        defaultFontSize: Float
+        defaultFontSize: Int
     ) {
-        this.textSize = actualFontSize?.toFloat() ?: defaultFontSize
+        this.textSize = (actualFontSize ?: defaultFontSize).toFloat()
     }
 
-    fun getWidgetPadding(actualPadding: Int?, defaultPadding: String): String {
-        return actualPadding?.toString() ?: defaultPadding
+    fun getWidgetPadding(actualPadding: Int?, defaultPadding: Int): String {
+        return (actualPadding ?: defaultPadding).toString()
     }
 }

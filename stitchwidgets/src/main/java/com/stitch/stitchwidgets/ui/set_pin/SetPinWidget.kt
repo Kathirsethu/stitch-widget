@@ -91,7 +91,7 @@ open class SetPinWidget : StitchWidget() {
                 savedCardSettings
             )
         }
-        viewModel.isDeviceRooted.set(!Utils.isDeviceRooted(requireContext()))
+        viewModel.isDeviceRooted.set(Utils.isDeviceRooted(requireContext()))
         viewModel.onSetPINClick = {
             viewModel.retryCount.set(0)
             viewModel.getWidgetsSecureSessionKey(requireContext())
