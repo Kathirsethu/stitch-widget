@@ -13,6 +13,7 @@ import com.stitch.stitchwidgets.data.model.request.WidgetsSecureSetPINRequest
 import com.stitch.stitchwidgets.data.model.response.Card
 import com.stitch.stitchwidgets.data.model.response.WidgetsSecureSessionKeyResponse
 import com.stitch.stitchwidgets.data.remote.ApiManager
+import com.stitch.stitchwidgets.utilities.CardSDKException
 import com.stitch.stitchwidgets.utilities.Constants
 import com.stitch.stitchwidgets.utilities.Toast
 import com.stitch.stitchwidgets.utilities.validateConfirmPIN
@@ -28,6 +29,8 @@ import javax.crypto.spec.SecretKeySpec
 
 open class StitchWidgetViewModel : ViewModel() {
 
+    var isDeviceRooted = ObservableField(false)
+    val deviceRootedMessage = ObservableField(CardSDKException.INSECURE_ENVIRONMENT_MESSAGE)
     val sdkData = ObservableField<SDKData>()
     val savedCardSettings = ObservableField<SavedCardSettings>()
     val card = ObservableField<Card>()
@@ -47,9 +50,6 @@ open class StitchWidgetViewModel : ViewModel() {
     val confirmChangePin = ObservableField("")
     val pin = ObservableField("")
     val confirmPin = ObservableField("")
-
-    val showCardSetPin = ObservableField(false)
-    val showCardResetPin = ObservableField(false)
 
     val cardStyleFontFamily = ObservableField<Int>()
     val cardStyleFontColor = ObservableField<Int>()

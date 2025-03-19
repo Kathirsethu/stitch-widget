@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.stitch.stitchwidgets.R
 import com.stitch.stitchwidgets.databinding.WidgetStitchBinding
 import com.stitch.stitchwidgets.utilities.Toast
+import com.stitch.stitchwidgets.utilities.Utils
 
 open class StitchWidget : Fragment() {
 
@@ -41,5 +42,6 @@ open class StitchWidget : Fragment() {
 
     private fun config() {
         binding.viewModel = viewModel
+        viewModel.isDeviceRooted.set(Utils.isDeviceRooted(requireContext()))
     }
 }

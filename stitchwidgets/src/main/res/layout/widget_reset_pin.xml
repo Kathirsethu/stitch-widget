@@ -17,11 +17,22 @@
         android:padding="8dp"
         tools:context="com.stitch.stitchwidgets.ui.reset_pin.ResetPinWidget">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDeviceRooted"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@={viewModel.deviceRootedMessage}"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:fontFamily="@font/inconsolata_semi_bold"
+            app:isGone="@{!viewModel.isDeviceRooted}" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp"
-            app:isGone="@{!viewModel.showCardResetPin}"
+            app:isGone="@{viewModel.isDeviceRooted}"
             app:layout_constraintTop_toTopOf="parent">
 
             <include

@@ -80,7 +80,6 @@ open class SetPinWidget : StitchWidget() {
         viewModel.viewType.set(Constants.ViewType.SET_CARD_PIN)
         if (!arguments?.getString(Constants.ParcelConstants.CARD_NUMBER).isNullOrEmpty())
             viewModel.cardNumber.set(arguments?.getString(Constants.ParcelConstants.CARD_NUMBER))
-        viewModel.showCardSetPin.set(true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             setSDKData(
                 arguments?.getParcelable(Constants.ParcelConstants.SDK_DATA, SDKData::class.java),
@@ -189,7 +188,6 @@ open class SetPinWidget : StitchWidget() {
 
     private fun setCardData() {
         if (viewModel.card.get() != null) {
-            viewModel.showCardSetPin.set(true)
             viewModel.cardNumber.set(viewModel.card.get()?.cardNumber)
         }
     }

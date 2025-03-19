@@ -90,6 +90,7 @@ class CardWidget : Fragment() {
         viewModel.networkListener = networkListener
         viewModel.progressBarListener = progressBarListener
         viewModel.logoutListener = logoutListener
+        viewModel.isDeviceRooted.set(Utils.isDeviceRooted(requireContext()))
 
         viewModel.secureToken = secureToken
         val deviceFingerprint: String = Utils.getDeviceFingerprint(requireContext())

@@ -7,6 +7,7 @@ import com.stitch.stitchwidgets.data.model.request.WidgetsSecureCardRequest
 import com.stitch.stitchwidgets.data.model.request.WidgetsSecureSessionKeyRequest
 import com.stitch.stitchwidgets.data.model.response.Card
 import com.stitch.stitchwidgets.data.remote.ApiManager
+import com.stitch.stitchwidgets.utilities.CardSDKException
 import com.stitch.stitchwidgets.utilities.CardUtils
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -17,6 +18,8 @@ import javax.crypto.spec.SecretKeySpec
 
 class CardWidgetViewModel : ViewModel() {
 
+    var isDeviceRooted = ObservableField(false)
+    val deviceRootedMessage = ObservableField(CardSDKException.INSECURE_ENVIRONMENT_MESSAGE)
     var card = Card()
     var cardNumber: String = ""
     var secureToken: String = ""

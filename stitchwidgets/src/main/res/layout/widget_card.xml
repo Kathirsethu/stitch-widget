@@ -16,11 +16,26 @@
         android:background="@drawable/bg_white_top_corner_24"
         tools:context=".ui.demo.DemoCardBottomSheetFragment">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDeviceRooted"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="8dp"
+            android:background="@color/new_card_bg"
+            android:gravity="center"
+            android:text="@={viewModel.deviceRootedMessage}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:fontFamily="@font/inconsolata_semi_bold"
+            app:isGone="@{!viewModel.isDeviceRooted}"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <include
             android:id="@+id/layoutDemoCard"
             layout="@layout/item_card_new"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:isGone="@{viewModel.isDeviceRooted}"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
