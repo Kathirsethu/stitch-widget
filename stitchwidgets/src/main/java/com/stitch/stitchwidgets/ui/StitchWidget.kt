@@ -42,6 +42,6 @@ open class StitchWidget : Fragment() {
 
     private fun config() {
         binding.viewModel = viewModel
-        viewModel.isDeviceRooted.set(Utils.isDeviceRooted(requireContext()))
+        viewModel.isDeviceRooted.set(!Utils.isDeviceRooted(requireContext()))
     }
 }

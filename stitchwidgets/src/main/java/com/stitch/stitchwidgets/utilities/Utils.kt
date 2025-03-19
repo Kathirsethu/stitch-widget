@@ -61,7 +61,7 @@ object Utils {
         )
         val androidVersion = Build.VERSION.RELEASE
         val deviceFingerprint = "$strIPAddress : $modelName : $device : $androidVersion"
-        val md = MessageDigest.getInstance("SHA256")
+        val md = MessageDigest.getInstance("MD5")
         return BigInteger(1, md.digest(deviceFingerprint.toByteArray())).toString(16)
             .padStart(32, '0')
     }
