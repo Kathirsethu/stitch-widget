@@ -33,19 +33,13 @@ object CardUtils {
     }
 
     fun TextView.setWidgetFontSize(
-        actualFontSize: String?,
+        actualFontSize: Int?,
         defaultFontSize: Float
     ) {
-        this.textSize =
-            if (!actualFontSize.isNullOrEmpty()) actualFontSize.toFloat() else defaultFontSize
+        this.textSize = actualFontSize?.toFloat() ?: defaultFontSize
     }
 
-    fun getWidgetPadding(actualPadding: String?, defaultPadding: String): String {
-        return if (!actualPadding.isNullOrEmpty()
-        ) {
-            actualPadding.toString()
-        } else {
-            defaultPadding
-        }
+    fun getWidgetPadding(actualPadding: Int?, defaultPadding: String): String {
+        return actualPadding?.toString() ?: defaultPadding
     }
 }
