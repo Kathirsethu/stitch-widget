@@ -26,9 +26,9 @@ open class Constants {
     object APIEndPoints {
 
         //Secure Widget APIs
-        const val WIDGETS_SECURE_SESSION_KEY = "/v1/widgets/secure/sessionkey"
-        const val WIDGETS_SECURE_CARD = "/v1/widgets/secure/card"
-        const val SECURE_WIDGETS_SET_PIN = "/v1/widgets/secure/setpin"
-        const val SECURE_WIDGETS_CHANGE_PIN = "/v1/widgets/secure/changepin"
+        const val WIDGETS_SECURE_SESSION_KEY = "/qa/v1/widgets/secure/sessionkey"
+        const val WIDGETS_SECURE_CARD = "/qa/v1/widgets/secure/card"
+        const val SECURE_WIDGETS_SET_PIN = "/qa/v1/widgets/secure/setpin"
+        const val SECURE_WIDGETS_CHANGE_PIN = "/qa/v1/widgets/secure/changepin"
     }
 }
